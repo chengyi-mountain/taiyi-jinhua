@@ -69,12 +69,13 @@ async function run(){
   var range=$('#lidRange'),curtain=$('#lidCurtain'),fill=$('#lidFill');
   t('滑块与帘都存在',function(){return !!range&&!!curtain&&!!fill;});
   range.value='0';range.dispatchEvent(new w.Event('input'));
-  t('开到最大：帘回到眼廓上缘',function(){return /Q210 (66|66\.0)/.test(curtain.getAttribute('d'));});
+  t('开到最大：帘回到眼廓上缘',function(){return /Q170 (102|102\.0)/.test(curtain.getAttribute('d'));});
+  var dOpen=fill.getAttribute('d');
   range.value='100';range.dispatchEvent(new w.Event('input'));
-  t('垂到最闭：帘压平',function(){return /Q210 140/.test(curtain.getAttribute('d'));});
+  t('垂到最闭：帘压到下睑',function(){return /Q170 135/.test(curtain.getAttribute('d'));});
   range.value='60';range.dispatchEvent(new w.Event('input'));
   t('中间判为「恰好」',function(){return $('#lidState').textContent.indexOf('恰好')>-1;});
-  t('帘的填充随滑块变化',function(){var h=parseFloat(fill.getAttribute('height'));return h>0&&h<100;});
+  t('睑缝随滑块收窄',function(){return !!dOpen&&dOpen!==fill.getAttribute('d');});
   t('四阶齐全',function(){return $$('.rung').length===4;});
   t('四阶序号为 01–04',function(){return $$('.rung-n b').map(function(x){return x.textContent;}).join('')==='01020304';});
 

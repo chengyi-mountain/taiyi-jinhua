@@ -230,7 +230,7 @@ p{margin:0 0 1em}
 .page-head h1{font-size:clamp(26px,3.6vw,40px)}
 .lid-demo{border:1px solid var(--rule);background:var(--paper-3);padding:clamp(16px,2.4vw,26px);margin-top:clamp(26px,3.4vw,38px)}
 .lid-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(16px,3vw,34px);align-items:center}
-#lidSvg{width:100%;height:auto;display:block}
+#lidSvg{width:100%;height:auto;display:block;max-width:400px}
 .lid-ctrl{display:grid;gap:10px}
 .lid-ctrl input[type=range]{width:100%;accent-color:var(--cin);height:28px}
 .lid-state{font-size:18px;font-weight:600}
@@ -608,29 +608,44 @@ p{margin:0 0 1em}
     <p class="eyebrow" style="margin:0 0 8px">第三章 · 垂帘得中</p>
     <div class="lid-grid">
       <div>
-        <svg id="lidSvg" viewBox="0 0 460 280" role="img" aria-label="垂帘尺度示意：眼睑张开程度与视线落点">
-          <defs><clipPath id="lidClip"><path d="M92 140 Q210 66 328 140 Q210 208 92 140 Z"/></clipPath></defs>
-          <g clip-path="url(#lidClip)">
-            <ellipse cx="210" cy="140" rx="118" ry="46" fill="#F7F4E9"/>
-            <circle cx="210" cy="142" r="25" fill="none" stroke="#1B1C16" stroke-width="1.2" opacity=".7"/>
-            <circle cx="210" cy="142" r="8" fill="#1B1C16" opacity=".75"/>
-          </g>
-          <path d="M92 140 Q210 208 328 140" fill="none" stroke="#1B1C16" stroke-width="1.4" opacity=".5"/>
+        <svg id="lidSvg" viewBox="110 42 195 190" role="img" aria-label="垂帘侧视剖面：上睑下垂的程度与视线落点">
+          <defs><clipPath id="lidClip"><path id="lidClipPath" d="M145 118 Q170 102 195 118 Q170 135 145 118"/></clipPath></defs>
+
+          <!-- 侧脸剪影：额头 → 山根 → 鼻梁 → 鼻尖 → 鼻底 → 上唇 → 下巴 -->
+          <path d="M-40 -40 L150 48 C178 54 197 74 203 94 C202 102 201 106 202 112
+                   C210 128 226 150 236 162 C243 168 249 171 253 168
+                   C250 176 244 179 238 178 C234 184 232 190 233 196
+                   C233 204 231 210 224 214 C210 220 170 224 110 226 L-40 240 Z"
+                fill="#1B1C16" fill-opacity=".07"/>
+          <!-- 脸的正面轮廓 -->
+          <path d="M203 94 C202 102 201 106 202 112 C210 128 226 150 236 162
+                   C243 168 249 171 253 168 C250 176 244 179 238 178"
+                fill="none" stroke="#1B1C16" stroke-width="1.2" opacity=".3"/>
+          <!-- 眉 -->
+          <path d="M156 96 C168 90 183 90 193 97" fill="none" stroke="#1B1C16" stroke-width="1" opacity=".22"/>
+
+          <!-- 眼 -->
+          <path d="M145 118 Q170 101 195 118 Q170 135 145 118" fill="#FBF8EE"/>
+          <g clip-path="url(#lidClip)"><circle cx="172" cy="117" r="11.5" fill="#1B1C16" opacity=".8"/></g>
+          <path d="M145 118 Q170 135 195 118" fill="none" stroke="#1B1C16" stroke-width="1" opacity=".32"/>
+          <!-- 睑缝的淡墨 -->
+          <path id="lidFill" d="M145 118 Q170 102 195 118 Q170 135 145 118" fill="#1B1C16" opacity=".045"/>
+
           <!-- 视线 -->
-          <polygon id="lidBeam" points="" fill="#A33A2B" opacity=".13"/>
-          <line id="lidRay" x1="210" y1="142" x2="360" y2="222" stroke="#A33A2B" stroke-width="1.3" stroke-dasharray="5 4" opacity=".8"/>
-          <!-- 帘 -->
-          <g clip-path="url(#lidClip)"><rect id="lidFill" x="80" y="40" width="260" height="80" fill="#1B1C16" opacity=".2"/></g>
-          <path id="lidCurtain" d="" fill="none" stroke="#1B1C16" stroke-width="1.8"/>
-          <text x="86" y="132" text-anchor="end" font-size="11" fill="#7C7B6C" font-family="serif">帘</text>
-          <!-- 鼻端 -->
-          <circle id="lidNose" cx="362" cy="222" r="5" fill="none" stroke="#A33A2B" stroke-width="1.4" opacity=".45"/>
-          <text x="362" y="244" text-anchor="middle" font-size="10.5" fill="#7C7B6C" font-family="serif">鼻端</text>
+          <polygon id="lidBeam" points="" fill="#A33A2B" opacity=".12"/>
+          <line id="lidRay" x1="172" y1="117" x2="296" y2="100" stroke="#A33A2B" stroke-width="1.3" stroke-dasharray="5 4" opacity=".8"/>
+
+          <!-- 帘：上睑 -->
+          <path id="lidCurtain" d="M145 118 Q170 102 195 118" fill="none" stroke="#1B1C16" stroke-width="2.2"/>
+
+          <text x="138" y="112" text-anchor="end" font-size="9" fill="#7C7B6C" font-family="serif">帘</text>
+          <circle id="lidNose" cx="253" cy="168" r="4.2" fill="none" stroke="#A33A2B" stroke-width="1.5" opacity=".4"/>
+          <text x="252" y="190" text-anchor="middle" font-size="9" fill="#7C7B6C" font-family="serif">鼻端</text>
         </svg>
       </div>
       <div class="lid-ctrl">
         <div class="lid-badges"><i id="bOpen">太开</i><i id="bFit">恰好</i><i id="bShut">太闭</i></div>
-        <input id="lidRange" type="range" min="0" max="100" value="60" step="1" aria-label="眼睑张开程度">
+        <input id="lidRange" type="range" min="0" max="100" value="62" step="1" aria-label="眼睑张开程度">
         <p class="lid-state" id="lidState">恰好：<span>望见鼻端，定个准则就放下</span></p>
         <p class="lid-quote" id="lidQuote">“惟垂帘得中，恰好望见鼻端，故取以为准。只是垂帘恰好，任彼光自然透入，不劳你注射与不注射。”</p>
       </div>
@@ -1239,7 +1254,7 @@ function buildSealwall(){
 function initLid(){
   var range=$('#lidRange');
   if(!range)return;
-  var ray=$('#lidRay'),beam=$('#lidBeam'),nose=$('#lidNose'),curtain=$('#lidCurtain'),fill=$('#lidFill');
+  var ray=$('#lidRay'),beam=$('#lidBeam'),nose=$('#lidNose'),curtain=$('#lidCurtain'),fill=$('#lidFill'),clip=$('#lidClipPath');
   var stateEl=$('#lidState'),quoteEl=$('#lidQuote');
   var bOpen=$('#bOpen'),bFit=$('#bFit'),bShut=$('#bShut');
   var quotes={
@@ -1247,33 +1262,49 @@ function initLid(){
     fit:'“惟垂帘得中，恰好望见鼻端，故取以为准。只是垂帘恰好，任彼光自然透入，不劳你注射与不注射。”',
     shut:'“太闭眼，则眼合，亦不见鼻矣……太闭失之内驰，易于昏沉。”'
   };
+  // 侧视剖面几何：瞳孔 (172,117)，鼻尖 (253,168)
+  var PX=172, PY=117;
+  var A0=-6, A1=30.6;        // 视线角：大开时平视而略抬，掠过鼻梁望远处；恰好时正落鼻端
+  var L0=140, L1=94;         // 束长：出画（示“视远无尽头”）→ 收在鼻端
+  var V_FIT=52, V_SHUT=70;   // 恰好区间 [52,70]；超过即视同眼合
   function upd(){
     var v=parseInt(range.value,10);
-    var A=-30+0.9*v;
-    var cy=66+74*(v/100);
-    curtain.setAttribute('d','M92 140 Q210 '+cy.toFixed(1)+' 328 140');
-    if(fill){
-      fill.setAttribute('y','40');
-      fill.setAttribute('height',Math.max(0,cy-40).toFixed(1));
+    var t=v/100;
+    // 上睑（帘）：控制点 102 → 135（压到下睑即眼合），三次方让中段仍留出睑缝
+    var ctrl=102+33*Math.pow(t,3);
+    var lidD='M145 118 Q170 '+ctrl.toFixed(1)+' 195 118';
+    var openD=lidD+' Q170 135 145 118';
+    curtain.setAttribute('d',lidD);
+    if(fill)fill.setAttribute('d',openD);
+    if(clip)clip.setAttribute('d',openD);
+
+    var k=Math.min(1,v/V_FIT);
+    var A=v<=V_FIT?A0+(A1-A0)*k:A1;
+    var L=v<=V_FIT?L0+(L1-L0)*k:L1;
+    var rad=A*Math.PI/180, h=5.5*Math.PI/180;
+    var ex=PX+L*Math.cos(rad), ey=PY+L*Math.sin(rad);
+    var ax1=PX+L*Math.cos(rad-h), ay1=PY+L*Math.sin(rad-h);
+    var ax2=PX+L*Math.cos(rad+h), ay2=PY+L*Math.sin(rad+h);
+    beam.setAttribute('points',PX+','+PY+' '+ax1.toFixed(1)+','+ay1.toFixed(1)+' '+ax2.toFixed(1)+','+ay2.toFixed(1));
+
+    var fit=v>=V_FIT&&v<=V_SHUT;
+    var visible=v<=V_SHUT;
+    ray.setAttribute('x2',ex.toFixed(1));
+    ray.setAttribute('y2',ey.toFixed(1));
+    ray.style.opacity=visible?'0.8':'0';
+    beam.style.opacity=visible?'0.12':'0';
+    if(nose){
+      nose.setAttribute('r',fit?'5.4':'4.2');
+      nose.setAttribute('opacity',fit?'0.95':'0.4');
     }
-    var rad=A*Math.PI/180,L=182;
-    var ex=210+L*Math.cos(rad),ey=142+L*Math.sin(rad);
-    var a1=(A-8)*Math.PI/180,a2=(A+8)*Math.PI/180;
-    beam.setAttribute('points','210,142 '+(210+L*Math.cos(a1)).toFixed(1)+','+(142+L*Math.sin(a1)).toFixed(1)+' '+(210+L*Math.cos(a2)).toFixed(1)+','+(142+L*Math.sin(a2)).toFixed(1));
-    var visible=v<90;
-    ray.setAttribute('x2',ex.toFixed(1));ray.setAttribute('y2',ey.toFixed(1));
-    ray.style.opacity=visible?'0.85':'0';
-    beam.style.opacity=visible?'0.14':'0';
-    var fit=Math.abs(A-27.8)<=8;
-    nose.setAttribute('r',fit?'7':'5');
-    nose.setAttribute('opacity',fit?'0.95':'0.4');
-    bOpen.classList.toggle('on',v<55);
+
+    bOpen.classList.toggle('on',v<V_FIT);
     bFit.classList.toggle('on',fit);
-    bShut.classList.toggle('on',v>73);
-    if(v<55){
+    bShut.classList.toggle('on',v>V_SHUT);
+    if(v<V_FIT){
       stateEl.innerHTML='太开：<span>视远而不见鼻，易于散乱</span>';
       quoteEl.textContent=quotes.open;
-    }else if(v>73){
+    }else if(v>V_SHUT){
       stateEl.innerHTML='太闭：<span>眼合亦不见鼻，易于昏沉</span>';
       quoteEl.textContent=quotes.shut;
     }else{
@@ -1281,6 +1312,7 @@ function initLid(){
       quoteEl.textContent=quotes.fit;
     }
   }
+
   range.addEventListener('input',upd);
   upd();
 }
