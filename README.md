@@ -23,6 +23,8 @@
 
 ## 打开方式
 
+在线读：<https://chengyi-mountain.github.io/taiyi-jinhua/>
+
 ```
 双击 index.html                      # 直接可用
 python -m http.server 8000           # 或用本地服务（如需）
@@ -30,7 +32,7 @@ python -m http.server 8000           # 或用本地服务（如需）
 
 无需构建、无需安装依赖。字体走 `miaoda.feishu.cn` 的自托管镜像，断网时退回系统宋体，页面依然成立。
 
-发布到 GitHub Pages：仓库 → Settings → Pages → Source 选 `Deploy from a branch`，分支 `main`、目录 `/ (root)`，保存后即得 `https://<用户名>.github.io/<仓库名>/`。
+站点已用 GitHub Pages 发布：Source 为 `main` 分支、`/ (root)` 目录，向 `main` 提交后自动重建。fork 之后要自己发布，照 Settings → Pages 同样设一次即可。
 
 ## 目录结构
 
