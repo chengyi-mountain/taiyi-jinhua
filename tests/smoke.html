@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>smoke</title>
+<style>
+body{margin:0;padding:16px 18px;background:#14150F;color:#D7D2C2;font:13px/1.75 Consolas,Menlo,monospace}
+h1{font-size:15px;margin:0 0 12px;color:#E8D8AE;font-weight:600;letter-spacing:.04em}
+pre{margin:0;white-space:pre-wrap}
+#f{position:fixed;left:-5000px;top:0;width:1100px;height:900px;border:0}
+</style>
+</head>
+<body>
+<h1 id="sum">运行中…</h1>
+<pre id="out"></pre>
+<iframe id="f" src="../index.html#/home"></iframe>
+<script>
+var R=[];
+function ok(n){R.push(['PASS',n,'']);}
+function bad(n,d){R.push(['FAIL',n,d||'']);}
+function t(n,fn){try{var r=fn();if(r===true||r===undefined){ok(n);}else{bad(n,String(r));}}catch(e){bad(n,e.message);}}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+var f=document.getElementById('f');
+function render(){
+  var pass=R.filter(function(x){return x[0]==='PASS';}).length;
+  var all=R.length===pass;
+  var sum=(all?'PASS ':'FAIL ')+pass+'/'+R.length+' 通过';
+  document.getElementById('sum').textContent=sum;
+  document.getElementById('out').textContent=R.map(function(x){return (x[0]==='PASS'?'✓ ':'✗ ')+x[1]+(x[2]?'  → '+x[2]:'');}).join('\n');
+  document.title=sum;
+}
+f.addEventListener('load',function(){
+  run().then(render).catch(function(e){bad('runner',e.message);render();});
+});
+
+async function run(){
+  var w=f.contentWindow,d=w.document;
+  var $=function(s){return d.querySelector(s);};
+  var $$=function(s){return Array.prototype.slice.call(d.querySelectorAll(s));};
+  await sleep(250);
+
+  // ===== 首屏 =====
+  t('首屏只有一个视图且为首页',function(){return $$('.view.on').length===1&&$('.view.on').id==='v-home';});
+  t('首页主标题与三个入口',function(){return d.body.textContent.indexOf('把目光收回来')>-1&&$$('.entry').length===3;});
+  t('章目印章 13 枚',function(){return $$('#sealwall a').length===13;});
+
+  // ===== 路由 =====
+  for(var route of ['text','method','daily','terms','faq','about','home']){
+    w.location.hash='#/'+route;await sleep(90);
+    (function(r){
+      t('切到 #/'+r,function(){var on=$('.view.on');return on&&on.id==='v-'+r;});
+    })(route);
+  }
+
+  // ===== 原文页 =====
+  w.location.hash='#/text';await sleep(120);
+  t('章次导航 13 项',function(){return $$('#chapNav button').length===13;});
+  t('导航显示章序号 01',function(){return $$('#chapNav button')[0].textContent.indexOf('01')>-1;});
+  $$('#chapNav button')[2].click();await sleep(80);
+  t('点第三章后正文切换',function(){var h=$('#chapBody h2');return h&&h.textContent.indexOf('回光守中')>-1;});
+  t('第三章有原文段与讲解段',function(){return $$('#chapBody .seg').length>0&&$('#chapBody .seg-gloss')!==null;});
+  t('章末要点/实操/异文齐备',function(){return $('#chapBody .variant')!==null&&$('#chapBody .act')!==null;});
+  $$('#chapNav button')[12].click();await sleep(80);
+  t('第十三章可读',function(){var h=$('#chapBody h2');return h&&h.textContent.indexOf('劝世歌')>-1;});
+
+  // ===== 垂帘 =====
+  w.location.hash='#/method';await sleep(120);
+  var range=$('#lidRange'),curtain=$('#lidCurtain'),fill=$('#lidFill');
+  t('滑块与帘都存在',function(){return !!range&&!!curtain&&!!fill;});
+  range.value='0';range.dispatchEvent(new w.Event('input'));
+  t('开到最大：帘回到眼廓上缘',function(){return /Q210 (66|66\.0)/.test(curtain.getAttribute('d'));});
+  range.value='100';range.dispatchEvent(new w.Event('input'));
+  t('垂到最闭：帘压平',function(){return /Q210 140/.test(curtain.getAttribute('d'));});
+  range.value='60';range.dispatchEvent(new w.Event('input'));
+  t('中间判为「恰好」',function(){return $('#lidState').textContent.indexOf('恰好')>-1;});
+  t('帘的填充随滑块变化',function(){var h=parseFloat(fill.getAttribute('height'));return h>0&&h<100;});
+  t('四阶齐全',function(){return $$('.rung').length===4;});
+  t('四阶序号为 01–04',function(){return $$('.rung-n b').map(function(x){return x.textContent;}).join('')==='01020304';});
+
+  // ===== 日课 =====
+  w.location.hash='#/daily';await sleep(120);
+  $$('#minChips button')[0].click();
+  t('选五分钟后该档高亮',function(){return $$('#minChips button')[0].classList.contains('on');});
+  $('#btnStart').click();await sleep(80);
+  t('开始后进入计时态',function(){return $('#practice').classList.contains('live');});
+  t('第一阶段显示「调身」',function(){return $('#phName').textContent.indexOf('调身')>-1;});
+  var c0=$('#clock').textContent;
+  await sleep(1100);
+  t('时钟在倒数',function(){return $('#clock').textContent!==c0&&$('#clock').textContent.indexOf('00:00')!==0;});
+  $('#btnStop').click();await sleep(80);
+  t('结束后退出计时态',function(){return !$('#practice').classList.contains('live');});
+  t('提前结束也打开打卡区',function(){return $('#checkin').classList.contains('on');});
+
+  // ===== 统计 =====
+  var seed=[{date:'2026-11-16',ts:1,min:20,q:'清明',note:'甲'},{date:'2026-11-15',ts:2,min:15,q:'散乱',note:'乙'},{date:'2026-11-10',ts:3,min:25,q:'昏沉',note:''}];
+  w.localStorage.setItem('tyjh.log.v1',JSON.stringify(seed));
+  w.renderStats();
+  t('总坐次 = 3',function(){return $('#stSessions').textContent==='3';});
+  t('累计分钟 = 60',function(){return $('#stTotal').textContent==='60';});
+  t('记录列表三行',function(){return $$('#log .log-row').length===3;});
+  t('柱图出现记录柱',function(){return $$('#bars i.has').length>0;});
+  t('有记录时隐藏空态文案',function(){return $('#barsNote')&&$('#barsNote').style.display==='none';});
+  w.localStorage.removeItem('tyjh.log.v1');w.renderStats();
+  t('清空后恢复空态文案',function(){return $('#bars')&&$('#bars').style.display==='none';});
+
+  // ===== 新手引导 =====
+  t('首访引导默认展开',function(){return !!$('#onboard')&&$('#onboard').hidden===false;});
+  t('引导含三步与三个入口',function(){return $$('.ob-steps li').length===3&&$$('.obgo').length===3;});
+  $('#obClose').click();
+  t('关闭后隐藏并记账',function(){return $('#onboard').hidden===true&&w.localStorage.getItem('tyjh.onboard.v1')==='1';});
+  $('#obAgain').click();
+  t('首页可重新打开',function(){return $('#onboard').hidden===false;});
+  $$('.obgo')[2].click();await sleep(120);
+  t('点「今日一坐」直达日课',function(){var on=$('.view.on');return on&&on.id==='v-daily'&&$('#onboard').hidden===true;});
+
+  // ===== 结构完整性 =====
+  t('渲染后没有重复 id',function(){
+    var all=$$('[id]').map(function(x){return x.id;});
+    var dup=all.filter(function(id,i){return all.indexOf(id)!==i;});
+    return dup.length?dup.join(','):true;
+  });
+  t('没有外部脚本',function(){return $$('script[src]').length===0;});
+}
+</script>
+</body>
+</html>

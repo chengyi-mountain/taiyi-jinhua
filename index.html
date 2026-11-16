@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>太乙金华宗旨 · 回光实操</title>
 <meta name="description" content="《太乙金华宗旨》十三章原文、逐段讲解与回光实操：垂帘、听息、止观四阶，附日课计时与打卡。零依赖静态站点。">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23A33A2B'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23F0E8D6' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23F0E8D6'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23A33A2B'/%3E%3Crect x='6.5' y='6.5' width='51' height='51' fill='none' stroke='%23F2EBDA' stroke-width='3'/%3E%3Crect x='18' y='18' width='28' height='28' fill='none' stroke='%23F2EBDA' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/logo.svg">
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap">
 <style>
 /* ===== 色板与字级 ===== */
@@ -329,6 +330,31 @@ p{margin:0 0 1em}
 .faq-item .ans{padding:0 0 18px;font-size:15.5px;color:var(--ink-2);line-height:1.95;max-width:40em}
 .faq-item .ans .chap-ref{font-size:12.5px;color:var(--cin);letter-spacing:.08em;display:inline-block;margin-top:8px}
 
+/* ===== 新手引导 ===== */
+.meta-link{
+  all:unset;cursor:pointer;font-size:13px;color:var(--cin);letter-spacing:.04em;
+  border-bottom:1px solid rgba(163,58,43,.45);padding-bottom:1px;
+}
+.meta-link:hover{color:var(--cin-deep)}
+.onboard{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:clamp(14px,3vw,28px);background:rgba(18,19,15,.44)}
+.onboard[hidden]{display:none}
+.ob-card{
+  width:min(620px,100%);max-height:90vh;overflow:auto;outline:none;
+  background:var(--paper);border-top:3px solid var(--cin);
+  padding:clamp(20px,3.4vw,34px);box-shadow:0 24px 60px rgba(0,0,0,.28);
+}
+.ob-lead{font-size:16px;max-width:32em}
+.ob-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,22px);margin:22px 0 0;padding:0;list-style:none}
+.ob-steps li{border-top:1px solid var(--rule);padding-top:12px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ob-steps b{font-size:13px;color:var(--cin);letter-spacing:.14em;font-weight:600}
+.ob-steps h4{font-size:17px;font-weight:600;margin:0}
+.ob-steps p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.75}
+.ob-steps .btn{margin-top:auto;font-size:13.5px;padding:7px 14px}
+.btn.ghost{border-color:var(--rule);color:var(--ink-2);padding:8px 16px;font-size:14px}
+.btn.ghost:hover{background:var(--ink);color:var(--paper-3);border-color:var(--ink)}
+.ob-foot{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;margin-top:24px;padding-top:16px;border-top:1px solid var(--rule);flex-wrap:wrap}
+.ob-foot .small{margin:0;max-width:32em}
+
 /* ===== 移动端 ===== */
 @media (max-width:880px){
   .hero{grid-template-columns:1fr;gap:26px}
@@ -385,6 +411,12 @@ p{margin:0 0 1em}
   .lid-demo{padding:14px}
   .ringwrap svg{max-width:220px}
   .sealwall{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ob-steps{grid-template-columns:1fr;gap:14px}
+  .ob-card{padding:18px;max-height:none}
+  .ob-steps .btn{width:100%}
+  .onboard{place-items:start center;overflow-y:auto;padding:10px}
+  .ob-lead{font-size:15px}
+  .ob-foot{margin-top:18px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -412,6 +444,39 @@ p{margin:0 0 1em}
 
 <main class="wrap">
 
+<!-- ===== 新手引导 ===== -->
+<div class="onboard" id="onboard" hidden>
+  <div class="ob-card" role="dialog" aria-modal="true" aria-labelledby="obTitle" aria-describedby="obLead" tabindex="-1">
+    <p class="eyebrow">第一次来</p>
+    <h2 id="obTitle">三步就能用起来</h2>
+    <p class="lead ob-lead" id="obLead">全书只教一个动作：把目光收回来。先读一段，再练一次，最后记一笔。三步走完，这本书就算开始用了。</p>
+    <ol class="ob-steps">
+      <li>
+        <b>01</b>
+        <h4>读一段</h4>
+        <p>十三章原文全录，每段下面有白话讲解；章末列要点、一句实操与已知异文。</p>
+        <button class="btn obgo" data-go="#/text">读第一章</button>
+      </li>
+      <li>
+        <b>02</b>
+        <h4>练一次</h4>
+        <p>四阶：垂帘、系心缘中、听息、止观。每阶写清“做对的样子”和“做错的样子”。</p>
+        <button class="btn obgo" data-go="#/method">看四阶</button>
+      </li>
+      <li>
+        <b>03</b>
+        <h4>记一笔</h4>
+        <p>三阶段计时：调身一分半、回光你定的时长、收功一分半。收功后只记时长和散乱昏沉。</p>
+        <button class="btn obgo" data-go="#/daily">今日一坐</button>
+      </li>
+    </ol>
+    <div class="ob-foot">
+      <p class="small">记录只写在这台电脑的浏览器里，不上传。这个引导只自动出现一次，之后从首页“新手引导”可以再打开。</p>
+      <button class="btn ghost" id="obClose" type="button">先随便看看</button>
+    </div>
+  </div>
+</div>
+
 <!-- ===== 视图：首页 ===== -->
 <section class="view on" id="v-home">
   <div class="hero">
@@ -424,6 +489,7 @@ p{margin:0 0 1em}
         <span>十三章全文</span>
         <span>四阶实操</span>
         <span>零依赖 · 本地可开</span>
+        <button class="meta-link" id="obAgain" type="button">新手引导</button>
       </div>
     </div>
     <div>
@@ -1410,12 +1476,53 @@ function initDaily(){
   renderStats();
 }
 
+/* ===== 新手引导 ===== */
+var OB_KEY='tyjh.onboard.v1';
+function obHide(){
+  var o=$('#onboard');
+  if(o)o.hidden=true;
+  document.body.style.overflow='';
+  try{localStorage.setItem(OB_KEY,'1');}catch(e){}
+}
+function obShow(){
+  var o=$('#onboard');
+  if(!o)return;
+  o.hidden=false;
+  document.body.style.overflow='hidden';
+  var card=o.querySelector('.ob-card');
+  if(card)card.focus();
+}
+function initOnboard(){
+  var o=$('#onboard');
+  if(!o)return;
+  var closeBtn=$('#obClose');
+  if(closeBtn)closeBtn.addEventListener('click',obHide);
+  Array.prototype.forEach.call(o.querySelectorAll('.obgo'),function(b){
+    b.addEventListener('click',function(){
+      var to=b.getAttribute('data-go');
+      obHide();
+      if(to)location.hash=to;
+    });
+  });
+  o.addEventListener('click',function(e){
+    if(e.target===o)obHide();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&!o.hidden)obHide();
+  });
+  if($('#obAgain'))$('#obAgain').addEventListener('click',obShow);
+  var seen=false;
+  try{seen=!!localStorage.getItem(OB_KEY);}catch(e){}
+  if(!seen)obShow();
+}
+
 /* ===== 启动 ===== */
 buildChapNav();
 buildSealwall();
 go();
 initLid();
 initDaily();
+initOnboard();
 window.addEventListener('hashchange',go);
 
 

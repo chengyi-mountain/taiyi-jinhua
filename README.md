@@ -1,12 +1,15 @@
 # 太乙金华宗旨 · 回光实操
 
+<img src="assets/logo.svg" width="88" height="88" alt="回光">
+
 一个单文件静态站点，把《太乙金华宗旨》十三章原文、逐段讲解、四阶实操，以及一个能用的日课计时与打卡工具放在一起。零依赖，双击 `index.html` 就能读、能坐、能记。
 
 - 旧题吕洞宾，十三章，清刻本系统
 - 原文全录，逐段白话讲解，章末列要点、一句实操、已知异文
 - 实操按第三章「回者止也，光者观也」拆成四阶：垂帘 → 系心缘中 → 听息 → 止观
 - 日课：调身 / 回光 / 收功三阶段计时，收功后记一笔，统计连续天数与近三十天
-- 记录只存本机 `localStorage`（键 `tyjh.log.v1`），可导出 JSON
+- 首次访问有一步到位的引导（读一段 / 练一次 / 记一笔），关掉后从首页「新手引导」可再打开
+- 记录只存本机 `localStorage`（键 `tyjh.log.v1`），可导出 JSON；桌面与手机都可用
 
 ## 为什么做这个
 
@@ -27,14 +30,31 @@ python -m http.server 8000           # 或用本地服务（如需）
 
 无需构建、无需安装依赖。字体走 `miaoda.feishu.cn` 的自托管镜像，断网时退回系统宋体，页面依然成立。
 
+发布到 GitHub Pages：仓库 → Settings → Pages → Source 选 `Deploy from a branch`，分支 `main`、目录 `/ (root)`，保存后即得 `https://<用户名>.github.io/<仓库名>/`。
+
 ## 目录结构
 
 ```
-index.html    站点全部内容：CSS、数据（CHAPTERS）、逻辑都在里面
-README.md     本文件
-LICENSE       代码许可（MIT）
-校记.md        底本状态、异文表、待办
+index.html        站点全部内容：样式、十三章数据（CHAPTERS）、路由与交互都在里面
+assets/logo.svg   站点图标与仓库标志（同款「回」字印）
+tests/check.mjs   结构测试：路由、章节数据、id、许可声明等 27 项
+tests/smoke.html  行为测试：路由切换、垂帘、计时、统计、引导，共 42 项
+README.md         本文件
+LICENSE           代码许可（MIT）
+校记.md            底本状态、异文表、待办
 ```
+
+## 测试
+
+```
+node tests/check.mjs        # 结构测试，全绿才算过
+```
+
+行为测试在浏览器里跑：直接用浏览器打开 `tests/smoke.html`，页面会逐条列出通过情况，标题栏显示 `PASS n/n`。它把 `index.html` 装进 iframe，真实点击章次、拖动垂帘滑杆、开合计时、写入统计、开关引导。用 Chrome / Edge 打开即可，无需安装任何东西。
+
+## 新手引导
+
+首次打开自动弹出一次，三步各带一个直达按钮；关闭后写入 `tyjh.onboard.v1`，之后不再自动出现。想再看，点首页 hero 下方的「新手引导」。它与页面同源、无弹窗库、无数据上传。
 
 ## 底本与校勘状态
 

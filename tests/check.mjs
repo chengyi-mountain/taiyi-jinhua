@@ -1,0 +1,199 @@
+// 静态结构测试：不依赖任何第三方库
+// 用法：node tests/check.mjs
+import fs from 'node:fs';
+import path from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const file = path.join(root, 'index.html');
+const html = fs.readFileSync(file, 'utf8');
+const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
+
+const fails = [];
+const stats = { total: 0 };
+function t(name, fn) {
+  stats.total++;
+  try {
+    const r = fn();
+    if (r !== true && r !== undefined) fails.push(`${name} —— ${String(r || '断言未通过')}`);
+  } catch (e) {
+    fails.push(`${name} —— ${e.message}`);
+  }
+}
+
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
+const count = (re) => (html.match(re) || []).length;
+
+// --- 文件与基础 ---
+t('index.html 存在且够大', () => (html.length > 70000 ? true : `只有 ${html.length} 字符`));
+t('DOCTYPE 与语言', () => {
+  if (!/^<!DOCTYPE html>/i.test(html)) return '缺 doctype';
+  if (!/<html lang="zh-CN">/.test(html)) return 'lang 不是 zh-CN';
+  return true;
+});
+t('viewport 合规', () => {
+  const m = html.match(/<meta name="viewport" content="([^"]+)"/);
+  if (!m) return '缺 viewport';
+  if (!/width=device-width/.test(m[1]) || !/initial-scale=1/.test(m[1])) return m[1];
+  if (/user-scalable=no|maximum-scale/.test(m[1])) return '禁用缩放';
+  return true;
+});
+t('标题与描述存在', () => {
+  if (!/<title>[^<]{4,}<\/title>/.test(html)) return '缺 title';
+  if (!/<meta name="description" content="[^"]{20,}">/.test(html)) return '缺 description';
+  return true;
+});
+
+// --- 路由与视图 ---
+const routes = [...html.matchAll(/\b(\w+):'(v-\w+)'/g)].map((m) => [m[1], m[2]]);
+t('七个路由与七个视图', () => (routes.length === 7 && ids.filter((i) => i.startsWith('v-')).length === 7 ? true : `routes=${routes.length}`));
+t('路由目标 id 都存在', () => {
+  const bad = routes.filter(([, id]) => !ids.includes(id)).map(([r]) => r);
+  return bad.length ? `缺视图：${bad}` : true;
+});
+t('导航 href 都指向已定义路由', () => {
+  const hrefs = [...html.matchAll(/<a href="#\/(\w+)"/g)].map((m) => m[1]);
+  const keys = routes.map(([k]) => k);
+  const bad = [...new Set(hrefs.filter((h) => !keys.includes(h)))];
+  return bad.length ? `无效链接：${bad}` : hrefs.length >= 6 ? true : `导航项只有 ${hrefs.length}`;
+});
+
+// --- 数据层 ---
+t('十三章都在', () => {
+  const ns = [...html.matchAll(/\{n:"(\d\d)"/g)].map((m) => m[1]);
+  const want = Array.from({ length: 13 }, (_, i) => String(i + 1).padStart(2, '0'));
+  return want.every((w) => ns.includes(w)) && ns.length === 13 ? true : `找到 ${ns.join(',')}`;
+});
+t('每章都带标题、段、要点、实操、异文', () => {
+  const blocks = html.split(/\n\{n:"/).slice(1);
+  const bad = [];
+  blocks.forEach((b, i) => {
+    const need = [/t:"/, /s:"/, /segs:\[/, /keys:\[/, /act:"/, /vr:"/];
+    if (!need.every((re) => re.test(b.slice(0, 4000)))) bad.push(i + 1);
+  });
+  return bad.length ? `第 ${bad.join(',')} 章字段不全` : true;
+});
+t('原文与讲解分段配对', () => {
+  const o = count(/\{o:"/g);
+  const g = count(/g:"/g);
+  if (o !== g) return `原文 ${o} 段 / 讲解 ${g} 段不配对`;
+  return o >= 80 ? true : `总分段只有 ${o}，少于 80`;
+});
+t('异文条目已记录', () => (count(/《心印经》通行作|一本作/g) >= 8 ? true : '异文太少'));
+
+// --- 元素完整性 ---
+t('id 不重复', () => {
+  const dup = ids.filter((id, i) => ids.indexOf(id) !== i);
+  return dup.length ? `重复：${[...new Set(dup)].join(',')}` : true;
+});
+t('脚本引用的 id 都存在', () => {
+  const refs = [...html.matchAll(/\$\('#([\w-]+)'\)/g)].map((m) => m[1]);
+  const missing = [...new Set(refs.filter((r) => !ids.includes(r)))];
+  return missing.length ? `找不到：${missing.join(',')}` : refs.length > 40 ? true : `只引用了 ${refs.length} 个`;
+});
+t('核心交互元素齐备', () => {
+  const need = ['lidSvg', 'lidRange', 'lidCurtain', 'lidFill', 'clock', 'btnStart', 'btnStop', 'btnSave', 'qRow', 'bars', 'log', 'chapNav', 'chapBody', 'sealwall'];
+  const missing = need.filter((n) => !ids.includes(n));
+  return missing.length ? `缺 ${missing.join(',')}` : true;
+});
+
+// --- 新手引导 ---
+t('新手引导存在且只出现一次', () => {
+  const need = ['onboard', 'obClose', 'obAgain', 'obTitle'];
+  const missing = need.filter((n) => !ids.includes(n));
+  if (missing.length) return `缺 ${missing.join(',')}`;
+  if (!/OB_KEY/.test(html) || !/tyjh\.onboard\.v1/.test(html)) return '缺 localStorage 键';
+  if (!/if\(!seen\)obShow\(\)/.test(html)) return '未实现首访自动出现';
+  return true;
+});
+
+// --- 图标 ---
+t('站点图标内联且合规', () => {
+  const m = html.match(/<link rel="icon"[^>]*>/);
+  if (!m) return '缺 favicon';
+  if (!/type="image\/svg\+xml"/.test(m[0])) return 'favicon 不是 svg';
+  if (!/href="data:image\/svg\+xml/.test(m[0])) return 'favicon 未内联';
+  return true;
+});
+t('仓库 logo 资源存在', () => {
+  const p = path.join(root, 'assets', 'logo.svg');
+  if (!fs.existsSync(p)) return '缺 assets/logo.svg';
+  const svg = fs.readFileSync(p, 'utf8');
+  if (!/viewBox="0 0 512 512"/.test(svg)) return 'logo viewBox 不对';
+  return true;
+});
+
+// --- 自包含与外部依赖 ---
+t('没有外链脚本', () => (count(/<script[^>]+src=/g) === 0 ? true : '存在 <script src>'));
+t('字体只走自托管镜像', () => {
+  if (/fonts\.googleapis\.com|fonts\.gstatic\.com/.test(html)) return '直连 Google Fonts';
+  const hosts = [...html.matchAll(/https:\/\/([\w.-]+)\//g)].map((m) => m[1]);
+  const bad = [...new Set(hosts.filter((h) => h.includes('font') && h !== 'miaoda.feishu.cn'))];
+  return bad.length ? `其他字体域：${bad}` : true;
+});
+t('没有 http:// 明文链接', () => {
+  const m = [...html.matchAll(/http:\/\/[^\s"'<>)]+/g)].filter((x) => !/^http:\/\/www\.w3\.org/.test(x[0]));
+  return m.length ? `发现 ${m.length} 处：${m[0][0]}` : true;
+});
+t('没有 emoji', () => {
+  const m = html.match(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u);
+  return m ? `发现 ${m[0]}` : true;
+});
+
+// --- 代码质量 ---
+t('CSS 花括号配平', () => {
+  const css = html.slice(html.indexOf('<style>'), html.indexOf('</style>'));
+  const open = (css.match(/{/g) || []).length;
+  const close = (css.match(/}/g) || []).length;
+  return open === close ? true : `{ ${open} 个，} ${close} 个`;
+});
+t('内联 JS 通过 node --check', () => {
+  const js = html.slice(html.lastIndexOf('<script>') + 8, html.lastIndexOf('</script>'));
+  const tmp = path.join(root, '.check.tmp.mjs');
+  fs.writeFileSync(tmp, js, 'utf8');
+  try {
+    execFileSync(process.execPath, ['--check', tmp], { stdio: 'pipe' });
+    return true;
+  } catch (e) {
+    return String(e.stderr || e.message).slice(0, 300);
+  } finally {
+    fs.rmSync(tmp, { force: true });
+  }
+});
+t('localStorage 只用了两个键', () => {
+  const keys = [...new Set([...html.matchAll(/tyjh\.[a-z]+\.v\d/g)].map((m) => m[0]))];
+  const allow = ['tyjh.log.v1', 'tyjh.onboard.v1'];
+  const bad = keys.filter((k) => !allow.includes(k));
+  return bad.length ? `多余键：${bad}` : keys.length === 2 ? true : `找到 ${keys}`;
+});
+
+// --- 仓库文件与声明 ---
+t('README / LICENSE / 校记 都在', () => {
+  const need = ['README.md', 'LICENSE', '校记.md'];
+  const missing = need.filter((f) => !fs.existsSync(path.join(root, f)));
+  return missing.length ? `缺 ${missing.join(',')}` : true;
+});
+t('README 写明底本与许可', () => {
+  const md = read('README.md');
+    const need = [/底本/, /MIT/, /CC BY-SA 4\.0/, /不构成医疗建议|不是医疗/];
+  const missing = need.filter((re) => !re.test(md));
+  return missing.length ? `README 缺：${missing.join(',')}` : true;
+});
+t('站内保留底本声明', () => {
+  if (!/不构成医疗建议/.test(html)) return '缺健康声明';
+  if (!/未与清刻影印逐字对校|未校清刻/.test(html)) return '缺校勘状态说明';
+  if (!/不称“校本”|不称「校本」|只称“转录”|只称「转录」/.test(html)) return '缺转录/校本口径';
+  return true;
+});
+
+// --- 输出 ---
+const okCount = stats.total - fails.length;
+console.log(`\n结构测试：${okCount}/${stats.total} 通过`);
+if (fails.length) {
+  console.log('\n未通过：');
+  fails.forEach((f) => console.log('  × ' + f));
+  process.exit(1);
+} else {
+  console.log('全部通过');
+}
