@@ -230,10 +230,17 @@ t('data/errata.json 存在且可解析', () => {
 });
 t('errata 条数与校记表一致', () => {
   const md = read('校记.md');
-  const rows = md.split('\n').filter((l) => l.startsWith('|') && !l.includes('---'));
-  const start = rows.findIndex((l) => l.replace(/\s/g, '').startsWith('|章|本站用字|'));
-  if (start < 0) return '校记 异文表表头不见了';
-  const rowsOnly = rows.slice(start + 1).filter((l) => l.split('|').length >= 4);
+  const lines = md.split('\n');
+  const head = lines.findIndex((l) => l.replace(/\s/g, '').startsWith('|章|本站用字|'));
+  if (head < 0) return '校记 异文表表头不见了';
+  // 只取表头之后连续的表格行：遇到非表格行即停，避免把第五节校勘表也算进来
+  const body = [];
+  for (const l of lines.slice(head + 1)) {
+    if (!l.trim().startsWith('|')) break;
+    if (l.includes('---') && !body.length) continue;
+    body.push(l);
+  }
+  const rowsOnly = body.filter((l) => l.split('|').length >= 4);
   const doc = JSON.parse(read('data/errata.json'));
   return doc.entries.length === rowsOnly.length
     ? true
@@ -244,6 +251,32 @@ t('errata 明确声明为转录而非校本', () => {
   if (!/转录/.test(doc.disclaimer || '')) return 'disclaimer 未说明转录性质';
   if (!/清刻影印/.test(doc.disclaimer || '')) return 'disclaimer 未说明未含影印对照';
   return true;
+});
+
+t('段落锚点与段码齐备', () => {
+  const need = ['id="seg-', 'class="seg-no"', "data-c=", "data-s="];
+  const missing = need.filter((s) => !html.includes(s));
+  return missing.length ? `缺 ${missing.join(',')}` : true;
+});
+t('深链接参数被解析', () => {
+  if (!/param\.s/.test(html)) return '未解析 s 参数';
+  if (!/function focusSeg/.test(html)) return '缺定位函数';
+  return true;
+});
+t('站内检索在位', () => {
+  const need = ['id="qInput"', 'id="qOut"', 'function buildIndex', 'function runSearch', "id=\"qClear\""];
+  const missing = need.filter((s) => !html.includes(s));
+  return missing.length ? `缺 ${missing.join(',')}` : true;
+});
+t('复制链接与提示在位', () => {
+  if (!/function copyText/.test(html)) return '缺复制实现';
+  if (!/id="toast"/.test(html)) return '缺提示条';
+  if (/textContent=.*<mark/i.test(html)) return '提示条内容未转义';
+  return true;
+});
+t('检索结果做了转义', () => {
+  if (!/function escHtml/.test(html)) return '缺转义函数';
+  return /escHtml\(/.test(html) ? true : '检索片段未走转义';
 });
 
 // --- 输出 ---

@@ -18,17 +18,29 @@ def main():
     with io.open(src, "r", encoding="utf-8") as f:
         lines = [l.rstrip("\n") for l in f]
 
-    rows = [l for l in lines if l.startswith("|") and "---" not in l]
-    start = None
-    for i, l in enumerate(rows):
+    # 只认「二、已记异文」那张表：从表头往下取连续表格行，遇到非表格行即停，
+    # 免得把后面（如第五节校勘表）的表也当成异文。
+    head = None
+    for i, l in enumerate(lines):
         if l.replace(" ", "").startswith("|章|本站用字|"):
-            start = i + 1
+            head = i
             break
-    if start is None:
+    if head is None:
         raise SystemExit("异文表表头未找到：校记.md 结构变了")
 
+    body = []
+    seen_sep = False
+    for l in lines[head + 1:]:
+        s = l.strip()
+        if not s.startswith("|"):
+            break
+        if "---" in s and not seen_sep:
+            seen_sep = True
+            continue
+        body.append(s)
+
     entries = []
-    for l in rows[start:]:
+    for l in body:
         cells = [c.strip() for c in l.strip().strip("|").split("|")]
         if len(cells) < 3:
             continue

@@ -225,11 +225,12 @@ p{margin:0 0 1em}
   background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(2.15em - 1px),rgba(120,112,92,.085) calc(2.15em - 1px),rgba(120,112,92,.085) 2.15em);
   border-left:0;border-right:3px solid rgba(163,58,43,.28);
 }
+/* 竖排：只让原文竖起来；白话讲解仍横排——竖排的今译一行三四个字，读起来是受罪 */
 #chapBody.vert .seg-gloss{
-  writing-mode:vertical-rl;text-orientation:upright;max-width:none;width:100%;box-sizing:border-box;
-  height:calc(1.95em * 9);overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;
-  padding:0 12px 0 0;
+  writing-mode:horizontal-tb;text-orientation:mixed;
+  width:100%;max-width:34em;box-sizing:border-box;margin-top:24px;
 }
+#chapBody.vert .seg-no{left:auto;right:0}
 .box{margin-top:clamp(26px,3.4vw,38px);border:1px solid var(--rule);background:rgba(255,255,255,.32)}
 .box-h{padding:10px 16px;border-bottom:1px solid var(--rule);font-size:12.5px;letter-spacing:.16em;color:var(--ink-3)}
 .box-b{padding:16px 18px 18px}
@@ -256,6 +257,23 @@ p{margin:0 0 1em}
 .lid-state span{color:var(--cin)}
 .lid-quote{font-size:14px;color:var(--ink-3);line-height:1.85;margin:0}
 .lid-note{font-size:11px;color:var(--ink-3);letter-spacing:.02em;margin:8px 0 0;opacity:.75}
+/* 段码、检索、提示 */
+.seg{position:relative}
+.seg-no{position:absolute;top:-1.6em;left:0;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-3);background:none;border:0;padding:0;cursor:pointer;opacity:.6}
+.seg-no:hover,.seg-no:focus-visible{opacity:1;color:var(--cin)}
+.seg.hit .seg-text{background-color:rgba(163,58,43,.07)}
+.text-search{display:flex;gap:10px;align-items:center;margin:22px 0 0;max-width:600px;flex-wrap:wrap}
+.text-search input{flex:1 1 260px;min-width:0;font:inherit;font-size:14.5px;padding:9px 12px;border:1px solid var(--rule);background:rgba(255,255,255,.5);color:var(--ink);border-radius:0}
+.text-search input:focus{outline:1px solid var(--cin)}
+#qClear{font:inherit;font-size:12.5px;padding:6px 12px;border:1px solid var(--rule);background:none;color:var(--ink-3);cursor:pointer}
+.q-out{margin:20px 0 0;max-width:760px}
+.q-head{padding:0 0 10px;font-size:12.5px;color:var(--ink-3);letter-spacing:.04em;border-bottom:1px solid var(--ink)}
+.q-row{display:grid;grid-template-columns:58px minmax(0,1fr);gap:12px;padding:12px 0;border:0;border-bottom:1px solid var(--rule);background:none;width:100%;cursor:pointer;font:inherit;font-size:14.5px;line-height:1.8;color:var(--ink-2);text-align:left}
+.q-row:hover{background:rgba(163,58,43,.05)}
+.q-row .q-ref{font-family:var(--mono);font-size:11.5px;color:var(--cin);letter-spacing:.08em}
+.q-row mark{background:rgba(163,58,43,.16);color:var(--ink)}
+.q-empty{padding:14px 0;font-size:13.5px;color:var(--ink-3)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--ink);color:#F2EBDC;font-size:13px;letter-spacing:.04em;padding:9px 16px;z-index:60;pointer-events:none}
 .lid-badges{display:flex;gap:8px;font-size:12px;color:var(--ink-3);letter-spacing:.06em}
 .lid-badges i{font-style:normal;padding:3px 8px;border:1px solid var(--rule)}
 .lid-badges i.on{background:var(--cin);color:#F2EBDC;border-color:var(--cin)}
@@ -626,6 +644,11 @@ p{margin:0 0 1em}
     <h1>原文与逐段讲解</h1>
     <p class="lead" style="margin-top:16px">左侧是章次，右侧是正文。原文的分段、标点由本站所加；每段下面是一段白话讲解，章末列要点、一句实操与已知异文。原文未与清刻影印逐字对校，详见底本页。</p>
   </div>
+  <div class="text-search">
+    <input id="qInput" type="search" autocomplete="off" placeholder="在原文与讲解里找：如「夹脊」「采法」「百日」" aria-label="站内检索">
+    <button type="button" id="qClear">清空</button>
+  </div>
+  <div class="q-out" id="qOut" hidden></div>
   <div class="text-tools">
     <span class="tt-label">版式</span>
     <button type="button" id="mHorz" class="tt-btn on">横排</button>
@@ -1061,6 +1084,7 @@ p{margin:0 0 1em}
     <p class="foot-note">原文未校清刻影印，异文标出处 · 讲解 CC BY-SA 4.0 · 代码 MIT</p>
     <p class="foot-disc">本站为古籍整理与练习记录，不构成医疗建议</p>
   </footer>
+  <div class="toast" id="toast" hidden aria-live="polite"></div>
 
 </main>
 
@@ -1198,6 +1222,29 @@ var CHAPTERS = [
 function $(s,r){return (r||document).querySelector(s);}
 function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
 function pad(n){return (n<10?'0':'')+n;}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(t);}
+  return new Promise(function(res,rej){
+    try{
+      var ta=document.createElement('textarea');
+      ta.value=t;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      var ok=document.execCommand('copy');
+      document.body.removeChild(ta);
+      ok?res():rej(new Error('execCommand failed'));
+    }catch(e){rej(e);}
+  });
+}
+var toastTimer=null;
+function toast(msg){
+  var el=$('#toast');
+  if(!el)return;
+  el.textContent=msg;
+  el.hidden=false;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(function(){el.hidden=true;},1800);
+}
 
 /* ===== 路由 ===== */
 var ROUTES={home:'v-home',text:'v-text',method:'v-method',daily:'v-daily',terms:'v-terms',faq:'v-faq',about:'v-about'};
@@ -1228,7 +1275,17 @@ function go(){
     var c=parseInt(st.param.c,10);
     if(c>=1&&c<=CHAPTERS.length){setChap(c-1,true);}
     else if(curChap<0){setChap(0,true);}
+    var sg=parseInt(st.param.s,10);
+    if(c>=1&&sg>=1){setTimeout(function(){focusSeg(c,sg);},60);}
   }
+}
+
+function focusSeg(c,s){
+  var el=$('#seg-'+c+'-'+s);
+  if(!el)return;
+  el.scrollIntoView({block:'center'});
+  el.classList.add('hit');
+  setTimeout(function(){el.classList.remove('hit');},1600);
 }
 
 /* ===== 原文视图 ===== */
@@ -1281,8 +1338,9 @@ function renderChap(){
   var body=$('#chapBody');
   var h='';
   h+='<div class="chap-head"><div class="big-seal">'+parseInt(ch.n,10)+'</div><h2>'+ch.s+'</h2><div class="src">第 '+ch.n+' 章 · 共 '+ch.segs.length+' 段</div></div>';
-  ch.segs.forEach(function(s){
-    h+='<div class="seg"><div class="seg-text">'+s.o+'</div><p class="seg-gloss">'+s.g+'</p></div>';
+  ch.segs.forEach(function(s,i){
+    var no=pad(parseInt(ch.n,10))+'-'+pad(i+1);
+    h+='<div class="seg" id="seg-'+parseInt(ch.n,10)+'-'+(i+1)+'"><button class="seg-no" type="button" data-c="'+parseInt(ch.n,10)+'" data-s="'+(i+1)+'" title="复制本段链接">'+no+'</button><div class="seg-text">'+s.o+'</div><p class="seg-gloss">'+s.g+'</p></div>';
   });
   h+='<div class="box"><div class="box-h">要点</div><div class="box-b"><ul>';
   ch.keys.forEach(function(k){h+='<li>'+k+'</li>';});
@@ -1291,6 +1349,15 @@ function renderChap(){
   if(ch.vr){h+='<p class="variant"><b>异文</b>'+ch.vr+'</p>';}
   h+='<div class="chap-foot"><button type="button" id="prevChap">← 上一章</button><button type="button" id="nextChap">下一章 →</button></div>';
   body.innerHTML=h;
+
+  $$('#chapBody .seg-no').forEach(function(b){
+    b.addEventListener('click',function(){
+      var c=parseInt(b.getAttribute('data-c'),10), s=parseInt(b.getAttribute('data-s'),10);
+      var link=location.href.split('#')[0]+'#/text?c='+c+'&s='+s;
+      copyText(link).then(function(){toast('已复制 ' + pad(c) + ' · ' + pad(s) + ' 的链接');})
+                    .catch(function(){toast('复制失败，请手动复制地址栏');});
+    });
+  });
 
   var p=$('#prevChap'),n=$('#nextChap');
   if(p){
@@ -1303,6 +1370,63 @@ function renderChap(){
     n.style.opacity=curChap===CHAPTERS.length-1?'.4':'1';
     n.addEventListener('click',function(){if(curChap<CHAPTERS.length-1){setChap(curChap+1,true);}});
   }
+}
+
+/* ===== 站内检索 ===== */
+var SEARCH_INDEX=null;
+function buildIndex(){
+  if(SEARCH_INDEX)return SEARCH_INDEX;
+  var arr=[];
+  CHAPTERS.forEach(function(ch,ci){
+    ch.segs.forEach(function(s,si){
+      arr.push({c:ci+1,s:si+1,o:s.o,g:s.g});
+    });
+  });
+  SEARCH_INDEX=arr;
+  return arr;
+}
+function snip(text,q){
+  var i=text.indexOf(q);
+  if(i<0)return '';
+  var a=Math.max(0,i-24), b=Math.min(text.length,i+q.length+46);
+  return (a>0?'…':'')+escHtml(text.slice(a,i))+'<mark>'+escHtml(text.slice(i,i+q.length))+'</mark>'+escHtml(text.slice(i+q.length,b))+(b<text.length?'…':'');
+}
+function runSearch(val){
+  var out=$('#qOut'), lay=$('.text-layout'), tools=$('.text-tools'), q=String(val||'').trim();
+  if(!out)return;
+  if(!q){
+    out.hidden=true; out.innerHTML='';
+    if(lay)lay.style.display='';
+    if(tools)tools.style.display='';
+    return;
+  }
+  if(lay)lay.style.display='none';
+  if(tools)tools.style.display='none';
+  out.hidden=false;
+  var all=buildIndex().filter(function(r){return r.o.indexOf(q)>-1||r.g.indexOf(q)>-1;});
+  if(!all.length){
+    out.innerHTML='<p class="q-empty">没有找到「'+escHtml(q)+'」。原文用「转录」本字形，异体字已转简体，换个写法再试。</p>';
+    return;
+  }
+  var h='<p class="q-head">找到 '+all.length+' 处'+(all.length>30?'，列前 30 条':'')+' · 点一条跳到该段</p>';
+  all.slice(0,30).forEach(function(r){
+    var s=snip(r.o,q)||snip(r.g,q)||escHtml(r.o.slice(0,48))+'…';
+    h+='<button class="q-row" type="button" data-c="'+r.c+'" data-s="'+r.s+'"><span class="q-ref">'+pad(r.c)+' · '+pad(r.s)+'</span><span>'+s+'</span></button>';
+  });
+  out.innerHTML=h;
+  $$('#qOut .q-row').forEach(function(b){
+    b.addEventListener('click',function(){
+      var c=parseInt(b.getAttribute('data-c'),10), s=parseInt(b.getAttribute('data-s'),10);
+      var qi=$('#qInput'); if(qi)qi.value='';
+      runSearch('');
+      location.hash='#/text?c='+c+'&s='+s;
+    });
+  });
+}
+function initSearch(){
+  var inp=$('#qInput'), clr=$('#qClear');
+  if(inp)inp.addEventListener('input',function(){runSearch(inp.value);});
+  if(clr)clr.addEventListener('click',function(){if(inp){inp.value='';inp.focus();}runSearch('');});
 }
 
 /* ===== 首页章目 ===== */
@@ -1640,6 +1764,7 @@ function initOnboard(){
 buildChapNav();
 buildSealwall();
 initMode();
+initSearch();
 go();
 initLid();
 initDaily();

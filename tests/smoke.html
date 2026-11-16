@@ -64,6 +64,31 @@ async function run(){
   $$('#chapNav button')[12].click();await sleep(80);
   t('第十三章可读',function(){var h=$('#chapBody h2');return h&&h.textContent.indexOf('劝世歌')>-1;});
 
+  // ===== 段码 / 深链接 =====
+  $$('#chapNav button')[0].click();await sleep(120);
+  t('每段都有段码与锚点',function(){
+    var segs=$$('#chapBody .seg').length, nos=$$('#chapBody .seg-no').length;
+    return segs>0&&nos===segs&&$('#seg-1-1')!==null;
+  });
+  w.location.hash='#/text?c=7&s=2';await sleep(200);
+  t('深链接落到第七章',function(){var h=$('#chapBody h2');return h&&h.textContent.indexOf('回光活法')>-1;});
+  t('深链接定位到该段并高亮',function(){var e=$('#seg-7-2');return !!e&&e.classList.contains('hit');});
+
+  // ===== 站内检索 =====
+  w.location.hash='#/text';await sleep(200);
+  var qi=$('#qInput');
+  qi.value='夹脊';qi.dispatchEvent(new w.Event('input'));await sleep(120);
+  t('检索出结果',function(){var r=$$('#qOut .q-row');return !$('#qOut').hidden&&r.length>0;});
+  t('结果含高亮',function(){return $('#qOut mark')!==null;});
+  t('检索时收起正文',function(){return $('.text-layout').style.display==='none';});
+  $$('#qOut .q-row')[0].click();await sleep(250);
+  t('点结果跳到该段',function(){return /c=\d+&s=\d+/.test(w.location.hash)&&$('#qOut').hidden===true;});
+  qi.value='';qi.dispatchEvent(new w.Event('input'));await sleep(100);
+  t('清空后恢复正文',function(){return $('.text-layout').style.display===''&&$('#qOut').hidden===true;});
+  qi.value='这个词一定不存在';qi.dispatchEvent(new w.Event('input'));await sleep(120);
+  t('无结果时给提示',function(){return $('#qOut').textContent.indexOf('没有找到')>-1;});
+  $('#qClear').click();await sleep(100);
+
   // ===== 竖排 / 横排 =====
   $$('#chapNav button')[0].click();await sleep(80);
   t('默认横排',function(){return !$('#chapBody').classList.contains('vert')&&$('#mHorz').classList.contains('on');});
