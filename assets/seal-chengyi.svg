@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="澄一印">
+  <rect width="200" height="200" rx="4" fill="#A33A2B"/>
+  <rect x="9.5" y="9.5" width="181" height="181" fill="none" stroke="#F2EBDA" stroke-width="3" opacity="0.92"/>
+  <text x="100" y="106" text-anchor="middle" fill="#F2EBDA"
+        font-family="Songti SC, SimSun, STSong, Noto Serif SC, serif"
+        font-weight="700" font-size="88" letter-spacing="2">澄</text>
+  <rect x="58" y="142" width="84" height="15" rx="2" fill="#F2EBDA"/>
+</svg>

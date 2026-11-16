@@ -112,6 +112,13 @@ p{margin:0 0 1em}
   background:var(--cin);color:#F2EBDC;font-size:13px;line-height:1.15;
   letter-spacing:.12em;text-align:center;
 }
+.hero-sign{margin:16px 0 0 auto;display:flex;flex-direction:column;align-items:center;gap:6px;width:50px}
+.hero-sign img{display:block;width:50px;height:50px;border-radius:2px}
+.hero-sign span{font-size:10px;letter-spacing:.06em;color:var(--ink-3);white-space:nowrap}
+.sign-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;margin-top:28px;border-top:1px solid var(--rule);padding-top:20px}
+.sign-row img{display:block;width:64px;height:64px;border-radius:2px}
+.sign-row b{font-size:15px;letter-spacing:.06em}
+.sign-row p{margin:5px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.85}
 .hero-meta{
   display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:26px;
   font-size:13px;color:var(--ink-3);letter-spacing:.04em;
@@ -361,6 +368,10 @@ p{margin:0 0 1em}
   .hero-title{writing-mode:horizontal-tb;font-size:clamp(28px,7vw,42px);letter-spacing:.14em}
   .hero-title span{display:inline}
   .hero-seal{writing-mode:horizontal-tb;width:auto;display:inline-block;margin:10px 0 0;padding:.35em .7em}
+  .hero-sign{margin:12px 0 0;width:auto;flex-direction:row;align-items:center;gap:9px}
+  .hero-sign img{width:44px;height:44px}
+  .sign-row{gap:12px}
+  .sign-row img{width:54px;height:54px}
   .entry-row{grid-template-columns:1fr}
   .entry{border-right:0;border-bottom:1px solid var(--rule)}
   .cols{grid-template-columns:1fr}
@@ -495,6 +506,10 @@ p{margin:0 0 1em}
     <div>
       <div class="hero-title"><span>太乙</span><span>金華</span><span>宗旨</span></div>
       <div class="hero-seal">回光</div>
+      <div class="hero-sign">
+        <img src="assets/seal-chengyi.svg" alt="澄一印" width="50" height="50">
+        <span>澄一 谨录</span>
+      </div>
     </div>
   </div>
 
@@ -970,6 +985,14 @@ p{margin:0 0 1em}
 
       <p class="eyebrow" style="margin-top:34px">六 · 使用与许可</p>
       <p style="font-size:15px;color:var(--ink-2)">原文属公有领域。本站讲解文字以 CC BY-SA 4.0 授权，站点代码以 MIT 授权，欢迎转载、校勘、补异文。发现错字、断句问题，请开 issue，附上你依据的本子与页码。</p>
+
+      <div class="sign-row">
+        <img src="assets/seal-chengyi.svg" alt="澄一印" width="64" height="64">
+        <div>
+          <b>澄一</b>
+          <p>经文转录、逐段讲解、四阶实操与本站制作。原文未校清刻影印，异文一律标出处；发现错字、断句、异文，欢迎开 issue。</p>
+        </div>
+      </div>
 
       <div class="box" style="margin-top:30px">
         <div class="box-h">七 · 声明</div>

@@ -1,8 +1,8 @@
 # 太乙金华宗旨 · 回光实操
 
-<img src="assets/logo.svg" width="88" height="88" alt="回光">
+<img src="assets/logo.svg" width="88" height="88" alt="回光"> <img src="assets/seal-chengyi.svg" width="88" height="88" alt="澄一印">
 
-一个单文件静态站点，把《太乙金华宗旨》十三章原文、逐段讲解、四阶实操，以及一个能用的日课计时与打卡工具放在一起。零依赖，双击 `index.html` 就能读、能坐、能记。
+一个单文件静态站点，把《太乙金华宗旨》十三章原文、逐段讲解、四阶实操，以及一个能用的日课计时与打卡工具放在一起。零依赖，双击 `index.html` 就能读、能坐、能记。整理者：**澄一**（印见左，`assets/seal-chengyi.svg`）。
 
 - 旧题吕洞宾，十三章，清刻本系统
 - 原文全录，逐段白话讲解，章末列要点、一句实操、已知异文

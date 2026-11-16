@@ -123,6 +123,15 @@ t('仓库 logo 资源存在', () => {
   if (!/viewBox="0 0 512 512"/.test(svg)) return 'logo viewBox 不对';
   return true;
 });
+t('「澄一」落款印已接入站点', () => {
+  const p = path.join(root, 'assets', 'seal-chengyi.svg');
+  if (!fs.existsSync(p)) return '缺 assets/seal-chengyi.svg';
+  const svg = fs.readFileSync(p, 'utf8');
+  if (!/澄/.test(svg)) return 'seal 里没有「澄」';
+  if (count(/assets\/seal-chengyi\.svg/g) < 2) return '页面引用处少于两处';
+  if (!/澄一 谨录/.test(html)) return '首页缺落款文字';
+  return true;
+});
 
 // --- 自包含与外部依赖 ---
 t('没有外链脚本', () => (count(/<script[^>]+src=/g) === 0 ? true : '存在 <script src>'));
