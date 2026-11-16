@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>太乙金华宗旨 · 回光实操</title>
+<meta name="description" content="《太乙金华宗旨》十三章原文、逐段讲解与回光实操：垂帘、听息、止观四阶，附日课计时与打卡。零依赖静态站点。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23A33A2B'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23F0E8D6' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%23F0E8D6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap">
+<style>
+/* ===== 色板与字级 ===== */
+:root{
+  --paper:#E5E2D6;
+  --paper-2:#DCD8C9;
+  --paper-3:#F0EDE2;
+  --ink:#1B1C16;
+  --ink-2:#45463C;
+  --ink-3:#7C7B6C;
+  --rule:#C6C0AE;
+  --cin:#A33A2B;
+  --cin-deep:#7E2A20;
+  --gold:#8C6C36;
+  --night:#0B0D0A;
+  --serif:"Noto Serif SC","Songti SC","Source Han Serif SC",SimSun,serif;
+  --mono:"Consolas","SFMono-Regular",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 18% -10%, rgba(255,252,243,.55), transparent 60%),
+    radial-gradient(900px 500px at 100% 100%, rgba(140,108,54,.10), transparent 65%),
+    var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.85;
+  letter-spacing:.01em;
+  text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--cin);color:#F4EDDE}
+
+/* ===== 顶栏 ===== */
+.topbar{
+  position:sticky;top:0;z-index:40;
+  display:flex;align-items:center;gap:18px;
+  padding:10px clamp(16px,4vw,52px);
+  background:linear-gradient(180deg, rgba(229,226,214,.96), rgba(229,226,214,.86));
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--rule);
+}
+.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.seal-logo{
+  width:30px;height:30px;flex:0 0 auto;
+  background:var(--cin);color:#F2EBDC;
+  display:grid;place-items:center;
+  font-size:13px;font-weight:600;line-height:1.05;
+  writing-mode:vertical-rl;letter-spacing:.06em;
+  box-shadow:inset 0 0 0 2px rgba(242,235,220,.35);
+}
+.brand-name{font-size:15px;font-weight:600;letter-spacing:.14em;white-space:nowrap}
+.nav{margin-left:auto;display:flex;gap:clamp(6px,1.6vw,22px);flex-wrap:wrap;justify-content:flex-end}
+.nav a{
+  font-size:14px;color:var(--ink-2);padding:3px 1px;position:relative;white-space:nowrap;
+}
+.nav a[aria-current="page"]{color:var(--ink);font-weight:600}
+.nav a[aria-current="page"]::after{
+  content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--cin);
+}
+.nav a:hover{color:var(--cin)}
+
+/* ===== 通用排版 ===== */
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,52px)}
+.eyebrow{
+  font-size:12.5px;letter-spacing:.16em;color:var(--ink-3);
+  display:flex;align-items:center;gap:10px;margin:0 0 14px;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--cin);flex:0 0 auto}
+h1,h2,h3,h4{margin:0;font-weight:900;letter-spacing:.02em;line-height:1.25}
+h1{font-size:clamp(30px,4.2vw,50px)}
+h2{font-size:clamp(22px,2.6vw,30px)}
+h3{font-size:19px;font-weight:600}
+p{margin:0 0 1em}
+.lead{font-size:19px;line-height:1.9;color:var(--ink-2);max-width:34em}
+.small{font-size:13.5px;line-height:1.8;color:var(--ink-3)}
+.quote{
+  font-size:15.5px;line-height:1.95;color:var(--cin-deep);
+  padding-left:14px;border-left:2px solid var(--cin);
+}
+.hr{height:1px;background:var(--rule);border:0;margin:clamp(34px,5vw,64px) 0}
+
+/* ===== 首页 hero ===== */
+.hero{
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  gap:clamp(24px,5vw,72px);align-items:start;
+  padding:clamp(40px,7vw,86px) 0 clamp(26px,4vw,44px);
+}
+.hero-copy{max-width:34em}
+.hero-title{
+  writing-mode:vertical-rl;text-orientation:upright;
+  font-size:clamp(42px,7.2vw,92px);font-weight:900;line-height:1.06;
+  letter-spacing:.08em;color:var(--ink);
+  max-height:none;
+}
+.hero-title span{display:block}
+.hero-seal{
+  writing-mode:vertical-rl;
+  margin:14px 0 0 auto;width:2.6em;padding:.5em .18em;
+  background:var(--cin);color:#F2EBDC;font-size:13px;line-height:1.15;
+  letter-spacing:.12em;text-align:center;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:26px;
+  font-size:13px;color:var(--ink-3);letter-spacing:.04em;
+}
+.entry-row{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);
+}
+.entry{
+  padding:22px clamp(10px,2vw,26px) 24px;
+  border-right:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:6px;min-width:0;
+  transition:background .18s ease;
+}
+.entry:last-child{border-right:0}
+.entry:hover{background:var(--paper-3)}
+.entry b{font-size:19px;font-weight:600}
+.entry i{font-style:normal;font-size:13px;color:var(--ink-3);line-height:1.7}
+.entry .idx{font-size:12px;color:var(--cin);letter-spacing:.18em}
+
+/* ===== 章节印章墙 ===== */
+.sealwall{display:flex;flex-wrap:wrap;gap:clamp(8px,1.1vw,13px);margin:22px 0 6px}
+.sealwall a{
+  width:clamp(52px,6.2vw,66px);aspect-ratio:1/1;
+  display:grid;place-items:center;position:relative;
+  border:1px solid var(--rule);background:var(--paper-2);
+  font-size:15px;font-weight:600;color:var(--ink-2);
+  transition:.16s ease;
+}
+.sealwall a:hover{background:var(--cin);color:#F2EBDC;border-color:var(--cin);transform:translateY(-2px)}
+.sealwall a small{
+  position:absolute;bottom:4px;font-size:8.5px;letter-spacing:0;color:var(--ink-3);white-space:nowrap;
+}
+.sealwall a:hover small{color:#F2EBDC}
+
+/* ===== 两栏内容块 ===== */
+.cols{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.point{border-top:1px solid var(--rule);padding:16px 0;display:grid;grid-template-columns:64px minmax(0,1fr);gap:12px}
+.point b{font-size:13px;letter-spacing:.14em;color:var(--cin);font-weight:600;padding-top:3px}
+.point div p{margin:0;font-size:16px;color:var(--ink-2)}
+
+/* ===== 时间轴（21天 / 100天）===== */
+.tl{margin:8px 0 0;border-left:1px solid var(--rule);padding-left:clamp(16px,2.4vw,26px);display:grid;gap:20px}
+.tl-item{position:relative}
+.tl-item::before{
+  content:"";position:absolute;left:calc(-1 * clamp(16px,2.4vw,26px) - 5px);top:9px;
+  width:9px;height:9px;background:var(--paper);border:1px solid var(--cin);border-radius:50%;
+}
+.tl-item b{font-size:13px;letter-spacing:.12em;color:var(--ink-3);display:block}
+.tl-item h4{font-size:17px;font-weight:600;margin:3px 0 4px}
+.tl-item p{font-size:15px;color:var(--ink-2);margin:0}
+
+/* ===== 视图切换 ===== */
+.view{display:none;animation:fade .25s ease both}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ===== 原文页 ===== */
+.text-layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:start}
+.chap-nav{position:sticky;top:64px;display:grid;gap:2px}
+.chap-nav button{
+  all:unset;cursor:pointer;display:flex;gap:10px;align-items:baseline;
+  padding:7px 8px;font-size:14px;color:var(--ink-2);border-left:2px solid transparent;
+}
+.chap-nav button:hover{color:var(--cin)}
+.chap-nav button.on{color:var(--ink);font-weight:600;border-left-color:var(--cin);background:rgba(255,255,255,.35)}
+.chap-nav button em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink-3);min-width:1.6em}
+.chap-head{display:flex;align-items:flex-end;gap:18px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.chap-head .big-seal{
+  width:clamp(52px,6vw,66px);aspect-ratio:1/1;flex:0 0 auto;
+  background:var(--cin);color:#F2EBDC;display:grid;place-items:center;
+  font-size:clamp(20px,2.4vw,26px);font-weight:600;
+  box-shadow:inset 0 0 0 3px rgba(242,235,220,.4);
+}
+.chap-head h2{flex:1;min-width:0}
+.chap-head .src{font-size:12.5px;color:var(--ink-3);letter-spacing:.08em;white-space:nowrap}
+.seg{margin:clamp(26px,3.6vw,44px) 0 0}
+.seg-text{
+  position:relative;
+  font-size:17.5px;line-height:2.15;color:var(--ink);
+  padding:18px 20px 20px;
+  background-image:repeating-linear-gradient(90deg,transparent 0,transparent calc(2.6em - 1px),rgba(120,112,92,.085) calc(2.6em - 1px),rgba(120,112,92,.085) 2.6em);
+  border-left:3px solid rgba(163,58,43,.28);
+}
+.seg-gloss{
+  margin:14px 0 0;padding:0 0 0 20px;color:var(--ink-2);font-size:16px;line-height:1.95;
+  max-width:36em;
+}
+.seg-gloss::before{content:"讲";display:inline-block;margin-right:7px;font-size:12px;color:var(--cin);font-weight:600;border-bottom:1px solid rgba(163,58,43,.35);vertical-align:2px}
+.box{margin-top:clamp(26px,3.4vw,38px);border:1px solid var(--rule);background:rgba(255,255,255,.32)}
+.box-h{padding:10px 16px;border-bottom:1px solid var(--rule);font-size:12.5px;letter-spacing:.16em;color:var(--ink-3)}
+.box-b{padding:16px 18px 18px}
+.box-b ul{margin:0;padding-left:1.1em}
+.box-b li{margin:.3em 0;font-size:15.5px;color:var(--ink-2)}
+.act{margin-top:18px;display:flex;gap:12px;align-items:flex-start;background:rgba(163,58,43,.055);border-left:2px solid var(--cin);padding:12px 16px}
+.act b{font-size:12px;letter-spacing:.14em;color:var(--cin);flex:0 0 auto;padding-top:3px}
+.act p{margin:0;font-size:15.5px}
+.variant{margin-top:16px;font-size:13.5px;color:var(--ink-3);line-height:1.8}
+.variant b{color:var(--cin);font-weight:600;letter-spacing:.08em;margin-right:8px}
+.chap-foot{display:flex;justify-content:space-between;gap:12px;margin-top:34px;padding-top:14px;border-top:1px solid var(--rule)}
+.chap-foot button{all:unset;cursor:pointer;font-size:14px;color:var(--ink-2);padding:4px 0}
+.chap-foot button:hover{color:var(--cin)}
+
+/* ===== 实操页 ===== */
+.page-head{padding:clamp(34px,5vw,60px) 0 clamp(18px,2.6vw,28px)}
+.page-head h1{font-size:clamp(26px,3.6vw,40px)}
+.lid-demo{border:1px solid var(--rule);background:var(--paper-3);padding:clamp(16px,2.4vw,26px);margin-top:clamp(26px,3.4vw,38px)}
+.lid-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(16px,3vw,34px);align-items:center}
+#lidSvg{width:100%;height:auto;display:block}
+.lid-ctrl{display:grid;gap:10px}
+.lid-ctrl input[type=range]{width:100%;accent-color:var(--cin);height:28px}
+.lid-state{font-size:18px;font-weight:600}
+.lid-state span{color:var(--cin)}
+.lid-quote{font-size:14px;color:var(--ink-3);line-height:1.85;margin:0}
+.lid-badges{display:flex;gap:8px;font-size:12px;color:var(--ink-3);letter-spacing:.06em}
+.lid-badges i{font-style:normal;padding:3px 8px;border:1px solid var(--rule)}
+.lid-badges i.on{background:var(--cin);color:#F2EBDC;border-color:var(--cin)}
+.ladder{display:grid;gap:0;margin-top:clamp(28px,4vw,44px);border-top:1px solid var(--ink)}
+.rung{display:grid;grid-template-columns:96px minmax(0,1fr);gap:clamp(12px,2vw,28px);padding:clamp(18px,2.4vw,28px) 0;border-bottom:1px solid var(--rule)}
+.rung-n{font-size:13px;letter-spacing:.14em;color:var(--cin);position:sticky;top:70px;align-self:start}
+.rung-n b{display:block;font-size:26px;letter-spacing:.02em;color:var(--ink);margin-bottom:2px;font-weight:900}
+.rung h3{margin-bottom:6px}
+.rung .do{font-size:16px;color:var(--ink);margin:0 0 10px}
+.rung .do em{font-style:normal;color:var(--cin);border-bottom:1px solid var(--cin)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.two div{border-left:2px solid var(--rule);padding:2px 0 2px 12px}
+.two div.bad{border-left-color:var(--cin)}
+.two b{display:block;font-size:12px;letter-spacing:.12em;color:var(--ink-3);margin-bottom:3px}
+.two div.bad b{color:var(--cin)}
+.two p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.rung .src{font-size:12.5px;color:var(--ink-3);margin-top:10px}
+.seq{counter-reset:s;display:grid;gap:0;margin-top:20px}
+.seq-item{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--rule)}
+.seq-item::before{content:counter(s);font-family:var(--mono);font-size:12px;color:var(--cin);border:1px solid var(--rule);width:26px;height:26px;display:grid;place-items:center;align-self:start;margin-top:3px}
+.seq-item h4{font-size:16px;font-weight:600;margin:0 0 2px}
+.seq-item p{margin:0;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+
+/* ===== 日课 · 计时器 ===== */
+.practice{
+  margin-top:clamp(20px,3vw,30px);
+  border:1px solid var(--rule);background:var(--paper-3);
+  padding:clamp(18px,3vw,34px);
+  transition:background .5s ease,color .5s ease,border-color .5s ease;
+}
+.practice.live{background:#0B0D0A;border-color:#232620;color:#C9BA95}
+.practice.live .clock,.practice.live .ph-name{color:#E8D8AE}
+.practice.live .ph-tip{color:#8C8168}
+.practice.live .btn{border-color:#3A3E33;color:#C9BA95;background:transparent}
+.practice.live .btn.primary{background:var(--cin);border-color:var(--cin);color:#F4EDDE}
+.practice.live .chips button{border-color:#33372D;color:#8C8168;background:transparent}
+.practice.live .chips button.on{background:#2A2E24;color:#E8D8AE;border-color:#4A4F3F}
+.timer-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:clamp(18px,3vw,36px);align-items:center}
+.clock{
+  font-family:var(--serif);font-weight:600;font-size:clamp(46px,7.6vw,74px);line-height:1;
+  letter-spacing:.02em;color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.clock small{font-size:16px;letter-spacing:.1em;color:var(--ink-3);margin-left:10px;font-family:var(--serif)}
+.ph-name{font-size:16px;font-weight:600;letter-spacing:.14em;margin:14px 0 4px}
+.ph-tip{font-size:13.5px;color:var(--ink-3);line-height:1.8;min-height:3.2em;max-width:28em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.chips button{
+  all:unset;cursor:pointer;font-size:13.5px;padding:5px 11px;
+  border:1px solid var(--rule);background:rgba(255,255,255,.35);color:var(--ink-2);
+}
+.chips button.on{background:var(--cin);border-color:var(--cin);color:#F2EBDC}
+.chips button:focus-visible,.btn:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--cin);outline-offset:2px}
+.ctrls{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.btn{
+  all:unset;cursor:pointer;font-size:15px;padding:9px 20px;text-align:center;
+  border:1px solid var(--ink);background:transparent;color:var(--ink);
+  transition:background .16s,color .16s;
+}
+.btn.primary{background:var(--cin);border-color:var(--cin);color:#F2EBDC}
+.btn:hover{background:var(--ink);color:var(--paper-3)}
+.btn.primary:hover{background:var(--cin-deep);border-color:var(--cin-deep)}
+.ringwrap{position:relative;display:grid;place-items:center}
+.ringwrap svg{width:100%;max-width:280px;height:auto}
+.ringwrap .felt{position:absolute;font-size:12px;letter-spacing:.18em;color:var(--ink-3)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);margin-top:clamp(20px,3vw,28px)}
+.stat{background:var(--paper-3);padding:14px 16px}
+.stat b{display:block;font-size:clamp(22px,3vw,30px);font-weight:900;line-height:1.1}
+.stat i{font-style:normal;font-size:12px;color:var(--ink-3);letter-spacing:.08em}
+.bars{display:grid;grid-template-columns:repeat(30,minmax(0,1fr));gap:3px;align-items:end;height:84px;margin-top:18px}
+.bars i{display:block;background:var(--rule);border:0}
+.bars i.has{background:var(--cin)}
+.bars-x{display:flex;justify-content:space-between;font-size:11.5px;color:var(--ink-3);margin-top:6px}
+.log{margin-top:22px;border-top:1px solid var(--rule)}
+.log-row{display:grid;grid-template-columns:88px 62px 70px minmax(0,1fr);gap:10px;padding:9px 0;border-bottom:1px solid rgba(198,192,174,.55);font-size:13.5px;color:var(--ink-2);align-items:baseline}
+.log-row b{font-family:var(--mono);font-size:12px;color:var(--ink-3);font-weight:400}
+.log-row .q{font-size:12px;letter-spacing:.06em}
+.log-row .q.散乱{color:var(--cin)}
+.log-row .q.昏沉{color:var(--gold)}
+.log-row .q.清明{color:#3E5B3A}
+.checkin{display:none;margin-top:20px;padding-top:16px;border-top:1px dashed var(--rule)}
+.checkin.on{display:block}
+.checkin h4{font-size:15px;margin-bottom:10px}
+.checkin .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.checkin input[type=text]{font-family:var(--serif);font-size:14px;padding:7px 10px;border:1px solid var(--rule);background:rgba(255,255,255,.5);color:var(--ink);width:min(100%,340px)}
+
+/* ===== 术语表 ===== */
+.tbl{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:22px;font-size:15px}
+.tbl th,.tbl td{border-bottom:1px solid var(--rule);padding:11px 10px;text-align:left;vertical-align:top}
+.tbl th{font-size:12.5px;letter-spacing:.12em;color:var(--ink-3);font-weight:600;border-bottom:1px solid var(--ink)}
+.tbl td:first-child{font-weight:600;font-size:16px}
+.tbl td em{font-style:normal;font-family:var(--mono);font-size:11.5px;color:var(--ink-3)}
+
+/* ===== 疑难 ===== */
+.faq-item{border-bottom:1px solid var(--rule)}
+.faq-item summary{
+  cursor:pointer;list-style:none;padding:15px 30px 15px 0;position:relative;
+  font-size:17px;font-weight:600;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"＋";position:absolute;right:6px;top:14px;color:var(--cin);font-size:17px}
+.faq-item[open] summary::after{content:"－"}
+.faq-item .ans{padding:0 0 18px;font-size:15.5px;color:var(--ink-2);line-height:1.95;max-width:40em}
+.faq-item .ans .chap-ref{font-size:12.5px;color:var(--cin);letter-spacing:.08em;display:inline-block;margin-top:8px}
+
+/* ===== 移动端 ===== */
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr;gap:26px}
+  .hero-title{writing-mode:horizontal-tb;font-size:clamp(34px,10vw,54px);letter-spacing:.1em}
+  .hero-seal{writing-mode:horizontal-tb;width:auto;display:inline-block;margin:10px 0 0;padding:.35em .7em}
+  .entry-row{grid-template-columns:1fr}
+  .entry{border-right:0;border-bottom:1px solid var(--rule)}
+  .cols{grid-template-columns:1fr}
+  .text-layout{grid-template-columns:1fr}
+  .chap-nav{position:static;display:flex;overflow-x:auto;gap:4px;padding-bottom:6px}
+  .chap-nav button{border-left:0;border-bottom:2px solid transparent;white-space:nowrap}
+  .chap-nav button.on{border-left:0;border-bottom-color:var(--cin)}
+  .seg-text{font-size:16.5px;padding:14px 14px 16px;background-image:none;border-left-width:2px}
+  .lid-grid{grid-template-columns:1fr}
+  .timer-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .rung{grid-template-columns:64px minmax(0,1fr)}
+  .two{grid-template-columns:1fr}
+  .sealwall{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .chap-head h2{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 顶栏 ===== -->
+<header class="topbar">
+  <a class="brand" href="#/home">
+    <span class="seal-logo">回光</span>
+    <span class="brand-name">太乙金華宗旨</span>
+  </a>
+  <nav class="nav" id="nav">
+    <a href="#/text">读经</a>
+    <a href="#/method">实操</a>
+    <a href="#/daily">日课</a>
+    <a href="#/terms">术语</a>
+    <a href="#/faq">疑难</a>
+    <a href="#/about">底本</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+<!-- ===== 视图：首页 ===== -->
+<section class="view on" id="v-home">
+  <div class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">旧题吕洞宾 · 十三章 · 清刻本系统</p>
+      <h1>一部只讲一个动作的经：<br>把目光收回来。</h1>
+      <p class="lead" style="margin-top:18px">全书十三章，说到底只教一件事——<b>回光</b>。不是把眼睛闭上，也不是把注意力钉在眉心；是让“看见”这个动作从朝外，掉头朝内。它自己有名字，叫逆法。</p>
+      <div class="hero-meta">
+        <span>底本：网络通行本（未逐字校清刻影印）</span>
+        <span>十三章全文</span>
+        <span>四阶实操</span>
+        <span>零依赖 · 本地可开</span>
+      </div>
+    </div>
+    <div>
+      <div class="hero-title"><span>太乙</span><span>金華</span><span>宗旨</span></div>
+      <div class="hero-seal">回光</div>
+    </div>
+  </div>
+
+  <div class="entry-row">
+    <a class="entry" href="#/text">
+      <span class="idx">01</span><b>读十三章</b>
+      <i>原文全录，逐段白话，章末标异文。</i>
+    </a>
+    <a class="entry" href="#/method">
+      <span class="idx">02</span><b>照四阶练</b>
+      <i>垂帘、缘中、听息、止观，每阶写清“做错的样”。</i>
+    </a>
+    <a class="entry" href="#/daily">
+      <span class="idx">03</span><b>今日一坐</b>
+      <i>三阶段计时、收功、打卡，数据只留在本机。</i>
+    </a>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);margin-top:clamp(40px,6vw,72px);align-items:start">
+    <div>
+      <p class="eyebrow">全书骨架</p>
+      <h2>“光不在身中，亦不在身外。”</h2>
+      <p class="lead" style="font-size:17px">第三章这句话把整本书的边界划死了：光若在身内，就成了守窍观想；光若在身外，就成了求神拜佛。它偏偏两个都不是——“山河大地，日月照临，无非此光”。所以你回的不是自己身上的什么东西，是你看向世界的那道光，掉了个头。</p>
+      <div class="point"><b>要做的</b><div><p>两目垂帘得中、系念两目中间齐平处、听息至无声、念起即观。四件事，一层一层往上叠。</p></div></div>
+      <div class="point"><b>不要做的</b><div><p>守鼻端、守中宫、搬运周天、追求见光、硬坐抗昏沉。这五样都不是功夫，是岔路，原书逐条否过。</p></div></div>
+      <div class="point"><b>验证</b><div><p>不是找感觉，是看两件事：昏沉散乱有没有变少，散乱来时自己知不知道。</p></div></div>
+    </div>
+    <div>
+      <p class="eyebrow">章目</p>
+      <div class="sealwall" id="sealwall"></div>
+      <p class="small">前七章讲原理与功夫，第八章《逍遥诀》是全书的火候总纲，九至十二章讲次第与效验，末章《劝世歌》把全书压成口诀。</p>
+    </div>
+  </div>
+
+  <hr class="hr">
+
+  <div class="cols">
+    <div>
+      <p class="eyebrow">入门路径</p>
+      <h2>二十一天，只学三个动作</h2>
+      <div class="tl" style="margin-top:26px">
+        <div class="tl-item">
+          <b>第一周</b>
+          <h4>认位置：垂帘与鼻端</h4>
+          <p>每天十分钟。只练“垂帘恰好望见鼻尖”，定一次准则就放下。练的不是定力，是尺度。</p>
+        </div>
+        <div class="tl-item">
+          <b>第二周</b>
+          <h4>听息：从有声到无声</h4>
+          <p>每天十五分钟。注意力放在“呼吸有没有声音”，不放在“有没有杂念”。有声即粗，愈放愈微。</p>
+        </div>
+        <div class="tl-item">
+          <b>第三周</b>
+          <h4>止观：念起即观</h4>
+          <p>每天二十分钟。念头起来时反推它从何起、向何灭，推到底推不着，就算一次正观。</p>
+        </div>
+        <div class="tl-item">
+          <b>之后</b>
+          <h4>百日筑基：只保不断</h4>
+          <p>不加工夫，不加花样。第九章说“百日只在得力”，断一天就是断一天。</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">为什么值得读</p>
+      <p style="font-size:16px;color:var(--ink-2)">《太乙金华宗旨》最特别的地方，是它几乎不谈玄。全书没有符箓、没有神祇、没有丹房器物，只谈两件事：你的目光往哪里去，你的念头怎么起来又怎么灭。</p>
+      <p style="font-size:16px;color:var(--ink-2)">它对后来最具体的一次影响，是二十世纪二十年代卫礼贤的德译本，荣格为之作评注，以《金花的秘密》之名流入西方心理学。但要分清：荣格读的是译本加评注，不必等于原书的义。</p>
+      <p class="small" style="margin-top:18px">本站为古籍整理与练习方法记录，不构成医疗建议。有高血压、精神疾病史、孕期等情况，请先问医生；练习中出现头晕、憋气、心慌，立即停止、起身、开窗。</p>
+    </div>
+  </div>
+  <div style="height:clamp(48px,7vw,90px)"></div>
+</section>
+
+<!-- ===== 视图：原文 ===== -->
+<section class="view" id="v-text">
+  <div class="page-head">
+    <p class="eyebrow">原文 · 十三章</p>
+    <h1>原文与逐段讲解</h1>
+    <p class="lead" style="margin-top:16px">左侧是章次，右侧是正文。原文的分段、标点由本站所加；每段下面是一段白话讲解，章末列要点、一句实操与已知异文。原文未与清刻影印逐字对校，详见底本页。</p>
+  </div>
+  <div class="text-layout">
+    <nav class="chap-nav" id="chapNav" aria-label="章次"></nav>
+    <article id="chapBody"></article>
+  </div>
+  <div style="height:clamp(40px,6vw,80px)"></div>
+</section>
+
+<!-- ===== 视图：实操 ===== -->
+<section class="view" id="v-method">
+  <div class="page-head">
+    <p class="eyebrow">实操 · 四阶</p>
+    <h1>回者止也，光者观也</h1>
+    <p class="lead" style="margin-top:16px">第三章把整套功夫归纳成六个字，其余十一章都在解释这六个字。下面四阶是从这六个字里拆出来的动作：先定一个尺度，再落一个位置，再收一条呼吸，最后处理念头。</p>
+  </div>
+
+  <!-- 垂帘演示 -->
+  <div class="lid-demo">
+    <p class="eyebrow" style="margin:0 0 8px">第三章 · 垂帘得中</p>
+    <div class="lid-grid">
+      <div>
+        <svg id="lidSvg" viewBox="0 0 460 280" role="img" aria-label="垂帘尺度示意：眼睑张开程度与视线落点">
+          <defs><clipPath id="lidClip"><path d="M92 140 Q210 66 328 140 Q210 208 92 140 Z"/></clipPath></defs>
+          <g clip-path="url(#lidClip)">
+            <ellipse cx="210" cy="140" rx="118" ry="46" fill="#F7F4E9"/>
+            <circle cx="210" cy="142" r="25" fill="none" stroke="#1B1C16" stroke-width="1.2" opacity=".7"/>
+            <circle cx="210" cy="142" r="8" fill="#1B1C16" opacity=".75"/>
+          </g>
+          <path d="M92 140 Q210 208 328 140" fill="none" stroke="#1B1C16" stroke-width="1.4" opacity=".5"/>
+          <!-- 视线 -->
+          <polygon id="lidBeam" points="" fill="#A33A2B" opacity=".13"/>
+          <line id="lidRay" x1="210" y1="142" x2="360" y2="222" stroke="#A33A2B" stroke-width="1.3" stroke-dasharray="5 4" opacity=".8"/>
+          <!-- 帘 -->
+          <g clip-path="url(#lidClip)"><rect id="lidFill" x="80" y="40" width="260" height="80" fill="#1B1C16" opacity=".2"/></g>
+          <path id="lidCurtain" d="" fill="none" stroke="#1B1C16" stroke-width="1.8"/>
+          <text x="86" y="132" text-anchor="end" font-size="11" fill="#7C7B6C" font-family="serif">帘</text>
+          <!-- 鼻端 -->
+          <circle id="lidNose" cx="362" cy="222" r="5" fill="none" stroke="#A33A2B" stroke-width="1.4" opacity=".45"/>
+          <text x="362" y="244" text-anchor="middle" font-size="10.5" fill="#7C7B6C" font-family="serif">鼻端</text>
+        </svg>
+      </div>
+      <div class="lid-ctrl">
+        <div class="lid-badges"><i id="bOpen">太开</i><i id="bFit">恰好</i><i id="bShut">太闭</i></div>
+        <input id="lidRange" type="range" min="0" max="100" value="60" step="1" aria-label="眼睑张开程度">
+        <p class="lid-state" id="lidState">恰好：<span>望见鼻端，定个准则就放下</span></p>
+        <p class="lid-quote" id="lidQuote">“惟垂帘得中，恰好望见鼻端，故取以为准。只是垂帘恰好，任彼光自然透入，不劳你注射与不注射。”</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 四阶 -->
+  <div class="ladder">
+    <div class="rung">
+      <div class="rung-n"><b>01</b>垂帘定准</div>
+      <div>
+        <h3>先定尺度，不先定力</h3>
+        <p class="do">端身正坐，两目往下垂，垂到<em>恰好望得见鼻尖</em>为止；就举眼一视，定下这个准则，随即放下，不再管它。</p>
+        <div class="two">
+          <div><b>做对的样子</b><p>视野落在鼻端一带，眼睛不费力；之后整坐都不再去“检查”帘开得对不对。像泥匠挂一次线，就照线往上砌。</p></div>
+          <div class="bad"><b>做错的样</b><p>把“看鼻端”当成“守鼻端”，意念钉在鼻子上；或大开眼追光景，或全闭眼闷坐。前者散乱，后者昏沉。</p></div>
+        </div>
+        <p class="src">出处：第三章“看鼻端，只于最初入静处举眼一视，定个准则便放下”。</p>
+      </div>
+    </div>
+
+    <div class="rung">
+      <div class="rung-n"><b>02</b>系心缘中</div>
+      <div>
+        <h3>系念，不是守窍</h3>
+        <p class="do">把心念系在<em>两目中间、与眼珠齐平</em>的那一点上。原书明说“不必言头中”，也不必“着意于中宫”——系念在那里，光自己会透进来。</p>
+        <div class="two">
+          <div><b>做对的样子</b><p>若有若无地“缘”着它，像借一根藤条进门，进门之后藤条就不必攥紧。</p></div>
+          <div class="bad"><b>做错的样</b><p>把眉心当成一颗钉子死守；或眼睛看鼻端、心又跑去看中黄，一上一下来回折腾。原书斥为“认指为月”。</p></div>
+        </div>
+        <p class="src">出处：第三章“系心于缘中”“缘者缘此为端倪，非有定着也”。</p>
+      </div>
+    </div>
+
+    <div class="rung">
+      <div class="rung-n"><b>03</b>听息入细</div>
+      <div>
+        <h3>把耳朵借给呼吸</h3>
+        <p class="do">放下眼睛之后，改用心听呼吸：<em>不听其有声，只听其无声</em>。一有声，就是粗了；耐心把它放轻、放微，愈微愈静。久之忽然微者遽断，就是“真息现前”。</p>
+        <div class="two">
+          <div><b>做对的样子</b><p>呼吸越来越淡，心也跟着细下去；全程不控制呼吸，只是“照听”。</p></div>
+          <div class="bad"><b>做错的样</b><p>刻意深呼吸、数息数到紧张、憋气求静；或把“听无声”做成竖着耳朵找声音。</p></div>
+        </div>
+        <p class="src">出处：第四章“听惟听其无声也”“心细则息细，息细则心细”。</p>
+      </div>
+    </div>
+
+    <div class="rung">
+      <div class="rung-n"><b>04</b>止观双运</div>
+      <div>
+        <h3>念头起来，就去看它从哪来</h3>
+        <p class="do">念起时不要仍旧枯坐：反问此念在何处、从何起、从何灭，反复推穷到<em>了不可得</em>——见到念起处，却不再追一个“起处”，这就是正观。之后绵绵续止，止了又观，观了又止。</p>
+        <div class="two">
+          <div><b>做对的样子</b><p>念一起就知道，知道之后它自己散掉，不必用力消灭它。</p></div>
+          <div class="bad"><b>做错的样</b><p>压念（越压越起）、随念（跟着想下去）、把“观”做成推理分析，一想半小时。</p></div>
+        </div>
+        <p class="src">出处：第三章“回者，止也；光者，观也。止而不观，名为有回而无光”。</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hr">
+
+  <div class="cols">
+    <div>
+      <p class="eyebrow">一坐的完整流程</p>
+      <h2>从落座到收功</h2>
+      <div class="seq" style="margin-top:24px">
+        <div class="seq-item"><div><h4>调身</h4><p>端坐，脊背自然竖直，不挺不塌；两手交叠或覆膝；先松肩三口呼气。约一两分钟。</p></div></div>
+        <div class="seq-item"><div><h4>垂帘</h4><p>两目下视至望见鼻尖，定一次准则，放下。此后不再调整。</p></div></div>
+        <div class="seq-item"><div><h4>系心缘中</h4><p>心念系两目中间齐平处，若有若无，不钉死。</p></div></div>
+        <div class="seq-item"><div><h4>听息</h4><p>耳听呼吸之无声，愈放愈微；昏沉时提一提精神，散乱时收一收。</p></div></div>
+        <div class="seq-item"><div><h4>止观</h4><p>念起即观其起处，了不可得，即仍归止。如此交替，不设次数。</p></div></div>
+        <div class="seq-item"><div><h4>收功</h4><p>不急着睁眼。先动指、动腕、搓手，覆眼片刻，再缓缓开目；起身缓行数十步。约三分钟。</p></div></div>
+        <div class="seq-item"><div><h4>记一笔</h4><p>只记三样：坐了多久、散乱还是昏沉、有没有一处清明的瞬间。不评好坏。</p></div></div>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">时间预算</p>
+      <table class="tbl" style="margin-top:14px">
+        <colgroup><col style="width:34%"><col style="width:22%"><col style="width:44%"></colgroup>
+        <thead><tr><th>阶段</th><th>时长</th><th>要点</th></tr></thead>
+        <tbody>
+          <tr><td>第一月</td><td>10–15 分</td><td>只练垂帘与听息，不求静。</td></tr>
+          <tr><td>第二月</td><td>20–30 分</td><td>加入止观，开始记散乱与昏沉。</td></tr>
+          <tr><td>稳定后</td><td>30–45 分</td><td>清晨一炷香最妙，午后易昏沉。</td></tr>
+          <tr><td>断与不断</td><td>—</td><td>宁可短而不断，不可长而常断。</td></tr>
+        </tbody>
+      </table>
+      <p class="small" style="margin-top:16px">第四章：“清晨有暇，坐一炷香为妙。过午人事多扰，易落昏沉。”第七章：“回光循循然行去，不要废弃正业。”</p>
+      <p class="eyebrow" style="margin-top:34px">出偏处理</p>
+      <div class="point" style="grid-template-columns:1fr"><div>
+        <p style="font-size:15px">头晕、憋气、心口发紧：立刻睁眼、起身、开窗，缓走。多数是憋气或过分用力所致。<br>
+        昏沉欲睡：不要硬坐，起来散步，神清再坐（第四章）。<br>
+        见光见景而心动：只记下“何时、何种”，不追不喜不惧，继续照旧（第六章、第十章）。<br>
+        连续失眠、情绪波动明显：先停，回到日常作息；有基础疾病者请就医。</p>
+      </div></div>
+    </div>
+  </div>
+  <div style="height:clamp(40px,6vw,80px)"></div>
+</section>
+
+<!-- ===== 视图：日课 ===== -->
+<section class="view" id="v-daily">
+  <div class="page-head">
+    <p class="eyebrow">日课 · 今天这一坐</p>
+    <h1>不管坐得好不好，先坐下</h1>
+    <p class="lead" style="margin-top:16px">三阶段计时：调身、回光、收功。计时结束会提示你记一笔——只记时长和散乱昏沉，不记境界。记录只存在这台电脑的浏览器里，不上传。</p>
+  </div>
+
+  <div class="practice" id="practice">
+    <div class="timer-grid">
+      <div>
+        <div class="clock" id="clock">00:00<small>待坐</small></div>
+        <div class="ph-name" id="phName">准备</div>
+        <div class="ph-tip" id="phTip">选时长，点开始。调身一分半，回光你自己选的长度，收功一分半。</div>
+        <div class="chips" id="minChips" role="group" aria-label="回光时长">
+          <button data-min="5">5 分</button>
+          <button data-min="10">10 分</button>
+          <button data-min="15">15 分</button>
+          <button data-min="20" class="on">20 分</button>
+          <button data-min="30">30 分</button>
+          <button data-min="45">45 分</button>
+        </div>
+        <div class="ctrls">
+          <button class="btn primary" id="btnStart">开始</button>
+          <button class="btn" id="btnStop" disabled>结束</button>
+        </div>
+      </div>
+      <div class="ringwrap">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(120,112,92,.3)" stroke-width="2"/>
+          <circle id="arc" cx="100" cy="100" r="86" fill="none" stroke="#A33A2B" stroke-width="2.5"
+                  stroke-dasharray="540.35" stroke-dashoffset="540.35" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="62" fill="none" stroke="rgba(120,112,92,.18)" stroke-width="1"/>
+        </svg>
+        <span class="felt">回 光</span>
+      </div>
+    </div>
+
+    <div class="checkin" id="checkin">
+      <h4>记一笔：这次主要是哪种状态？</h4>
+      <div class="row" id="qRow">
+        <button class="btn" data-q="散乱">散乱</button>
+        <button class="btn" data-q="昏沉">昏沉</button>
+        <button class="btn" data-q="清明">清明</button>
+        <input type="text" id="noteInput" placeholder="一句备注（可不填）" maxlength="40">
+        <button class="btn primary" id="btnSave">存下</button>
+      </div>
+      <p class="small" id="saveHint"></p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="stStreak">0</b><i>连续天数</i></div>
+    <div class="stat"><b id="stTotal">0</b><i>累计分钟</i></div>
+    <div class="stat"><b id="stToday">0</b><i>今日分钟</i></div>
+    <div class="stat"><b id="stSessions">0</b><i>总坐次</i></div>
+  </div>
+
+  <div style="margin-top:26px">
+    <p class="eyebrow">近三十天</p>
+    <div class="bars" id="bars"></div>
+    <div class="bars-x"><span>30 天前</span><span>今天</span></div>
+    <p class="small" id="barsNote" style="margin-top:10px">还没有记录。今天坐一次，这里就会多一根。</p>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:34px;flex-wrap:wrap;gap:10px">
+    <p class="eyebrow" style="margin:0">记录</p>
+    <div style="display:flex;gap:10px">
+      <button class="btn" id="btnExport" style="font-size:13px;padding:5px 12px">导出 JSON</button>
+      <button class="btn" id="btnClear" style="font-size:13px;padding:5px 12px">清空</button>
+    </div>
+  </div>
+  <div class="log" id="log"></div>
+  <p class="small" style="margin-top:18px">记录写在浏览器 localStorage 里，键名 <code>tyjh.log.v1</code>。换浏览器、清缓存就会丢，重要的话自己导出。</p>
+  <div style="height:clamp(40px,6vw,80px)"></div>
+</section>
+
+<!-- ===== 视图：术语 ===== -->
+<section class="view" id="v-terms">
+  <div class="page-head">
+    <p class="eyebrow">术语</p>
+    <h1>二十八个词，一张表</h1>
+    <p class="lead" style="margin-top:16px">这本书的难处不在义理，在同词异指。同一个“心”字，第二章里指的是方寸天心，也指血肉之心；“息”不是呼吸，“中”不是中点。先把词分清楚，再谈功夫。</p>
+  </div>
+
+  <table class="tbl">
+    <colgroup><col style="width:16%"><col style="width:66%"><col style="width:18%"></colgroup>
+    <thead><tr><th>术语</th><th>在这本书里指什么</th><th>出处</th></tr></thead>
+    <tbody>
+      <tr><td>太乙</td><td>无上之称；也指先天一气未分之初。</td><td>第一章 <em>01</em></td></tr>
+      <tr><td>金华</td><td>即光。取象于金的华采，而“秘一光字在内”，指先天太乙之真炁。</td><td>第一章 <em>01</em></td></tr>
+      <tr><td>回光</td><td>把向外走漏的神识收回，全用逆法；是全书唯一正题。</td><td>第三章 <em>03</em></td></tr>
+      <tr><td>天心</td><td>两目之间方寸之地，神所居处；又名虚中、灵台、祖土、黄庭、玄关、先天窍。</td><td>第一章 <em>01</em></td></tr>
+      <tr><td>方寸</td><td>面上寸田，即天心；“尺宅”指整张脸。</td><td>第一章 <em>01</em></td></tr>
+      <tr><td>祖窍</td><td>神所居、光所归之处，与天心互称。</td><td>第八章 <em>08</em></td></tr>
+      <tr><td>黄庭 · 中黄</td><td>心后关前的中宫神室；回光后段落脚之处，与“缘中”同指而异名。</td><td>第三章 <em>03</em></td></tr>
+      <tr><td>缘中</td><td>佛家语，同“中黄”；指两目中间与眼珠齐平处，只作端倪，不作定所。</td><td>第三章 <em>03</em></td></tr>
+      <tr><td>垂帘</td><td>眼睑下垂至恰好望见鼻端：大开则散乱，太闭则昏沉。</td><td>第三章 <em>03</em></td></tr>
+      <tr><td>止观</td><td>止即定、观即慧；回者止也，光者观也。止而不观是有回无光。</td><td>第三章 <em>03</em></td></tr>
+      <tr><td>息 · 真息</td><td>“自心为息”，非口鼻之气；呼吸细到无声而遽断，为真息现前。</td><td>第四章 <em>04</em>、第九章 <em>09</em></td></tr>
+      <tr><td>元神</td><td>居方寸，超元会而不坏，即无极；见性方可守。</td><td>第二章 <em>02</em></td></tr>
+      <tr><td>识神</td><td>居血肉之心，逐境而生；“如强藩悍将”，好色动气皆其所为。</td><td>第二章 <em>02</em></td></tr>
+      <tr><td>魂魄</td><td>魂居天心属阳，昼寓于目、夜舍于肝；魄附识属阴，沉浊好死。</td><td>第二章 <em>02</em></td></tr>
+      <tr><td>坎离</td><td>不是两个器官，是两种状态：漏泄交物为离，收转中涵为坎。</td><td>第十一章 <em>11</em></td></tr>
+      <tr><td>黍珠</td><td>光中自然生起的一点真阳，如黍米大；不可造作。</td><td>第三章 <em>03</em>、第六章 <em>06</em></td></tr>
+      <tr><td>活子时</td><td>天心忽动、一阳来复之时；与“正子时”是一是二，贵在看得真。</td><td>第十二章 <em>12</em></td></tr>
+      <tr><td>火候</td><td>光回的程度，不是时间表；“光之回，即火候也”。有老嫩之别。</td><td>第三章 <em>03</em>、第八章 <em>08</em></td></tr>
+      <tr><td>沐浴</td><td>洗心涤虑；原书称“诀中之诀”，火候中的调剂。</td><td>第八章 <em>08</em></td></tr>
+      <tr><td>百日筑基</td><td>立基百日方有真光；但“百日非百日”，义在得力与不断。</td><td>第九章 <em>09</em></td></tr>
+      <tr><td>周天</td><td>以心到为妙诀，不以气作主；坎离交处便是一周。</td><td>第十二章 <em>12</em></td></tr>
+      <tr><td>性光 · 识光</td><td>无心而照是性光，才起分别是识光；用心即识光，放下乃性光。</td><td>第十章 <em>10</em></td></tr>
+      <tr><td>无记空</td><td>坐在“无事”的空壳里，惺惺失守；不是真静。</td><td>第五章 <em>05</em></td></tr>
+      <tr><td>蕴界</td><td>五阴用事；槁木死灰多、大地阳春少，气冷息沉，久堕木石。</td><td>第五章 <em>05</em></td></tr>
+      <tr><td>主为奴役</td><td>念头来了赶不走，索性随它去，反被念头使唤。</td><td>第五章 <em>05</em></td></tr>
+      <tr><td>逆法</td><td>不顺境逐物，掉头内返；“机在目”即其下手处。</td><td>第三章 <em>03</em></td></tr>
+      <tr><td>纯想</td><td>一心注于此，无杂念掺杂；“纯想即飞”。</td><td>第一章 <em>01</em>、第三章 <em>03</em></td></tr>
+      <tr><td>见性 · 八还</td><td>借《楞严》八还辨见：明还日月，连“见性”也要还，方是真见性。</td><td>第十章 <em>10</em></td></tr>
+    </tbody>
+  </table>
+  <p class="small" style="margin-top:18px">出处编号对应十三章的章次；表中释义尽量贴近原文用语，未作引申。</p>
+  <div style="height:clamp(40px,6vw,80px)"></div>
+</section>
+
+<!-- ===== 视图：疑难 ===== -->
+<section class="view" id="v-faq">
+  <div class="page-head">
+    <p class="eyebrow">疑难</p>
+    <h1>十二条最常被问错的</h1>
+    <p class="lead" style="margin-top:16px">这些问题，原书其实都答过，只是散在十三章里。答不上来的部分，我直说不确定，不替古人补话。</p>
+  </div>
+
+  <div style="margin-top:clamp(20px,3vw,30px)">
+    <details class="faq-item" open>
+      <summary>回光是不是就是冥想、正念？</summary>
+      <div class="ans">有交集，不等同。现代正念多半只讲“不评判地觉察”，不设身体位置，也不讲方向；回光有两个明确的硬设定：一是下手处在两眼（“机在目”），二是它是一套逆法——不是让念头自然流过，而是把向外走的神识掉头收回来。判准也不同：正念看注意力是否在场，回光看止与观有没有同时成立。<span class="chap-ref">第三章、第十一章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>一定要盘腿吗？坐椅子上行不行？</summary>
+      <div class="ans">行。第十章说“回光之法，原通行住坐卧，只要自得机窍”。姿势的唯一目的是让身体在一段时间内不打扰你：脊背自然竖直、下颌微收、膝盖不低于髋部。不必强求双盘，硬掰着腿坐，痛感一起来就是散乱，反而白坐。<span class="chap-ref">第十章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>守眉心会不会出问题？</summary>
+      <div class="ans">原书并没有让你“守眉心”。第三章说得很清楚：系念两目中间齐平处，“不必言头中”“不必着意于中宫”，而且“缘者缘此为端倪，非有定着也”——它只是入口，不是要钉住的点。把眉心当成一颗钉子死死守着，常见的结果是额头紧、眼胀、太阳穴跳。出现这些，就先松开，改做听息。<span class="chap-ref">第三章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>一坐下就困，是不是不适合练？</summary>
+      <div class="ans">不是，这就是第四章说的“昏沉”，是初学两病之一，而且原书认为它比散乱更难医，因为“昏沉全是魄用事”，人还容易不自知。治法只有一条：调息，把呼吸放到听不见，细则清、粗则浊。如果实在困，第四章给的方子是“即起散步，神清再坐”，不要硬撑。<span class="chap-ref">第四章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>越坐念头越多，是不是退步了？</summary>
+      <div class="ans">恰恰相反。第四章说“若不静坐时，虽有散乱，亦不自知。既知散乱，即是却散乱之机也”——知道自己在散乱，本身就是对治的开始。散乱比昏沉好治，因为“散乱尚有魂在”。接下来不是压念头，而是第三章的正观：反问此念从何起、向何灭，推到“了不可得”。<span class="chap-ref">第三章、第四章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>看见光了，是不是有功夫了？</summary>
+      <div class="ans">不一定。第十章说得最狠：“若见为光，而有意著之，即落意识，非性光也。”真正的性光像镜子照物、静水映影，无心而照；一旦你开始评价“这光真好”，它已经变成识光了。第六章列了三种可验的景象（闻声如隔里许、虚室生白、身轻欲浮），但紧接着说“随人根器，各现殊胜”，且“须自己信得过方真”。见到了，记下时间与种类，不追、不喜、不惧。<span class="chap-ref">第六章、第十章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>要不要通周天、转河车、采药？</summary>
+      <div class="ans">按这本书，不要。第十二章开篇即说“周天非以气作主，以心到为妙诀”，并直言“药非有形之物，此性光也……并无采法，言采者大谬矣”。第十三章更把话堵死：“夹脊者，非背上轮子，乃直透玉京大路也。”所以凡是在身上搬运、引导、守某处转圈的，都不是它的路子。这一条与很多流行丹法冲突，读的时候要自己分辨。<span class="chap-ref">第十二章、第十三章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>它和荣格《金花的秘密》是什么关系？</span>
+      <div class="ans">一九二〇年代卫礼贤把它译成德文，荣格作长篇评注，合为《金花的秘密》，这是它在西方的接受史。要分清三层：原文、德译、荣格的心理学解读。荣格借它讲“整合无意识”“曼陀罗象征”，那是他的框架；书中“回光”“止观”的具体操作，与荣格的自性化过程并不是同一件事。读评注可以，但不要拿评注替代原文。<span class="chap-ref">底本页</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>十三章该按什么顺序读？</summary>
+      <div class="ans">按章次读会卡在第二章的魂魄论上。建议：先读第三章（功夫全在这里）、第四章（对治昏沉散乱），再读第八章（火候总纲，最难也最要紧），然后回到第一、二章的义理，最后用第十三章《劝世歌》收口。第六、十章讲效验与辨光，等真坐过一阵再读，才有对照。<span class="chap-ref">全书</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>没有师父能练吗？</summary>
+      <div class="ans">第九章确实说“学人必求真师授记”，因为火候的老嫩、光景的真假，纸上说不透。但这本书本身写得极具体（垂帘的尺度、系念的位置、听息的判准），按次第自验是可行的。要警惕的是另一类：开口就讲神通、灌顶、收费传诀、不许你读原书的，先退开。<span class="chap-ref">第九章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>多久才算有进展？</summary>
+      <div class="ans">原书给的是百日，但第九章自己又说“百日立基，非百日也；一日立基，非一日也”，落点其实在“得力”和“不断”。可验的进展是两件很朴素的事：昏沉散乱变少，日用应事时能返照（第七章）。至于光景、境界，原书从头到尾没把它当成绩单。<span class="chap-ref">第七章、第九章</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>有高血压、焦虑症，能练吗？</span>
+      <div class="ans">本站不是医疗建议，这类情况请先问医生。就方法本身说，有几个通用的稳妥做法：不憋气、不追求入定深度、时间短而规律、困了就起身、头晕心慌立刻停。若在服药或有精神科病史，练前把方法告诉医生，比在网上找答案可靠。<span class="chap-ref">—</span></div>
+    </details>
+
+    <details class="faq-item">
+      <summary>为什么这本书说“不要废弃正业”？</summary>
+      <div class="ans">第七章专门讲这件事：回光不是躲进蒲团，而是“事来要应过，物来要识破”，以正念治事，“即光不为物转，光即自回”。它把日用中的随事返照称为“第一妙用”，静坐只是主场。所以为了修行辞职、断亲、闭门不出，恰恰与原书相反。<span class="chap-ref">第七章</span></div>
+    </details>
+  </div>
+  <div style="height:clamp(40px,6vw,80px)"></div>
+</section>
+
+<!-- ===== 视图：底本与来源 ===== -->
+<section class="view" id="v-about">
+  <div class="page-head">
+    <p class="eyebrow">底本与来源</p>
+    <h1>这本书是谁的，字是谁的</h1>
+    <p class="lead" style="margin-top:16px">旧题吕洞宾，实为明清间扶乩降笔一类的东西，作者不可确指。这一点不影响读它——它写得比许多有主名的丹书更清楚。</p>
+  </div>
+
+  <div class="cols">
+    <div>
+      <p class="eyebrow">一 · 底本状态</p>
+      <p style="font-size:16px;color:var(--ink-2)">本站十三章原文，据网络通行本系统转录（劝学网所载全本为主），并与阅古籍、古诗文网所载本互校；第十三章异文做过三本对照。标点、分段为本站所加，异体字转作简体。</p>
+      <p style="font-size:16px;color:var(--ink-2)"><b>未做的事，写在这里：</b>没有与清刻影印逐字对校。清刻本《吕祖太乙金华宗旨》一卷（天津图书馆藏，书格有影印可下载）是下一步该用的底本；页码、行款、讳字、俗字，都要等影印本核过才敢称“校”。所以本页只称“转录”，不称“校本”。</p>
+      <div class="box">
+        <div class="box-h">二 · 已记异文（网络通行本互校，非影印核定）</div>
+        <div class="box-b">
+          <ul>
+            <li><b>第一章</b>“默朝飞升”／《心印经》通行作“默朝上帝，一纪飞升”。</li>
+            <li><b>第二章</b>“头上天心何尝微微些动也”与“方寸中之真意，如何能动”两问相连，断句各家不同。</li>
+            <li><b>第三章</b>“谛观息静”／一本作“诵观息静”；“反求个天地未生之体”／一本作“反求十天地未生之体”。</li>
+            <li><b>第四章</b>“如木槁灰”／一本作“如木稿灰”。</li>
+            <li><b>第十二章</b>“斗枢终古不移”／一本作“斗柄终古不动”。</li>
+            <li><b>第十三章</b>“丹衷热”／一本作“丹中热”；“药产川源”／一本作“川原”；“玉清降下九龙册”／一本作“玉京”；“天若符兮”／一本作“天若符合”；“气静心空为丹成”／一本作“气息心空”；“步霄汉兮登天阙”／一本作“步云汉今登天关”。</li>
+            <li><b>第十三章释词</b>“夹脊……直透玉清大路”／一本作“玉京大路”。此处关系到“夹脊”的解释，见下条。</li>
+          </ul>
+          <p class="small" style="margin-top:12px">以上只是坊间通行本之间的参差，用来提醒读者：不要拿网上一句话当定本。真正的异文要等清刻影印。</p>
+        </div>
+      </div>
+
+      <p class="eyebrow" style="margin-top:38px">三 · 一处值得单说的注</p>
+      <p style="font-size:16px;color:var(--ink-2)">第十三章给张珍奴的两首词里，“夹脊”“双关”历来被内丹家解作背上的关窍、督脉的关口。但原文自己把这条路否了：“夹脊者，非背上轮子，乃直透玉京大路也。”紧接着“双关者，此处有难言者”。也就是说，作者明说这不是肉身脊柱上的搬运。读这一句，能省掉许多年弯路。</p>
+    </div>
+
+    <div>
+      <p class="eyebrow">四 · 版本小史</p>
+      <div class="tl" style="margin-top:18px">
+        <div class="tl-item"><b>明清</b><h4>扶乩降笔，托名吕祖</h4><p>此书不见于宋元书目，学界一般认为出于明清间乩坛；清刻本一卷行世，注家不一。</p></div>
+        <div class="tl-item"><b>1929</b><h4>卫礼贤德译</h4><p>德国汉学家卫礼贤据中文本译为德文，名为《金花的秘密》。</p></div>
+        <div class="tl-item"><b>1930 年代</b><h4>荣格评注</h4><p>荣格作长篇心理学评注，借“曼陀罗”“自性”解读，此书遂成为西方心理学接受东方修行的重要文本。</p></div>
+        <div class="tl-item"><b>今</b><h4>多语种回译</h4><p>德译又转英译，再由英译回译中文，坊间不少“译本”已是二手、三手，读时要分清是哪一层。</p></div>
+      </div>
+
+      <p class="eyebrow" style="margin-top:38px">五 · 引用与依据</p>
+      <p style="font-size:15px;color:var(--ink-2)">原文文本：网络通行本（劝学网全本为主，阅古籍、古诗文网互校）。<br>
+      书中引书：《心印经》《黄庭经》《阴符经》《黄帝素问》《楞严经》《摩诃止观》《观无量寿经》。<br>
+      校勘线索：书格所载清刻本《吕祖太乙金华宗旨》影印（天津图书馆藏）。<br>
+      本站讲解为编者所写，凡属推断之处已标“不确定”。</p>
+
+      <p class="eyebrow" style="margin-top:34px">六 · 使用与许可</p>
+      <p style="font-size:15px;color:var(--ink-2)">原文属公有领域。本站讲解文字以 CC BY-SA 4.0 授权，站点代码以 MIT 授权，欢迎转载、校勘、补异文。发现错字、断句问题，请开 issue，附上你依据的本子与页码。</p>
+
+      <div class="box" style="margin-top:30px">
+        <div class="box-h">七 · 声明</div>
+        <div class="box-b">
+          <p style="font-size:14.5px;color:var(--ink-2);margin:0">本站是古籍整理与练习方法记录，不是医疗、心理治疗或宗教仪轨指导。有高血压、心血管疾病、精神疾病史、孕期等情况，练前请咨询医生。练习中出现头晕、憋气、心慌、情绪剧烈波动，立即停止。<br><br>书中所说的效验，是古人记录，本站不背书，也不承诺任何结果。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="height:clamp(40px,6vw,80px)"></div>
+</section>
+
+</main>
+
+<script>
+var CHAPTERS = [
+{n:"01", t:"天心", s:"天心第一", segs:[
+{o:"自然曰道，道无名相，一性而已，一元神而已。性命不可见，寄之天光；天光不可见，寄之两目。古来仙真，口口相传，传一得一。",g:"开篇先把它要讲的“道”清空：没有名、没有相，只有一个性、一个元神。接着两步递进——性命看不见，寄在天光上；天光也看不见，寄在两目上。全书所有的操作，都从这个“寄”字下来。"},
+{o:"自太上见化，东华递传某，以及南北两宗，全真可为极盛，盛者盛其徒众，衰者衰于心传，以至今日，滥泛极矣！凌替极矣！极则返，故蒙净明许祖，垂慈普度，特立教外别传之旨，接引上根。闻者千劫难逢，受者一时法会。皆当仰体许祖苦心，必于人伦日用间，立定脚跟，方可修真悟性。",g:"一段传承谱系，也是作者对当时道门的自评：人多而心传断，所以“滥泛极矣”。要紧的是最后一句——在人伦日用间立定脚跟，才谈得上修真。这与第七章“不要废弃正业”同一条血脉。"},
+{o:"我今叨为度师，先以“太乙金华宗旨”发明，然后细为开说，“太乙”者，无上之谓。丹诀总假有为而臻无为，非一超直入之旨。所传宗旨，直提性功，不落第二法门，所以为妙。",g:"释名并标出它与别家的分别：多数丹诀要借有为渐入无为，一步一步来；这一门“直提性功”，不从第二法门入。这一句是全书自我定位，也解释了它为什么不讲鼎炉、药材、时辰。"},
+{o:"“金华”即光也，光是何色？取象于金华，亦秘一光字在内，是先天太乙之真炁，“水乡铅，只一味”者此也。回光之功，全用逆法，注想天心，天心居日月中。《黄庭经》云：“寸田尺宅可治生”，尺宅，面也；面上寸田，非天心而何？方寸中具有郁罗萧台之胜，玉京丹阙之奇，乃至虚至灵之神所住。儒曰“虚中”；释曰“灵台”；道曰“祖土”，曰“黄庭”，曰“玄关”，曰“先天窍”。盖天心犹宅舍一般，光乃主人翁也。故一回光，周身之炁皆上朝，如圣王定都立极，执玉帛者万国；又如主人精明，奴婢自然奉命，各司其事。",g:"位置与一串别名：儒叫虚中、释叫灵台、道叫祖土、黄庭、玄关、先天窍——都是一个地方，两目之间的方寸。要紧的是那个比喻：天心是宅，光是主人。所以回光不是修出一个新东西，是让主人回家；主人一归位，家里自然各就各位。"},
+{o:"诸子只去回光，便是无上妙谛。光易动而难定，回之既久，此光凝结，即是自然法身，而凝神于九霄之上矣。《心印经》所谓“默朝飞升”者此也。",g:"“光易动而难定”，一句话说破初学实情。回久了才凝结，凝结叫“自然法身”——注意“自然”二字：不是造出来的，是等出来的。"},
+{o:"宗旨行去，别无求进之法，只在纯想于此。《楞严经》云：“纯想即飞，必生天上”。天非苍苍之天，即生身于乾宫是也。久之，自然身外有身。“金华”即金丹，神明变化，各师于心，此中妙诀，虽不差毫末，然而甚活，全要聪明，又须沉静，非极聪明人行不得，非极沉静人守不得。",g:"全书“方法论”到此说完：别无第二路，只在纯想于此。末句是两个门槛——聪明，能分辨岔路；沉静，能守得住。缺一样都走不远。"}
+], keys:["天心在两目之间的方寸，是宅；光是主人","回光即逆法：让神识掉头","不必另找法门，纯想天心就够","门槛是聪明加沉静，缺一不可"], act:"坐下之前先认位置：两目之间、与眼珠齐平处。只认，不守。", vr:"“默朝飞升”，《心印经》通行作“默朝上帝，一纪飞升”。"},
+
+{n:"02", t:"元神识神", s:"元神识神第二", segs:[
+{o:"天地视人如蜉蝣，大道视天地亦泡影。惟元神真性，则超元会而上之。其精气则随天地而败坏矣。然有元神在，即无极也。生天生地皆由此矣。学人但能守护元神，则超生在阴阳之外，不在三界之中。此惟见性方可，所谓本来面目也。",g:"三层递减：大道看天地如泡影，天地看人如蜉蝣。会坏的只有精与气，不坏的是元神。但“守护元神”有个前提——见性。作者不打算让你用意念硬守一个看不见的东西。"},
+{o:"凡人投胎时，元神居方寸，而识神则居下心。下面血肉心，形如大桃，有肺以覆翼之，肝佐之，大小肠承之，假如一日不食，心上便大不自在，至闻惊而跳，闻怒而闷，见死亡则悲，见美色则眩，头上天心何尝微微些动也。",g:"全书最重要的“解剖学”：元神居方寸，识神居血肉之心。下面那颗心，一天不吃饭就不自在，闻惊则跳、闻怒则闷、见死则悲、见美色则眩；上面天心几乎不动。这不是道德批评，是给你一个可分辨的坐标。"},
+{o:"问：天心不能动乎？方寸中之真意，如何能动。到动时便不妙，然亦最妙，凡人死时方动，此为不妙；最妙者，光已凝结为法身，渐渐灵通欲动矣，此千古不传之秘也。",g:"天心也会动，但只有两种：人死时的动，不妙；光已凝结成法身、渐渐灵通欲动的动，最妙。同一件事，判准只在“凝”与“未凝”。"},
+{o:"下识心，如强藩悍将，欺天君暗弱，便遥执纪纲，久之太阿倒置矣。今凝守元宫，如英明之主在上；二目回光，如左右大臣尽心辅弼；内政既肃，自然一切奸雄，无不倒戈乞命矣。",g:"一段政治寓言：识神是拥兵自重的藩镇，天君暗弱就被它遥执朝纲。凝守元宫是英主在朝，二目回光是左右大臣辅弼。意思很明确——不靠镇压，靠正位。"},
+{o:"丹道，以精水、神火、意土三者，为无上之诀。精水云何？乃先天真一之炁，神火即光也，意土即中宫天心也。以神火为用，意土为体，精水为基。",g:"三要素定职分：精水是基（先天真一之气），神火是用（光），意土是体（中宫天心）。此后全书凡讲“光”，讲的都是用这一面。"},
+{o:"凡人以意生身。身不止七尺者为身也。盖身中有魄焉，魄附识而用，识依魄而生。魄，阴也，识之体也。识不断，则生生世世，魄之变形易质无已也。惟有魂，神之所藏也。魂昼寓于目，夜舍于肝，寓目而视，舍肝而梦，梦者，神游也。九天九地，刹那历遍，觉则冥冥焉，渊渊焉，拘于形也，即拘于魄也。故回光所以炼魂，即所以保神，即所以制魄，即所以断识。",g:"魂魄的分工：魂昼在目、夜在肝，梦就是神游，醒来记不得是因为被形（魄）拘住。回光的四重作用在这一句里一次说完——炼魂、保神、制魄、断识。"},
+{o:"古人出世法，炼尽阴滓，以返纯乾，不过消魄全魂耳。回光者，消阴制魄之诀也，虽无返乾之功，止有回光之诀，光即乾也，回之即返之也。只守此法，自然精水充足，神火发生，意土凝定，而圣胎可结矣。蜣螂转丸，而丸中生白，神注之纯功也。粪丸中尚可生胎离壳，而吾天心休息处，注神于此，安得不生身乎。",g:"“炼尽阴滓，以返纯乾”，说白了就是消魄全魂。回光没有“返乾”之名，但光本身就是乾，回它就是返它——名目与实质在这里被抹平。蜣螂滚粪成丸、丸中生白孵出壳，靠的是“神注之纯”。这是对“纯想”最极端的举证：连死物都禁得住专注。"},
+{o:"一灵真性，既落乾宫。便分魂魄。魂在天心，阳也，轻清之气也，此自太虚得来，与元始同形。魄，阴也，沉浊之气也，附于有形之凡心。魂好生，魄望死。一切好色动气皆魄之所为，即识神也。死后享血食，活则大苦，阴返阴也，物以类聚也。学人炼尽阴魄，即为纯阳也。",g:"落到人身就分魂魄：魂好生，魄望死；一切好色动气，都是魄（也就是识神）在使唤。所以“炼尽阴魄”不是修辞，是这套功夫的目标。"}
+], keys:["两个心：方寸天心与血肉之心","识神如藩镇，正位即治","精水为基、神火为用、意土为体","回光即炼魂、保神、制魄、断识"], act:"静坐前先分清：此刻在算计、在评判、在着急的那个，是识神。不压它，只是不跟它走。", vr:""},
+
+{n:"03", t:"回光守中", s:"回光守中第三", segs:[
+{o:"回光之名何昉乎？昉之自文始真人也。回光则天地阴阳之气无不凝，所谓“精思”者此也，“纯气”者此也，“纯想”者此也。初行此诀，乃有中似无。久之功成，身外有身，乃无中似有。百日专功，光才真，方为神火。百日后，光中自然一点真阳，忽生黍珠，如夫妇交合有胎，便当静以待之，光之回，即火候也。",g:"溯源到文始真人（关尹子），再给出全书进度表：初行“有中似无”，功成“无中似有”，百日才成真光（神火），百日后光中忽生一点真阳，如黍珠。末句最要紧——“光之回，即火候也”：火候不是时辰表，是回的程度。"},
+{o:"夫元化之中，有阳光为主宰，有形者为日，在人为目，走漏神识，莫此甚顺也。故金华之道，全用逆法。回光者，非回一身之精华，直回造化之真炁，非止一时之妄念，直空千劫之轮回。故一息当一年，人间时刻也；一息当百年，九途长夜也。凡人自㘞的一声之后，逐境顺生，至老未尝逆视，阳气衰灭，便是九幽之界。故《楞严经》云：“纯想即飞，纯情即堕”。学人想少情多，沉沦下道。惟谛观息静，便成正觉，用逆法也。《阴符经》云：“机在目”。《黄帝素问》云：“人身精华，皆上注于空窍是也。”得此一节，长生者在兹，超升者亦在兹矣。此是贯彻三教工夫。",g:"逆法的理由：人自落地就“逐境顺生”，眼光一路向外漏，漏尽则衰，所以反过来做。“一息当一年”“一息当百年”是换掉时间的尺度——不是让你活得久，是让一息有重量。“机在目”，是三教共用的下手处。"},
+{o:"光不在身中，亦不在身外，山河大地，日月照临，无非此光，故不独在身中。聪明智慧，一切运转，亦无非此光，所以亦不在身外。天地之光华，布满大千，一身之光华，亦自漫天盖地。所以一回光，天地山河一切皆回矣。人之精华，上注于目，此人身之大关键也，子辈思之。一日不静坐，此光流转，何所底止！若一刻能静坐，万劫千生，从此了彻。万法归于静，真不可思议，此妙谛也。然工夫下手，由浅入深，由粗入细，总以不间断为妙。工夫始终则一。但其间冷暖自知，要归于天空海阔，万法如如，方为得手。",g:"这一段把边界划死了：光不在身内也不在身外。若在身内，功夫就成了守窍；若在身外，就成了求神拜佛。它偏说山河日月都是此光，所以一回光，天地山河皆回。落到方法上只有一条硬要求——不间断，由浅入深。"},
+{o:"圣圣相传，不离反照。孔云：“致知”；释曰：“观心”；老云：“内观”，皆此法也。但反照二字，人人能言，不能得手，未识二字之义耳。反者，自知觉之心，反乎形神未兆之初，则吾六尺之中，反求个天地未生之体，今人但一、二时中间静坐，反顾己私，便云反照，安得到头！",g:"“反照”被重新定义：从有知有觉的心，返到形神未兆之初，在自己的六尺之躯里反求那个“天地未生之体”。他顺手动了一下当时的通病——静坐一两个时辰、回想自己的私事，就自称反照。"},
+{o:"佛道二祖，教人看鼻尖者，非谓着念于鼻端也。亦非谓眼观鼻端，念又注中黄也。眼之所至，心亦至焉，何能一上而一下也，又何能忽上而忽下也。此皆误指而为月。毕竟如何？曰“鼻端”二字最妙，只是借鼻以为眼之准耳。初不在鼻上，盖以大开眼，则视远，而不见鼻矣；太闭眼，则眼合，亦不见鼻矣。大开失之外走，易于散乱，太闭失之内驰，易于昏沉，惟垂帘得中，恰好望见鼻端，故取以为准。只是垂帘恰好，任彼光自然透入，不劳你注射与不注射。",g:"辨“看鼻尖”：不是把意念放在鼻端，也不是眼观鼻、心注中黄（眼到心到，不能一上一下）。鼻端只是“眼之准”：大开则视远不见鼻、易散乱；太闭则眼合不见鼻、易昏沉；垂帘得中恰好望见，取为标准。定了标准，就不必再“注射”。"},
+{o:"看鼻端，只于最初入静处举眼一视，定个准则便放下，如泥水匠人用线一般，彼自起手一挂，便依了做上去，不只管把线看也。",g:"全书最好用的操作说明就在这个比喻里：起手挂一次线，之后照线砌上去，不必一边砌一边盯线。垂帘也是——只在入静时看一眼，随即放下。"},
+{o:"止观是佛法，原不秘的。以两目谛观鼻端，正身安坐，系心于缘中（道言中黄，佛言缘中，其实一也），不必言头中，但于两目中间齐平处系念便了。光是活泼泼的东西，系念两目中间，光自然透入，不必着意于中宫也，此数语已括尽要旨。其余入静出静前后，以小止观书印证可也。",g:"具体到可执行：两目谛观鼻端、正身安坐、系心缘中，也就是两目中间与眼珠齐平处。作者自己加注“不必言头中”“不必着意于中宫”——怕你把它做成守窍。这一句是全书的操作核心。"},
+{o:"“缘中”二字极妙。“中”无不在，遍大千皆在里许，聊指造化之机，缘此入门耳。“缘”者，缘此为端倪，非有定着也，此二字之义，活甚妙甚。",g:"释“缘中”。“中无不在”，所以不是找几何中点；“缘”是借它作端倪，进去了就不必攥着藤条。两个字定下全套功夫的分寸：有下手处，无定着处。"},
+{o:"“止观”二字，原离不得，即定慧也。以后凡念起时，不要仍旧兀坐。当究此念在何处，从何起，从何灭，反复推穷，了不可得，即见此念起处也。不要又讨过起处，觅心了不可得。吾与汝安心竟，此是正观，反此者，名为邪观。如是不可得已，即仍旧绵绵去，止而继之以观，观而继之以止，是定慧双修，此为回光。回者，止也；光者，观也。止而不观，名为有回而无光；观而不止，名为有光而无回。志之。",g:"方法论的核心。止观即定慧；回即止，光即观。念起时反推其起处，推到“了不可得”就是正观（“觅心了不可得，吾与汝安心竟”是达摩的公案，作者直接借用）。然后止观交替。最后一句是判准：止而不观=有回无光，观而不止=有光无回。"}
+], keys:["垂帘得中：望见鼻端即为准则","系心两目中间齐平处，不必着意中宫","定一次准则便放下，如泥匠挂线","回=止，光=观，交替才是回光"], act:"一坐下先做三件：正身、垂帘到望见鼻尖、系念两眼中平处，然后全部放下。", vr:"本章“谛观息静”一本作“诵观息静”；“反求个天地未生之体”一本作“反求十天地未生之体”，二字之差，义有不同。"},
+
+{n:"04", t:"回光调息", s:"回光调息第四", segs:[
+{o:"宗旨只要纯心行去，不求验而验自至。大约初机病痛，昏沉、散乱二种尽之。却此有机窍，无过寄心于息。息者，自心也，自心为息。心一动，而即有气，气本心之化也。吾人念至速，霎顷一妄念，即一呼吸应之。故内呼吸与外呼吸，如声响之相随，一日有几万息，即有几万妄念，神明漏尽，如木槁灰，死矣。然则欲无念乎，不能无念也；欲无息乎，不能无息也。莫若即其病而为药，则心息相依是已。",g:"初学只有两种病：昏沉、散乱。作者给的药不是“对治念头”，而是“寄心于息”。理由很硬——“息”字拆开就是自心；心一动就有气，一个妄念配一次呼吸，一天几万息就是几万妄念。从呼吸下手，等于从念头的根上下手。"},
+{o:"故回光兼之以调息，此法全用耳光。一是目光，一是耳光。目光者，外日月交光也；耳光者，内日月交精也。然精即光之凝定处，同出而异名也。故聪明总一灵光而已。",g:"分工：眼睛管回光（外日月交光），耳朵管调息（内日月交精）。精与光是一件事的两种状态，所以“聪明总一灵光”。"},
+{o:"坐时用目垂帘后，定个准则便放下。然竟放下，又恐不能，即存心于听息。息之出入，不可使耳闻，听惟听其无声也。一有声，便粗浮而不入细，即耐心轻轻微微些，愈放愈微，愈微愈静，久之，忽然微者遽断，此则真息现前，而心体可识矣。盖心细则息细，心一则动气也，息细则心细，气一则动心也。定心必先之以养气者，亦以心无处入手，故缘气为之端倪，所谓“纯气之守”也。",g:"全书最具体的一段操作：帘定准则后放下，改存心于听息；听，只听其无声；一有声就是粗浮，耐心放轻，愈放愈微；久之微者遽断，真息现前，心体可识。这里给了因果方向：心细则息细，息细则心细——两头互相牵着走。"},
+{o:"子辈不明动字，动者以线索牵动言，即制字之别名也。即可以奔趋使之动，独不可以纯静使之宁乎。此大圣人，视心炁之交，而善立方便，以惠后人也。",g:"训“动”字：如线索牵引，即“制”的别名。既然能用线把东西拉着跑，为什么不能用纯静把心按下来。这是给“以静制动”找一句依据。"},
+{o:"丹书云：“鸡能抱卵心常听”，此要诀也。盖鸡之所以能生卵者，以暖气也。暖气止能温其壳，不能入其中，则以心引气入，其听也，一心注焉，心入则气入，得暖气而生矣。故母鸡虽有时出外，而常作侧耳势，其神之所注未常少间也。神之所注，未尝少间，即暖气亦昼夜无间，而神活矣。神活者，由其心之先死也。人能死心，元神活矣。死心非枯槁之谓，乃专一不二之谓也。佛云：“置心一处，无事不办。”心易走，即以气纯之，气易粗，即以心细之，如此而焉有不定者乎。",g:"抱卵的比喻最妙：暖气只能温壳，进不去；母鸡一心听，心入则气入，蛋才孵成。母鸡出外也常作侧耳势——神注没有一刻间断。“死心”不是枯槁，是专一不二。"},
+{o:"大约昏沉、散乱二病，只要静功，日日无间，自有大休息处。若不静坐时，虽有散乱，亦不自知。既知散乱，即是却散乱之机也。昏沉而不知，与昏沉而知，相去奚啻千里！不知之昏沉，真昏沉也。知之昏沉，非全昏沉也，清明在是矣。",g:"两句自我诊断：不坐时不知道自己在散乱，知道了就是转机；昏沉而不自知才是真昏沉，知昏沉者其中还有清明在。"},
+{o:"散乱者，神驰也；昏沉者，神未清也；散乱易治，而昏沉难医。譬之病焉，有痛有痒者，药之可也；昏沉则麻木不仁之症也。散者可以收之，乱者可以整之，若昏沉，则蠢蠢焉，冥冥焉。散乱尚有方所，至昏沉全是魄用事也。散乱尚有魂在，至昏沉则纯阴为主矣。",g:"分治的判断很实用：散乱是神驰，还有魂在，可收可整；昏沉是神未清，纯阴用事、魄当家，所以难医。也就是说——困，比乱更该警惕。"},
+{o:"静坐时欲睡去，便是昏沉。却昏沉，只在调息，息即口鼻出入之息，虽非真息，而真息之出入，亦于此寄焉。凡坐须要静心纯气，心何以静，用在息上。息之出入，惟心自知，不可使耳闻，不闻则细，细则清，闻则气粗，粗则浊，浊则昏沉而欲睡，自然之理也。",g:"治昏沉的具体路径只有一条：调息。息不可使耳闻；不闻则细、细则清；闻则粗、粗则浊、浊则欲睡。把昏沉与呼吸粗细直接挂钩，这是可实测的因果。"},
+{o:"虽然心用在息上，又善要会用，亦是不用之用，只要微微照听可耳。此句有微义，何谓照？即眼光自照。目惟内视而不外视，不外视而惺然者，即内视也，非实有内视。何谓听？即耳光自听，耳惟内听而不外听，不外听而惺然者，即内听也，非实有内听。听者听其无声，视者视其无形。目不外视，耳不外听，则闭而欲内驰。惟内视内听，则既不外走，又不内驰。而中不昏沉矣，此即日月交精交光也。",g:"分寸：心用在息上要“不用之用”，只要微微照听。照=眼光内视而不外视；听=耳光内听而不外听；只听无声、只视无形。这样既不外走也不内驰，中间就不昏沉。"},
+{o:"昏沉欲睡，即起散步，神清再坐。清晨有暇，坐一炷香为妙。过午人事多扰，易落昏沉，然亦不必限定一炷香，只要诸缘放下，静坐片时，久久便有入头，不落昏沉睡者。",g:"最后给了豁免条款：真困就起来走，神清再坐；清晨一炷香最好；午后事多易昏沉，也不必死抠时长。"}
+], keys:["昏沉与散乱二病，药在听息","听其无声：一有声就是粗","内视内听，才不落昏沉","真困就起身，不硬坐"], act:"坐中把注意力放在“呼吸有没有声音”，而不是“有没有杂念”。", vr:"本章“如木槁灰”一本作“如木稿灰”。"},
+
+{n:"05", t:"回光差谬", s:"回光差谬第五", segs:[
+{o:"诸子工夫，渐渐纯熟，然枯木岩前错落多，正要细细开示。此中消息，身到方知，吾今则可以言矣。吾宗与禅宗不同，有一步一步证验，请先言其差别处，然后再言证验。宗旨将行之际，予作方便，勿多用心，放教活泼泼地，令气和心适，然后入静。",g:"工夫渐熟之后错路才多——“枯木岩前错落多”。作者先给入静前的准备：不要多用意，把心放活泼，气和心适再坐。这一句常被跳过，其实是防后面几种差路的第一道闸。"},
+{o:"静时正要得机得窍，不可坐在无事中里，所谓无记空也。万缘放下之中，惺惺自若也。又不可以意兴承当，凡太认真，即易有此。非言不宜认真，但真消息，在若存若亡之间，以有意无意得之可也。惺惺不昧之中，放下自若也。",g:"两种偏差已现：不可坐在“无事”的空壳里，那叫无记空；放下万缘之中仍要惺惺不昧。反过来，“太认真”也是病——真消息在若存若亡之间，只能有意无意地得。这解释了为什么用力的人常常坐不好。"},
+{o:"又不可堕于蕴界，所谓蕴界者，乃五阴魔用事。如一般入定，而槁木死灰之意多，大地阳春之意少，此则落于阴界，其气冷，其息沉，且有许多寒衰景象，久之便堕木石。",g:"第一类差路：蕴界，五阴用事。特征极具体——槁木死灰多、大地阳春少，气冷、息沉，一片寒衰景象。久之气机僵死。这不是玄谈，是可以自查的体温与心温。"},
+{o:"又不可随于万缘，如一入静，而无端众绪忽至，欲却之不能，随之反觉顺适，此名主为奴役，久之落于色欲界。上者生天，下者生狸奴中，若狐仙是也。彼在名山中，亦自受用，风月花果，琪树瑶草，三五百年受用去，多至数千岁，然报尽还生诸趣中。此数者，皆差路也。差路既知，然后可求证验。",g:"第二类差路：主为奴役。念头赶不走，一随反而顺适——那不是定，是被念头牵着走。后面“下生狐仙”云云是古人的果报说，可以当劝诫听，不必当史实。"}
+], keys:["三类差路：无记空、堕蕴界、主为奴役","入静前先让心和气适","太认真也是病，真消息在若存若亡间"], act:"每次入静前给自己一句话：不追求“什么也没有”，也不跟着念头跑。", vr:""},
+
+{n:"06", t:"回光证验", s:"回光证验第六", segs:[
+{o:"证验亦多，不可以小根小器承当，必思度尽众生，不可以轻心慢心承当，必须请事斯语。静中绵绵无间，神情悦豫，如醉如浴，此为遍体阳和，金华乍吐也。",g:"先说态度，再说效验。第一段：绵绵无间、神情悦豫、如醉如浴，名为“遍体阳和，金华乍吐”。注意它描述的是身体与心情的质地，不是看见什么。"},
+{o:"既而万籁俱寂，皓月中天，觉大地俱是光明境界，此为心体开明，金华正放也。",g:"第二段：万籁俱寂，皓月中天，大地皆光明，名为“心体开明，金华正放”。到这一段才开始有“境界相”，作者仍归之于心体，不归之于外物。"},
+{o:"既而遍体充实，不畏风霜，人当之兴味索然者，我遇之精神更旺；黄金起屋，白玉为台；世间腐朽之物，我以真气呵之立生；红血为乳，七尺肉团，无非金宝，此则金华大凝也。",g:"第三段：遍体充实、不畏风霜，常人索然之事我遇之精神更旺，名为“金华大凝”。“黄金起屋、红血为乳”是形容语，不是生理变化——这一点必须守住，否则很容易被引到“肉身转化”的话术里去。"},
+{o:"第一段，是应《观无量寿经》云：“日落大水，行树法象。”日落者，从混沌立基，无极也。上善若水，清而无暇，此即太极主宰，出震之帝也。震为木，故以行树象焉。七重行树，七窍光明也。西北乾方，移一位为坎，日落大水，乾坎之象。坎为子方，冬至雷在地中，隐隐隆隆，至震而阳方出地上矣，行树之象也，余可类推矣。",g:"用净土观想的“日落、大水、行树”来配象：日落=从混沌立基，大水=上善若水，行树=七窍光明。这类象数比附在丹书里很常见，读法上当作“借象表意”，不必逐字落实，更不必照着去观想。"},
+{o:"第二段，即肇基于此，大地为冰，琉璃宝地，光明渐渐凝矣。所以有蓬台而继之有佛也，金性即现，非佛而何，佛者大觉金仙也。此大段证验耳。",g:"第二段承第一段而来：大地为冰、琉璃宝地、莲台见佛——“金性即现”，佛即大觉金仙。作者借佛教语汇打通两边，不是改宗，是那时三教互释的常态。"},
+{o:"现在证验，可考有三：一则坐去，神入谷中，闻人说话，如隔里许，一一明了，而声入皆如谷中答响，未尝不闻，我未尝一闻，此为神在谷中，随时可以自验；",g:"三种“现在可验”之一：神入谷中——听见人说话像隔着一里，字字分明，声音进来像山谷回声；说听见了，又像没听见。这一条最容易误认，也最容易对照。"},
+{o:"一则静中，目光腾腾，满前皆白，如在云中，开眼觅身，无从觅视，此为虚室生白，内外通明，吉祥止止也；一则静中，肉身氤氲，如绵如玉，坐中若留不住，而腾腾上浮，此为神归顶天，久之上升可以立待。",g:"之二：虚室生白——满眼皆白如在云中，睁眼找自己的身体也找不到。之三：神归顶天——身如绵如玉，坐着像留不住而欲浮。三条都是“现在可验”，也最容易被当成炫耀的资本，所以作者紧接着就收。"},
+{o:"此三者，皆现在可验者也。然亦是说不尽的，随人根器，各现殊胜。如《摩诃止观》中所云：“善根发相”是也。此事如人饮水，冷暖自知，须自己信得过方真。",g:"限定条件三条：证验说不尽；随人根器各现殊胜；如人饮水，须自己信得过才算真。别人说有，不算你的。"},
+{o:"先天一炁，即在现前证验中自讨，一炁若得，丹亦立成，此一粒真黍珠也。一粒复一粒从微而至着。有时时之先天，一粒是也，有统体之先天，一粒乃至无量是也。一粒有一粒力量，此要自己胆大，为第一义。",g:"先天一炁不在别处找，就在这些证验里自讨；“一粒复一粒，从微而至着”。最后一句反常识——第一义是“自己胆大”。不是胆大妄为，是不被境界吓住，也不被它勾走。"}
+], keys:["证验三段：乍吐、正放、大凝","当下可验三样：神入谷中、虚室生白、神归顶天","见光不等于成就，须自己信得过","第一义是胆大：不惊不喜"], act:"遇到光景，只记“何时、何种”，不追不喜不惧，照旧坐。", vr:""},
+
+{n:"07", t:"回光活法", s:"回光活法第七", segs:[
+{o:"回光循循然行去，不要废弃正业。古人云：“事来要应过，物来要识破。”子以正念治事，即光不为物转，光即自回。",g:"第一句就堵住“修行要辞职”的念头：不要废弃正业。接着给日用的方法——以正念治事，事来了应过，物来了识破，光就不随物转。"},
+{o:"此时时无相之回光也，尚可行之。而况有真正着相回光乎。日用间，能刻刻随事返照，不着一毫人我相，便是随地回光，此第一妙用。",g:"无形无相的回光：刻刻随事返照、不着人相我相、一丝不挂，就是随地回光。作者把它称为“第一妙用”——比坐在蒲团上还高一格。"},
+{o:"清晨能遣尽诸缘，静坐一、二时最妙。凡应事接物，只用返照法，便无一刻间断。如此行之，三月两月，天上诸真，必来印证矣。",g:"时间安排：清晨遣尽诸缘、静坐一二时最妙；应事接物只用返照法，就一刻不断。三月两月自有印证——这句带宗教色彩，可以当作“时间尺度”看。"}
+], keys:["回光不在蒲团上，在日常应事","静坐是主场，日用是延长赛","不要因修行废弃正业"], act:"一天挑三件小事（吃饭、走路、洗手），只做“知道自己在做”。", vr:""}
+,{n:"08", t:"逍遥诀", s:"逍遥诀第八", segs:[
+{o:"玉清留下逍遥诀。四字凝神入炁穴。六月俄看白雪飞。三更又见日轮赫。水中吹起藉巽风。天上游归食坤德。更有一句玄中玄。无何有乡是真宅。",g:"八句律诗是本章提纲，也是全书的口诀。“凝神入炁穴”四字是一句总诀；“白雪飞”与“日轮赫”是坎离互藏；“巽风”指目光；“食坤德”是神入炁中；末句把落脚处安在“无何有乡”。"},
+{o:"律诗一首，玄奥已尽。大道之要，不外“无为而为”四字。惟无为，故不滞方所形象；惟无为而为，故不堕顽空死虚。作用不外一中，而枢机全在二目，二目者，斗柄也，斡旋造化，转运阴阳，其大药则始终一水中金（即水乡铅）而已，前言回光，乃指点初机，从外以制内，即辅以得主。此为中、下之士，修下二关，以透上一关者也。今头绪渐明，机括渐熟，天不爱道。直泄无上宗旨，诸子秘之秘之，勉之勉之！",g:"先给原则：无为而不滞形象，无为而为而不堕顽空——两边都不许站。“作用不外一中，枢机全在二目”，是全章的方位图：中路是本，两眼是用，大药始终是“水中金”。也说明前面几章只是“从外制内”的初机，本章开始讲“居中御外”。"},
+{o:"夫回光其总名耳。工夫进一层，则光华盛一番，回法更妙一番。前者由外制内，今则居中御外。前者即辅相主，今则奉主宣猷，面目一大颠倒矣。",g:"一句极清醒的自注：回光只是总名。工夫进一层，光华盛一番，回法就妙一番——同一个词，内涵在变。由外制内变成了居中御外，由辅佐变成了奉主宣命。"},
+{o:"法子欲入静，先调摄身心，自在安和，放下万缘，一丝不挂。天心正位于中，然后两目垂帘，如奉圣旨，以召大臣，孰敢不遵。次以二目内照坎宫，光华所到，真阳即出以应之。离外阳而内阴，乾体也。一阴入内而为主，随物生心，顺出流转，今回光内照，不随物生，阴气即住，而光华注照，则纯阳也。同类必亲，故坎阳上腾，非坎阳也，仍是乾阳应乾阳耳。二物一遇，便纽结不散，絪缊活动，倏来倏去，倏浮倏沉，自己元宫中，恍若太虚无量，遍身轻妙欲腾，所谓“云满千山”也。",g:"本章的操作段：先调摄身心、天心正位，再垂帘如奉旨召大臣，然后二目内照。理路是：离外阳内阴，一阴主事就随物生心；回光内照则阴气住、光华注，成了纯阳；坎阳上腾其实是乾阳应乾阳。落到体感是“絪缊活动，倏来倏去，倏浮倏沉”，名为“云满千山”。"},
+{o:"次则来往无踪，浮沉无辨，脉住气停，此则真交媾矣，所谓“月涵万水”也。俟其冥冥中，忽然天心一动，此则一阳来复，活子时也。",g:"再进一步：来去无踪、浮沉不辨、脉住气停——“月涵万水”，这才叫真交媾。然后在冥冥中忽然天心一动，是一阳来复，也就是活子时。注意“俟其”两个字：等，不是造。"},
+{o:"然而此中消息要细说，凡人一视一听，耳目逐物而动，物去则已，此之动静，全是民庶，而天君反随之役，是尝与鬼居矣。今则一动一静，皆与人居，天君乃真人也。彼动即与之俱动，动则天根；静则与之俱静，静则月窟；静动无端，亦与之为静动无端；休息上下，亦与之为休息上下，所谓“天根月窟闲来往”也。",g:"一段关于“谁在动”的辨析。常人视听逐物，物去即止，这是臣民在动、天君反被役使，“与鬼居”。回光的人一动一静都与真人俱：动时为天根，静时为月窟，动静无端它也随之为无端——“天根月窟闲来往”。"},
+{o:"天心镇静，动违其时，则失之嫩；天心已动，而后动以应之，则失之老；天心一动，即以真意上升乾宫，而神光视顶为导引焉，此动而应时者也。天心既升乾顶，游扬自得，忽而欲寂，急以真意引入黄庭，而目光视中黄神室焉，既而欲寂者，一念不生矣。视内者，忽忘其视矣，尔时身心，便当一场大放，万缘泯迹，即我之神室炉鼎，亦不知在何所，欲觅己身，了不可得，此为天入地中，众妙归根之时也，即此便是“凝神入炁穴”。",g:"火候的老嫩之别，全书写得最细的一段：天心未动而你抢先动，是嫩；天心已动你才跟上，是老；一动即应，才叫应时。上升用真意、以神光视顶为导引；欲寂时以真意引入黄庭、目光视中黄；然后连“视”也忘了，身心一场大放，连炉鼎与自己的身体都找不到——这才叫“凝神入炁穴”。"},
+{o:"夫一回光也，始而散者欲敛，六用不行，此为“涵养本原，添油接命”也。既而敛者，自然优游，不费纤毫之力，此为“安神祖窍，翕聚先天”也。既而影响俱灭，寂然大定，此为“蛰藏炁穴，众妙归根”也。一节中具有三节，一节中具有九节，俱是后日发挥。今以一节中，具三节言之，当其涵养而初静也。翕聚亦为涵养，蛰藏亦为涵养，至后而涵养皆蛰藏矣，中一层可类推。不易处而处分矣，此为无形之窍，千处万处一处也；不易时而时分焉，此为无候之时，元会运世一刻也。",g:"把一坐分成三节：先是散者欲敛、六用不行，叫“涵养本原，添油接命”；接着敛得自然优游、不费纤力，叫“安神祖窍，翕聚先天”；最后影响俱灭、寂然大定，叫“蛰藏炁穴，众妙归根”。三节不是三个时段，而是同一节里的三层；“无形之窍”“无候之时”就是说：不在换位置，也不在等时辰。"},
+{o:"凡心非静极，则不能动，动动忘动，非本体之动也。故曰感于物而动，性之欲也，若不感于物而动，即天之动也。是知以物而动，性之欲也。若不以物而自动，即天之动也。不以天之动对天之性，句落下说个欲字，欲在有物也，此为出位之思，动而有动矣。一念不起，则正念乃生，此为真意。寂然大定中，而天机忽动，非无意之动乎，无为而为，即此意也，诗首二句，全括金华作用。",g:"辨“动”的来源：感于物而动，是性之欲；不因物而自动，是天之动。所以功夫不是把心按住不动，而是等那个不由物起的动。一念不起时正念才生，这叫真意；寂然大定中天机忽动，就是“无为而为”。"},
+{o:"次二句是日月互体意，“六月”即离火也，“白雪飞”即离中真阴将返乎坤也。“三更”即坎水也，“日轮”即坎中一阳，将赫然而返乎乾也。取坎填离，即在其中。次二句，说斗柄作用，升降全机。“水中”非坎乎？目为“巽风”，目光照入坎宫，摄召太阳之精是也。“天上”即乾宫，“游归食坤德”即神入炁中，天入地中，养火也。末二句，是指出诀中之诀。诀中之诀，始终离不得，所谓“洗心涤虑为沐浴”也。圣学以知止始，以止至善终，始乎无极，归乎无极。",g:"逐句解诗。“六月”“白雪飞”是离中真阴返坤，“三更”“日轮”是坎中一阳返乾，取坎填离就在其中。升降的关键是“目为巽风”——目光照入坎宫，摄召太阳之精。末二句点出“诀中之诀”：洗心涤虑为沐浴。所以全章的机关，最后落在一件极朴素的事上。"},
+{o:"佛以无住而生心，为一大藏教旨。吾道以“致虚”二字，完性命全功。总之，三教不过一句：为出死入生之神丹。“神丹”为何？曰：一切处无心而已。吾道最秘者沐浴，如此一部全功，不过“心空”二字，足以了之。今一言指破，省却数十年参访矣。",g:"三教收在一句：出死入生之神丹，就是“一切处无心”。最秘的沐浴，也就是“心空”二字。作者自己说这是一言指破、省却数十年参访——这话可以当他的自信，也可以当他给读者的减法。"},
+{o:"子辈不明一节中具三节，我以佛家“空、假、中”三观为喻。三观先空，看一切物皆空；次假，虽知其空，然不毁万物，仍于空中建立一切事；既不毁万物，而又不着万物，此为中观。当其修空观时，亦知万物不可毁，而又不著，此兼三观也，然毕竟以看得空为得力。故修空观，则空固空，假亦空，中亦空。修假观，是用上得力居多，则假固假，空亦假，中亦假。中道时亦作空想，然不名为空，而名为中矣。亦作假观，然不名为假，而名为中矣。至于中，则不必言矣。",g:"借天台“空假中”三观解释“一节具三节”：修空时假中亦空，修假时空中亦假，到中道时不再叫空叫假，只叫中。这一段是说功夫的层次不是三段时间，而是同一件事的三个面向。"},
+{o:"吾虽有时单言离，有时兼说坎，究竟不曾移动一句。开口提云：枢机全在二目。所谓枢机者，用也。用此斡旋造化，非言造化止此也。六根七窍，悉是光明藏，岂取二目而他概不问乎？用坎阳，仍用离光照摄，即此便明。朱子（云阳，讳元育，北宗派）尝云：“瞎子不好修道，聋子不妨。”与吾言何异？特表其主辅轻重耳。",g:"防止把“枢机在二目”读成“只有两眼重要”。枢机是用，不是说造化只在这里；六根七窍都是光明藏。所以引“瞎子不好修道，聋子不妨”来说明主辅轻重——目为主，耳为辅。"},
+{o:"日月原是一物，其日中之暗处，是真月之精。月窟不在月而在日，所谓月之窟也。不然自言月足矣。月中之白处，是真日之光。日光反在月中，所谓天之根也。不然，自言天足矣。一日一月，分开止是半个，合来方成一个全体。如一夫一妇，独居不成室家。有夫有妇，方算得一家完全。然而物难喻道，夫妇分开，不失为两人。日月分开，不成全体矣。知此则耳目犹是也。吾谓瞎子已无耳，聋子已无目，如此看来，说甚一物，说甚两目，说甚六根，六根一根也。说甚七窍，七窍一窍也。吾言只透露其相通处，所以不见有两。子辈专执其隔处，所以随处换却眼睛。",g:"收在“日月是一物”：日中的暗处是真月之精，月窟在日不在月；月中的白处是真日之光，天根在月不在天。分开只是半个，合起来才成全体。所以六根其实一根，七窍其实一窍。末句是全章的方法论警告：作者只讲相通处，所以不见“两”；读者专执相隔处，所以处处换眼睛。"}
+], keys:["回光只是总名，火候才是内容","枢机全在二目，大药始终是水中金","火候老嫩：抢先为嫩，滞后为老","一节具三节：涵养、翕聚、蛰藏","诀中之诀是沐浴，也就是心空"], act:"此章只学一句：“动则天根，静则月窟”——动时知道在动，静时知道在静。", vr:"“朱子（云阳，讳元育，北宗派）”一句，人名与字号待核；“瞎子不好修道，聋子不妨”的归属亦待查。"},
+
+{n:"09", t:"百日筑基", s:"百日筑基第九", segs:[
+{o:"《心印经》云：“回风混合，百日功灵。”总之立基百日，方有真光。如子辈尚是目光，非神火也，非性光也，非慧智炬烛也。",g:"开宗明义：一百天只是个门槛。而且说得很不客气——你现在回的那个“光”还只是目光，不是神火、不是性光、更不是慧智之烛。这一句是给初学降温的。"},
+{o:"回之百日，则精炁自足，真阳自生，水中自有真火。以此持行，自然交媾，自然结胎，吾方在不识不知之天，而婴儿已成矣。若略作意见，便是外道。",g:"百日之后精气自足、真阳自生、水中真火自现，然后“自然交媾、自然结胎”。最要紧是末句：略作意见，便是外道。也就是说，任何一点“我要它这样”的用力，都把这功夫做坏了。两个“自然”，是本章的骨头。"},
+{o:"百日立基，非百日也；一日立基，非一日也；一息立基，非呼吸之谓也。息者，自心也，自心为息。元神也，元气也，元精也。升降离合，悉从心起。有无虚实，咸在念中。一息一生持，何止百日？然百日亦一息也。",g:"三个否定：百日不是一百天，一日不是一天，一息不是一次呼吸。“息”是自心；三元（神、气、精）的升降离合都从心起。“一息一生持”——把一息持到底，何止百日；反过来说，一百天也不过一息。"},
+{o:"百日只在得力，昼间得力，夜中受用；夜中得力，昼间受用。",g:"把“百日”翻译成一个可操作的词：得力。白天得力，夜里受用；夜里得力，白天受用——它是一天二十四小时的连续态，不是打卡。"},
+{o:"百日立基，玉旨耳。上真言语，无不与人身应。真师言语，无不与学人应。此是玄中玄，不可解者也。见性乃知，所以学人必求真师授记，任性发出，一一皆验。",g:"最后落到师承。作者说上真之言与人身相应、真师之言与学人相应，这是“玄中玄，不可解者”，只有见性才知道。所以学人要求真师授记。这一段是全书最需要读者自己拿捏的地方：既承认师承，也提醒你别拿这句话当幌子。"}
+], keys:["百日不是工期，是“得力”的另一种说法","现在的光只是目光，不是性光","略作意见便是外道——不许造作","一日不是一天，一息不是一次呼吸"], act:"只做“回”这一个动作，不预设任何景象；一百天里唯一要保的是不断。", vr:"“回风混合，百日功灵”，《心印经》通行本作“回风混合，百日通灵”，一字之差。"},
+
+{n:"10", t:"性光识光", s:"性光识光第十", segs:[
+{o:"回光之法，原通行住坐卧，只要自得机窍。吾前开示云，“虚室生白”，光非白耶？但有一说，初未见光时，此为效验。若见为光，而有意著之，即落意识，非性光也。子不管他有光无光，只要无念生念。",g:"先说形式：行住坐卧都能回光，只要得机窍。然后立刻拆掉“光”这个诱饵——初见光是效验；但见光而有意著之，就落进意识，不再是性光。所以命令只有一句：不管它有光无光。"},
+{o:"何谓无念？千休千处得；何谓生念？一念一生持。此念乃正念，与平日念不同。今心为念，念者，现在心也，此心即光即药。",g:"释两个词：“无念”是千休千处得，“生念”是一念一生持。这个念是正念，不是平常的念头。“念”字从今从心，所以念就是现在心——此心即光即药，不必另找一个叫“光”的东西。"},
+{o:"凡人视物，任眼一照去，不及分别，此为性光。如镜之无心而照也，如水之无心而鉴也。少顷，即为识光，以其分别也。镜有影，已无镜矣；水有象，已非水矣。光有识，尚何光哉？",g:"性光与识光的分界，全在“分别”二字。眼一照过去、还来不及分辨的那一瞬，是性光，如镜无心而照、水无心而鉴；稍一顿，开始分辨，就是识光。镜有了影已不是镜，水有了象已不是水——光里有了识，还叫什么光。"},
+{o:"子辈初则性光，转念则识，识起而光杳不可觅。非无光也，光已为识矣。黄帝曰：“声动不生声而生响”，即此义也。",g:"初坐是性光，一转念就成识，识起而光无处可寻。不是光没了，是光变成了识。引黄帝“声动不生声而生响”——响是声的回音，识是光的回音，此喻极准。"},
+{o:"《楞严推勘入门》曰：“不在尘，不在识，惟还根”，此则何意？尘是外物，所谓器界也，与吾了不相涉。逐物则认物为己。物必有还，通还户牖，明还日月。将他为自，终非吾有。至于不汝还者，非汝而谁？明还日月，见日月之明无还也。天有无日月之时，人无有无见日月之性。若然，则分别日月者，还可与为吾有耶？不知因明暗而分别者，当明暗两忘之时，分别何在？故亦有还，此为内尘也。",g:"借《楞严》的“八还”辨见：尘是外物，与我无涉；逐物就是认物为己。物性总要还给它自己——通还门窗，明还日月。能还的都不是你，那个还不掉的才是你。但再推一层：因明暗而起的分别，当明暗两忘时又在哪里？所以连这个分别也要还，这叫内尘。"},
+{o:"惟见性无还，见性之时，见非是见，则见性亦还矣。还者，还其识念流转之性，即“阿难，使汝流转，心目为咎”也。初言八还，上七者，皆明其一一有还。姑留见性，以为阿难拄杖。究竟见性既带八识，非真不还也。最后并此一破，方为真见性，真不还矣。",g:"再破一层：见性之时，“见非是见”，所以连“见性”也要还。还掉的是那个随识念流转的“性”。八还之中前七项都明说有还，第八项暂且留作阿难拄杖；但见性既然带着八识，就不是真不还。连这一着也破了，才是真见性。"},
+{o:"子辈回光，正回其最初不还之光，故一毫识念用不着。使汝流转者，惟此六根。使汝成菩提者，亦惟此六根。而尘与识皆不用。非用根也，用其根中之性耳。今不堕识回光，则用根中之元性。落识而回光，则用根中之识性。毫厘之辨，乃在此也。",g:"回到操作：六根既是你流转的原因，也是你成菩提的凭据；用不上尘，也用不上识，用的是“根中之性”。不堕识而回光，用的是元性；落识而回光，用的是识性。全书最细的一处分辨，就在毫厘之间。"},
+{o:"用心即为识光，放下乃为性光。毫厘千里，不可不辨。识不断，则神不生；心不空，则丹不结。",g:"八字判准：用心即识光，放下乃性光。后面两句是因果：识不断则神不生，心不空则丹不结。所以不是“努力去观”，是“放下才算”。"},
+{o:"心静则丹，心空即药。不著一物，是名心静。不留一物，是名心空。空见为空，空犹未空。空忘其空，斯为真空。",g:"最后四个定义：心静则丹，心空即药；不著一物叫心静，不留一物叫心空。而且空也要空掉——能看见“我在空”，那个空还没空；空到忘了空，才是真空。"}
+], keys:["性光是无心而照，识光是分别才起","用心即识光，放下乃性光","见光而著之，即落意识","空见为空，空犹未空"], act:"坐中一旦开始评价“这次坐得好不好”，那就是识光已起——放下评价，不修正。", vr:""},
+
+{n:"11", t:"坎离交媾", s:"坎离交媾第十一", segs:[
+{o:"凡漏泄精神，动而交物者，皆离也。凡收转神识，静而中涵者，皆坎也。七窍之外走者为离，七窍之内返者为坎。",g:"只两句就把坎离从丹学术语拉回到可观察的状态：精神漏泄、动而与物交接，是离；收转神识、静而涵养于中，是坎。七窍向外走是离，向内返是坎。不是两个器官，是两种方向。"},
+{o:"一阴主于逐色随声，一阳主于返闻收见。坎离即阴阳，阴阳即性命，性命即身心，身心即神炁。一自敛息，精神不为境缘流转，即是真交。而沉默趺坐时，又无论矣。",g:"离中一阴逐色随声，坎中一阳返闻收见。然后一串等号：坎离→阴阳→性命→身心→神炁。落到实践只有一句：一旦敛息，精神不再随境缘流转，就是真交媾；至于盘腿静坐，那更不必说了。"}
+], keys:["坎离不是器官，是外走与内返两种状态","精神不为境缘流转，就是真交媾","一次敛息就是一次交，不必等大周天"], act:"走路时把“向外看”改成“知道自己在看”，这就是一次坎离交。", vr:""},
+
+{n:"12", t:"周天", s:"周天第十二", segs:[
+{o:"周天非以气作主，以心到为妙诀。若毕竟如何周天，是助长也。无心而守，无意而行。仰观乎天，三百六十五度，刻刻变迁，而斗枢终古不移。吾心亦犹是也。心即斗枢，气即群星。",g:"第一句就与流行丹法分道：周天不以气作主，以心到为妙诀。你要问到底怎么转，那是揠苗助长。无心而守、无意而行，是全部要领。天穹三百六十五度刻刻在变，斗枢终古不移——心是斗枢，气是群星。"},
+{o:"吾身之气，四肢百骸，原是贯通。不要十分着力，于此锻炼识神，断除妄见，然后药生。药非有形之物，此性光也。而即先天之真炁，然必于大定后方见，并无采法，言采者大谬矣。见之既久，心地光明。自然心空漏尽，解脱尘海。若今日龙虎，明日水火，终成妄想。吾昔受火龙真人口诀如是，不知丹书所说，更何如也。",g:"身体里的气本来贯通，不必着力。要炼的是识神、要断的是妄见，然后药才生。而“药”不是有形之物，是性光，也就是先天真炁——必须在大定之后才见，而且没有“采”这回事，谈采药就是大错。今天说龙虎、明天说水火，都成妄想。作者还补一句“不知丹书所说更何如”，把话留了余地。"},
+{o:"一日有一周天，一刻有一周天，坎离交处，便是一周。我之交，即天之回旋也。未能当下休歇，所以有交之时，即有不交之时。然天之回旋，未尝少息。果能阴阳交泰，大地阳和，我之中宫正位，万物一时畅遂，即丹经沐浴法也，非大周天而何？",g:"把周天改成一个频率问题：一天有一周天，一刻也有一周天，坎离相交处就是一周。我身的交就是天的回旋。做不到当下休歇，所以有交有不交；天却从未停过。若真能阴阳交泰、中宫正位，就是丹经说的沐浴法，也就是大周天。"},
+{o:"此中火候，实实有大小不同，究竟无大小可别。到得功夫自然，不知坎离为何物，天地为何等，孰为交，孰为一周、两周，何处觅大小之分别耶？",g:"火候确有大小之别，但到底又没有大小可别。功夫到自然处，连坎离是什么、天地是什么都不问了，还分什么一周两周、大周小周。"},
+{o:"总之，一身旋运难真。不真，见得极大亦小；真则一回旋，天地万物，悉与之回旋，即在方寸处，极小亦为极大。故金丹火候，全要行归自然。不自然，天地自还天地，万物各归万物。若欲强之使合，终不能合。即如天时亢旱，阴阳不和。乾坤未尝一日不周，然终见得有多少不自然处。我能转运阴阳，调摄自然，一时云蒸雨降，草木酣适，山河流畅，纵有乖戾，亦觉顿释，此即大周天也。",g:"判真伪的标准只有“自然”二字：不真，看着极大也是小；真，方寸一回旋，天地万物都跟着回旋。不自然，天地归天地、万物归万物，硬合也合不起来。举天旱为喻：乾坤何尝不在转，只是不自然；能调摄自然，云蒸雨降，那才是大周天。"},
+{o:"问：活子时甚妙，必认定正子时，似着相？不着相，不指明正子时，何从而识活子时？既识得活子时，确然又有正子时。是一是二，非正非活，总要人看得真。一真则无不正，无不活矣。见不得真，何者为活，何者为正耶？即如活子时，是时时见得的。毕竟到正子时，志气清明，活子时愈觉发现。若未识得活的，且向正的时候验取，则正者现前，活者无不神妙矣。",g:"设问答释“活子时”与“正子时”的关系：不是着相，而是不给一个定点，就无从认识活子时；认得活的，才确知还有正的。是一是二、非正非活，关键在“看得真”。一真则无不正、无不活。还没摸到活子时的人，可以先在半夜正子时气清之际去验取。"}
+], keys:["周天是“心到”，不是“气转”","坎离交处便是一周，一天有无数次","无采法——谈采药即是妄想","火候全在自然，强合终不合"], act:"不要在身上搬运任何东西；只守“心到”二字，气自己会走。", vr:"“斗枢终古不移”一本作“斗柄终古不动”。"},
+
+{n:"13", t:"劝世歌", s:"劝世歌第十三", segs:[
+{o:"吾因度世丹衷热，不惜婆心并饶舌。世尊亦为大因缘，直指生死真可惜。老君也患有吾身，传示谷神人不识。吾今略说寻真路：黄中通理载大易，正位居体是玄关。子午中间堪定息，光回祖窍万神安。药产川源一气出，透幕变化有金光。一轮红日常赫赫，世人错认坎离精。搬运心肾成间隔，如何人道合天心。天若符兮道自合，放下万缘毫不起。此是先天真无极，太虚穆穆朕兆捐。性命关头忘意识，意识忘后见本真。水清珠现玄难测，无始烦障一旦空。玉清降下九龙册，步霄汉兮登天阙，掌风霆兮驱霹雳。凝神定息是初机，退藏密地为常寂。",g:"一首歌把前十二章压成口诀：黄中通理、正位居体、子午定息、光回祖窍、药产川源、透幕金光。中间一句是全篇的转折——“世人错认坎离精，搬运心肾成间隔”，明确把搬运周天判为错路。再往后是结果：放下万缘、忘意识、见本真、水清珠现、无始烦障空。"},
+{o:"吾昔度张珍奴二词，皆有大道。子后午前非时也，坎离耳。定息者，息息归根，中黄也。坐者，心不动也。夹脊者，非背上轮子，乃直透玉京大路也。双关者，此处有难言者。地雷震动山头雨者，真气生也。黄芽出土者，药生也。小小二段，已尽修行大路，明此可不惑人言。",g:"作者自己给两首词作注，这几句是全书最要紧的解词。子后午前不是时辰，是坎离；定息是息息归根于中黄；坐是心不动；夹脊“不是背上的轮子”，而是直透玉京的大路；双关则明说“此处有难言者”。所以凡把夹脊解释成脊柱、把周天解释成气转的，都与原书相反。"},
+{o:"昔夫子与颜子登泰山顶，望吴门白马，颜子见为疋练，夫子急掩其目，恐其太用眼力，神光走落，回光可不勉哉！",g:"孔子与颜回登泰山的故事：颜回望见吴门白马，看成了一匹白练，孔子赶紧掩他的眼，怕他太用眼力、神光走落。这个故事在书里出现两次（第十、十三章），用意相同——眼力外泄是有代价的。"},
+{o:"回光在纯心行去，只将真息凝照于中宫，久之自然通灵达变也。总是心静照定为基，心忘气凝为效，气息心空为丹成，心气浑一为温养，明心见性为了道。子辈各宜勉力行去，错过光阴可惜也。一日不行，一日即鬼也。一息行此，一息真仙也。勉之！勉之！",g:"末段把全书收成五层次第：心静照定为基，心忘气凝为效，气息心空为丹成，心气浑一为温养，明心见性为了道。这是一条可以自查的阶梯，也是全书唯一一次把“进度”说成阶段。最后两句狠：一日不行，一日即鬼；一息行此，一息真仙。要的不是成就，是不间断。"}
+], keys:["五层次第：静定为基、忘凝为效、空寂为丹成、浑一为温养、见性为了道","夹脊不是背上的轮子——反对搬运周天","一日不行，一日即鬼：要的是不断"], act:"收功时按五句自查：今天做到哪一层，不夸也不贬。", vr:"本章异文最多：“丹衷热”一作“丹中热”；“药产川源”一作“川原”；“玉清降下九龙册”一作“玉京”；“天若符兮”一作“天若符合”；“气静心空为丹成”一作“气息心空”；“步霄汉兮登天阙”一作“步云汉今登天关”；“直透玉京大路”一作“玉清”。"}
+
+];
+/* ===== 通用 ===== */
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function pad(n){return (n<10?'0':'')+n;}
+
+/* ===== 路由 ===== */
+var ROUTES={home:'v-home',text:'v-text',method:'v-method',daily:'v-daily',terms:'v-terms',faq:'v-faq',about:'v-about'};
+var curChap=-1;
+
+function parseHash(){
+  var raw=location.hash.replace(/^#\/?/,'')||'home';
+  var parts=raw.split('?');
+  var route=ROUTES[parts[0]]?parts[0]:'home';
+  var param={};
+  if(parts[1]){
+    parts[1].split('&').forEach(function(p){var kv=p.split('=');param[kv[0]]=kv[1];});
+  }
+  return {route:route,param:param};
+}
+
+function go(){
+  var st=parseHash();
+  Object.keys(ROUTES).forEach(function(k){
+    var el=document.getElementById(ROUTES[k]);
+    if(el){el.classList.toggle('on',k===st.route);}
+  });
+  $$('#nav a').forEach(function(a){
+    var t=a.getAttribute('href').replace(/^#\//,'');
+    if(t===st.route){a.setAttribute('aria-current','page');}else{a.removeAttribute('aria-current');}
+  });
+  if(st.route==='text'){
+    var c=parseInt(st.param.c,10);
+    if(c>=1&&c<=CHAPTERS.length){setChap(c-1,true);}
+    else if(curChap<0){setChap(0,true);}
+  }
+}
+
+/* ===== 原文视图 ===== */
+function buildChapNav(){
+  var nav=$('#chapNav');
+  if(!nav)return;
+  nav.innerHTML='';
+  CHAPTERS.forEach(function(ch,i){
+    var b=document.createElement('button');
+    b.type='button';
+    b.innerHTML='<em>'+ch.n+'</em><span>'+ch.t+'</span>';
+    b.addEventListener('click',function(){setChap(i,false);});
+    nav.appendChild(b);
+  });
+}
+
+function setChap(i,scrollToTop){
+  curChap=i;
+  $$('#chapNav button').forEach(function(b,idx){b.classList.toggle('on',idx===i);});
+  renderChap();
+  if(scrollToTop){window.scrollTo({top:0,behavior:'auto'});}
+}
+
+function renderChap(){
+  var ch=CHAPTERS[curChap];
+  if(!ch)return;
+  var body=$('#chapBody');
+  var h='';
+  h+='<div class="chap-head"><div class="big-seal">'+parseInt(ch.n,10)+'</div><h2>'+ch.s+'</h2><div class="src">第 '+ch.n+' 章 · 共 '+ch.segs.length+' 段</div></div>';
+  ch.segs.forEach(function(s){
+    h+='<div class="seg"><div class="seg-text">'+s.o+'</div><p class="seg-gloss">'+s.g+'</p></div>';
+  });
+  h+='<div class="box"><div class="box-h">要点</div><div class="box-b"><ul>';
+  ch.keys.forEach(function(k){h+='<li>'+k+'</li>';});
+  h+='</ul></div></div>';
+  h+='<div class="act"><b>一句实操</b><p>'+ch.act+'</p></div>';
+  if(ch.vr){h+='<p class="variant"><b>异文</b>'+ch.vr+'</p>';}
+  h+='<div class="chap-foot"><button type="button" id="prevChap">← 上一章</button><button type="button" id="nextChap">下一章 →</button></div>';
+  body.innerHTML=h;
+
+  var p=$('#prevChap'),n=$('#nextChap');
+  if(p){
+    p.disabled=curChap===0;
+    p.style.opacity=curChap===0?'.4':'1';
+    p.addEventListener('click',function(){if(curChap>0){setChap(curChap-1,true);}});
+  }
+  if(n){
+    n.disabled=curChap===CHAPTERS.length-1;
+    n.style.opacity=curChap===CHAPTERS.length-1?'.4':'1';
+    n.addEventListener('click',function(){if(curChap<CHAPTERS.length-1){setChap(curChap+1,true);}});
+  }
+}
+
+/* ===== 首页章目 ===== */
+function buildSealwall(){
+  var sw=$('#sealwall');
+  if(!sw)return;
+  CHAPTERS.forEach(function(ch){
+    var a=document.createElement('a');
+    a.href='#/text?c='+parseInt(ch.n,10);
+    a.title=ch.s;
+    a.innerHTML=parseInt(ch.n,10)+'<small>'+ch.t+'</small>';
+    sw.appendChild(a);
+  });
+}
+
+/* ===== 垂帘演示 ===== */
+function initLid(){
+  var range=$('#lidRange');
+  if(!range)return;
+  var ray=$('#lidRay'),beam=$('#lidBeam'),nose=$('#lidNose'),curtain=$('#lidCurtain'),fill=$('#lidFill');
+  var stateEl=$('#lidState'),quoteEl=$('#lidQuote');
+  var bOpen=$('#bOpen'),bFit=$('#bFit'),bShut=$('#bShut');
+  var quotes={
+    open:'“大开眼，则视远，而不见鼻矣……大开失之外走，易于散乱。”',
+    fit:'“惟垂帘得中，恰好望见鼻端，故取以为准。只是垂帘恰好，任彼光自然透入，不劳你注射与不注射。”',
+    shut:'“太闭眼，则眼合，亦不见鼻矣……太闭失之内驰，易于昏沉。”'
+  };
+  function upd(){
+    var v=parseInt(range.value,10);
+    var A=-30+0.9*v;
+    var cy=66+74*(v/100);
+    curtain.setAttribute('d','M92 140 Q210 '+cy.toFixed(1)+' 328 140');
+    if(fill){
+      fill.setAttribute('y','40');
+      fill.setAttribute('height',Math.max(0,cy-40).toFixed(1));
+    }
+    var rad=A*Math.PI/180,L=182;
+    var ex=210+L*Math.cos(rad),ey=142+L*Math.sin(rad);
+    var a1=(A-8)*Math.PI/180,a2=(A+8)*Math.PI/180;
+    beam.setAttribute('points','210,142 '+(210+L*Math.cos(a1)).toFixed(1)+','+(142+L*Math.sin(a1)).toFixed(1)+' '+(210+L*Math.cos(a2)).toFixed(1)+','+(142+L*Math.sin(a2)).toFixed(1));
+    var visible=v<90;
+    ray.setAttribute('x2',ex.toFixed(1));ray.setAttribute('y2',ey.toFixed(1));
+    ray.style.opacity=visible?'0.85':'0';
+    beam.style.opacity=visible?'0.14':'0';
+    var fit=Math.abs(A-27.8)<=8;
+    nose.setAttribute('r',fit?'7':'5');
+    nose.setAttribute('opacity',fit?'0.95':'0.4');
+    bOpen.classList.toggle('on',v<55);
+    bFit.classList.toggle('on',fit);
+    bShut.classList.toggle('on',v>73);
+    if(v<55){
+      stateEl.innerHTML='太开：<span>视远而不见鼻，易于散乱</span>';
+      quoteEl.textContent=quotes.open;
+    }else if(v>73){
+      stateEl.innerHTML='太闭：<span>眼合亦不见鼻，易于昏沉</span>';
+      quoteEl.textContent=quotes.shut;
+    }else{
+      stateEl.innerHTML='恰好：<span>望见鼻端，定个准则就放下</span>';
+      quoteEl.textContent=quotes.fit;
+    }
+  }
+  range.addEventListener('input',upd);
+  upd();
+}
+
+/* ===== 日课 · 计时 ===== */
+var LS_KEY='tyjh.log.v1';
+var PHASES=[
+  {k:'调身',d:90,tip:'端坐，脊背自然竖直，不挺不塌；松肩，三口长呼气。约一分半。'},
+  {k:'回光',d:0,tip:'垂帘至望着鼻尖，系念两眼中平处；耳听呼吸之无声，愈放愈微。'},
+  {k:'收功',d:90,tip:'先动指、动腕、搓手覆眼，再缓缓开目；起身缓行数十步，别急着看手机。'}
+];
+var T={minutes:20,phase:-1,running:false,endAt:0,tid:null,reflect:0,q:'',live:false};
+
+function loadLog(){
+  try{var r=JSON.parse(localStorage.getItem(LS_KEY)||'[]');return Array.isArray(r)?r:[];}catch(e){return [];}
+}
+function saveLog(l){try{localStorage.setItem(LS_KEY,JSON.stringify(l));}catch(e){}}
+function ymd(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function fmt(s){s=Math.max(0,s);return pad(Math.floor(s/60))+':'+pad(s%60);}
+
+function beep(f,dur){
+  try{
+    var C=window.AudioContext||window.webkitAudioContext;
+    if(!C)return;
+    if(!beep.ctx){beep.ctx=new C();}
+    var ctx=beep.ctx,o=ctx.createOscillator(),g=ctx.createGain();
+    o.type='sine';o.frequency.value=f||528;
+    g.gain.value=0.0001;
+    o.connect(g);g.connect(ctx.destination);
+    var t=ctx.currentTime;
+    g.gain.exponentialRampToValueAtTime(0.25,t+0.08);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+(dur||1.2));
+    o.start(t);o.stop(t+(dur||1.2)+0.05);
+  }catch(e){}
+}
+
+function setClock(txt,sub){
+  var c=$('#clock');
+  if(c){c.innerHTML=txt+(sub?'<small>'+sub+'</small>':'');}
+}
+
+function phaseDur(i){return i===1?T.minutes*60:PHASES[i].d;}
+
+function enterPhase(i){
+  T.phase=i;
+  T.endAt=Date.now()+phaseDur(i)*1000;
+  $('#phName').textContent=PHASES[i].k;
+  $('#phTip').textContent=PHASES[i].tip;
+  if(i>0){beep(i===2?396:528,0.9);}
+}
+
+function tick(){
+  if(!T.running)return;
+  var i=T.phase;
+  var rem=Math.max(0,Math.ceil((T.endAt-Date.now())/1000));
+  var dur=phaseDur(i);
+  var prog=dur>0?1-rem/dur:0;
+  var arc=$('#arc');
+  if(arc){arc.setAttribute('stroke-dashoffset',(540.35*(1-Math.min(1,prog))).toFixed(1));}
+  setClock(fmt(rem),PHASES[i].k);
+  if(i===1&&T.live){T.reflect=Math.max(T.reflect,dur-rem);}
+  if(rem<=0){
+    if(i<PHASES.length-1){enterPhase(i+1);tick();}
+    else{finish();}
+  }
+}
+
+function startSession(){
+  if(T.running)return;
+  T.reflect=0;T.q='';T.live=true;
+  T.running=true;
+  $('#practice').classList.add('live');
+  $('#btnStart').disabled=true;
+  $('#btnStop').disabled=false;
+  $('#checkin').classList.remove('on');
+  $('#saveHint').textContent='';
+  beep(660,0.5);
+  enterPhase(0);
+  tick();
+  T.tid=setInterval(tick,500);
+}
+
+function finish(){
+  T.running=false;
+  if(T.tid){clearInterval(T.tid);T.tid=null;}
+  if(T.phase===1&&T.reflect===0){T.reflect=T.minutes*60;}
+  $('#practice').classList.remove('live');
+  $('#btnStart').disabled=false;
+  $('#btnStop').disabled=true;
+  setClock('00:00','已坐完');
+  $('#phName').textContent='结束';
+  $('#phTip').textContent='坐完就记一笔。只记状态，不记境界。';
+  var arc=$('#arc');if(arc){arc.setAttribute('stroke-dashoffset','0');}
+  $('#checkin').classList.add('on');
+  $$('#qRow button[data-q]').forEach(function(b){b.classList.remove('primary');});
+  if(T.reflect>=1){$('#saveHint').textContent='本次回光约 '+Math.round(T.reflect/60*10)/10+' 分钟。选一个主要状态，存下。';}
+  beep(660,1.4);
+}
+
+function abort(){
+  if(!T.running)return;
+  T.running=false;
+  if(T.tid){clearInterval(T.tid);T.tid=null;}
+  $('#practice').classList.remove('live');
+  $('#btnStart').disabled=false;
+  $('#btnStop').disabled=true;
+  $('#checkin').classList.add('on');
+  $('#saveHint').textContent=T.reflect>=30?'提前结束，已坐 '+Math.round(T.reflect/60*10)/10+' 分钟。也可以存下。':'还没有坐满一分钟，这次就不记了。';
+  setClock('00:00','已停');
+  $('#phName').textContent='已停';
+}
+
+function renderStats(){
+  var log=loadLog();
+  var today=ymd(new Date());
+  var total=0,todayMin=0;
+  log.forEach(function(r){total+=(r.min||0);if(r.date===today){todayMin+=(r.min||0);}});
+  var days={};
+  log.forEach(function(r){days[r.date]=1;});
+  var streak=0,d=new Date();
+  if(!days[ymd(d)]){d.setDate(d.getDate()-1);}
+  while(days[ymd(d)]){streak++;d.setDate(d.getDate()-1);}
+  var st=$('#stStreak');if(st)$('#stStreak').textContent=streak;
+  if($('#stTotal'))$('#stTotal').textContent=Math.round(total);
+  if($('#stToday'))$('#stToday').textContent=Math.round(todayMin);
+  if($('#stSessions'))$('#stSessions').textContent=log.length;
+
+  var bars=$('#bars');
+  if(bars){
+    var sums={};
+    log.forEach(function(r){sums[r.date]=(sums[r.date]||0)+(r.min||0);});
+    var vals=[],max=1;
+    for(var i=29;i>=0;i--){
+      var dd=new Date();dd.setDate(dd.getDate()-i);
+      var v=sums[ymd(dd)]||0;vals.push(v);if(v>max){max=v;}
+    }
+    bars.innerHTML='';
+    vals.forEach(function(v,idx){
+      var el=document.createElement('i');
+      var hgt=v>0?Math.max(4,Math.round(v/max*84)):2;
+      el.style.height=hgt+'px';
+      el.className=v>0?'has':'';
+      el.title=v>0?(30-idx)+' 天前：'+Math.round(v)+' 分钟':'无记录';
+      bars.appendChild(el);
+    });
+  }
+
+  var note=$('#barsNote');
+  if(note){note.style.display=log.length?'none':'block';}
+
+  var lg=$('#log');
+  if(lg){
+    if(!log.length){lg.innerHTML='<div class="log-row" style="grid-template-columns:1fr"><b>还没有记录。</b></div>';}
+    else{
+      var rows=log.slice().sort(function(a,b){return (b.ts||0)-(a.ts||0);}).slice(0,12);
+      lg.innerHTML=rows.map(function(r){
+        return '<div class="log-row"><b>'+(r.date||'')+'</b><span>'+Math.round(r.min||0)+' 分</span><span class="q '+(r.q||'')+'">'+(r.q||'未记')+'</span><span>'+(r.note||'')+'</span></div>';
+      }).join('');
+    }
+  }
+}
+
+function initDaily(){
+  var chips=$('#minChips');
+  if(chips){
+    $$('button',chips).forEach(function(b){
+      b.addEventListener('click',function(){
+        $$('button',chips).forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on');
+        T.minutes=parseInt(b.getAttribute('data-min'),10);
+      });
+    });
+  }
+  if($('#btnStart'))$('#btnStart').addEventListener('click',startSession);
+  if($('#btnStop'))$('#btnStop').addEventListener('click',abort);
+  $$('#qRow button[data-q]').forEach(function(b){
+    b.addEventListener('click',function(){
+      $$('#qRow button[data-q]').forEach(function(x){x.classList.remove('primary');});
+      b.classList.add('primary');
+      T.q=b.getAttribute('data-q');
+    });
+  });
+  if($('#btnSave'))$('#btnSave').addEventListener('click',function(){
+    if(!T.q){$('#saveHint').textContent='先选一个状态：散乱、昏沉或清明。';return;}
+    var min=Math.round((T.reflect||0)/60*10)/10;
+    if(!(min>0)){min=T.minutes;}
+    var log=loadLog();
+    log.push({date:ymd(new Date()),ts:Date.now(),min:min,q:T.q,note:($('#noteInput')&&$('#noteInput').value||'').slice(0,40)});
+    saveLog(log);
+    T.q='';T.reflect=0;
+    if($('#noteInput'))$('#noteInput').value='';
+    $$('#qRow button[data-q]').forEach(function(x){x.classList.remove('primary');});
+    $('#checkin').classList.remove('on');
+    $('#saveHint').textContent='已存下。明天同一时间再来。';
+    renderStats();
+  });
+  if($('#btnExport'))$('#btnExport').addEventListener('click',function(){
+    var blob=new Blob([JSON.stringify(loadLog(),null,2)],{type:'application/json'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='taiyi-jinhua-log-'+ymd(new Date())+'.json';
+    a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);},2000);
+  });
+  if($('#btnClear'))$('#btnClear').addEventListener('click',function(){
+    if(!window.confirm('确定清空全部记录？此操作不可恢复，建议先导出。'))return;
+    saveLog([]);
+    renderStats();
+    $('#log').innerHTML='<div class="log-row" style="grid-template-columns:1fr"><b>已清空。</b></div>';
+  });
+  renderStats();
+}
+
+/* ===== 启动 ===== */
+buildChapNav();
+buildSealwall();
+go();
+initLid();
+initDaily();
+window.addEventListener('hashchange',go);
+
+
+</script>
+</body>
+</html>
