@@ -171,11 +171,28 @@ t('内联 JS 通过 node --check', () => {
     fs.rmSync(tmp, { force: true });
   }
 });
-t('localStorage 只用了两个键', () => {
+t('localStorage 只用三个键', () => {
   const keys = [...new Set([...html.matchAll(/tyjh\.[a-z]+\.v\d/g)].map((m) => m[0]))];
-  const allow = ['tyjh.log.v1', 'tyjh.onboard.v1'];
+  const allow = ['tyjh.log.v1', 'tyjh.onboard.v1', 'tyjh.view.v1'];
   const bad = keys.filter((k) => !allow.includes(k));
-  return bad.length ? `多余键：${bad}` : keys.length === 2 ? true : `找到 ${keys}`;
+  return bad.length ? `多余键：${bad}` : keys.length === 3 ? true : `找到 ${keys}`;
+});
+t('版式开关与竖排规则都在', () => {
+  const need = ['id="mHorz"', 'id="mVert"', 'writing-mode:vertical-rl', 'text-orientation:upright'];
+  const missing = need.filter((s) => !html.includes(s));
+  return missing.length ? `缺 ${missing.join(',')}` : true;
+});
+t('竖排只改版式不改字', () => {
+  // 竖排区块里不得出现替换文字的实现（不得引入繁简转换、不得改写 CHAPTERS）
+  if (/opencc|String\.fromCharCode|s2t/i.test(html)) return '出现了字符转换实现，竖排应只改版式';
+  if (html.includes('tyjh.view.v1') && !html.includes("saved==='vert'")) return '未按存储值恢复竖排';
+  return true;
+});
+t('有打印样式', () => {
+  if (!/@media print/.test(html)) return '缺 @media print';
+  const need = [/\.view:not\(\.on\)/, /break-inside:avoid/];
+  const missing = need.filter((re) => !re.test(html));
+  return missing.length ? `打印规则缺 ${missing.join(',')}` : true;
 });
 
 // --- 仓库文件与声明 ---

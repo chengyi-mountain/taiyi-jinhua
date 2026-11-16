@@ -64,6 +64,18 @@ async function run(){
   $$('#chapNav button')[12].click();await sleep(80);
   t('第十三章可读',function(){var h=$('#chapBody h2');return h&&h.textContent.indexOf('劝世歌')>-1;});
 
+  // ===== 竖排 / 横排 =====
+  $$('#chapNav button')[0].click();await sleep(80);
+  t('默认横排',function(){return !$('#chapBody').classList.contains('vert')&&$('#mHorz').classList.contains('on');});
+  $('#mVert').click();await sleep(80);
+  t('点竖排后书写方向改变',function(){
+    var s=$('#chapBody .seg-text');return $('#chapBody').classList.contains('vert')&&w.getComputedStyle(s).writingMode.indexOf('vertical')===0;
+  });
+  t('竖排写进 tyjh.view.v1',function(){return w.localStorage.getItem('tyjh.view.v1')==='vert';});
+  t('竖排不改动原文',function(){return $$('#chapBody .seg').length>0&&$('#chapBody .seg-text').textContent.indexOf('自然曰道')>-1;});
+  $('#mHorz').click();await sleep(60);
+  t('点回横排可复原',function(){return !$('#chapBody').classList.contains('vert')&&w.getComputedStyle($('#chapBody .seg-text')).writingMode.indexOf('vertical')!==0;});
+
   // ===== 垂帘 =====
   w.location.hash='#/method';await sleep(120);
   var range=$('#lidRange'),curtain=$('#lidCurtain'),fill=$('#lidFill');
