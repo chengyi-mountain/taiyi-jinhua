@@ -1,0 +1,124 @@
+{
+  "work": "吕祖太乙金华宗旨",
+  "scope": "network-transcription",
+  "disclaimer": "本站原文为转录，非校本；本表只记网络通行系统内所见异文，未含清刻影印对照。",
+  "source_file": "校记.md",
+  "version": 1,
+  "updated": "2026-11-16",
+  "license": "原文属公有领域；本表整理以 CC BY-SA 4.0 提供，与站内讲解文字同许可。",
+  "count": 14,
+  "entries": [
+    {
+      "chapter": 1,
+      "chapter_label": "一",
+      "used": "默朝飞升",
+      "variant": "《心印经》通行作「默朝上帝，一纪飞升」",
+      "note": "引文缩略，非异文",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 1,
+      "chapter_label": "一",
+      "used": "头上天心何尝微微些动也 / 方寸中之真意，如何能动",
+      "variant": "两问相连，断句各家不同",
+      "note": "断句问题，存疑",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 3,
+      "chapter_label": "三",
+      "used": "谛观息静",
+      "variant": "诵观息静",
+      "note": "形近致歧",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 3,
+      "chapter_label": "三",
+      "used": "反求个天地未生之体",
+      "variant": "反求十天地未生之体",
+      "note": "「个」「十」形近",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 4,
+      "chapter_label": "四",
+      "used": "如木槁灰",
+      "variant": "如木稿灰",
+      "note": "通行作「槁」",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 9,
+      "chapter_label": "九",
+      "used": "引《心印经》「百日功灵」",
+      "variant": "通行作「百日通灵」",
+      "note": "引文版本差",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 12,
+      "chapter_label": "十二",
+      "used": "斗枢终古不移",
+      "variant": "斗柄终古不动",
+      "note": "义近，字异",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "丹衷热",
+      "variant": "丹中热",
+      "note": "",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "药产川源",
+      "variant": "川原",
+      "note": "",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "玉清降下九龙册",
+      "variant": "玉京",
+      "note": "",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "天若符兮",
+      "variant": "天若符合",
+      "note": "",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "气静心空为丹成",
+      "variant": "气息心空",
+      "note": "",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "步霄汉兮登天阙",
+      "variant": "步云汉今登天关",
+      "note": "形近多处",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "直透玉清大路",
+      "variant": "玉京大路",
+      "note": "**此条牵动义解**：若作「玉京」，则「夹脊」是通向玉京的路，不是背上一条气脉",
+      "affects_meaning": true
+    }
+  ]
+}

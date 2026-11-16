@@ -40,7 +40,10 @@ python -m http.server 8000           # 或用本地服务（如需）
 ```
 index.html        站点全部内容：样式、十三章数据（CHAPTERS）、路由与交互都在里面
 assets/logo.svg   站点图标与仓库标志（同款「回」字印）
-tests/check.mjs   结构测试：路由、章节数据、id、许可声明等 28 项
+assets/seal-chengyi.svg  整理者「澄一」白文印，页脚居中一处
+data/errata.json  异文表的机器可读版（从 `校记.md` 解析生成，供其他项目复用）
+tools/errata.py   生成上面那份 JSON 的脚本：`python tools/errata.py`，改校记后重跑
+tests/check.mjs   结构测试：路由、章节数据、id、许可声明、异文 JSON 等 31 项
 tests/smoke.html  行为测试：路由切换、垂帘、计时、统计、引导，共 42 项
 README.md         本文件
 LICENSE           代码许可（MIT）
@@ -86,4 +89,4 @@ node tests/check.mjs        # 结构测试，全绿才算过
 - [ ] 清刻影印逐字校，出正式校记
 - [ ] 繁体竖排显示开关
 - [ ] 十三章全文朗读（离线音频）
-- [ ] 异文表的机器可读版（JSON），供其他项目复用
+- [x] 异文表的机器可读版（JSON），供其他项目复用 → `data/errata.json`（14 条，由 `校记.md` 生成；改校记后须重跑生成，勿手改 JSON）

@@ -197,6 +197,38 @@ t('站内保留底本声明', () => {
   return true;
 });
 
+// --- 异文表 JSON ---
+t('data/errata.json 存在且可解析', () => {
+  const raw = read('data/errata.json');
+  let doc;
+  try {
+    doc = JSON.parse(raw);
+  } catch (e) {
+    return `不是合法 JSON：${e.message}`;
+  }
+  if (!Array.isArray(doc.entries)) return '缺 entries 数组';
+  if (doc.count !== doc.entries.length) return `count(${doc.count}) 与实际条数(${doc.entries.length}) 不一致`;
+  const bad = doc.entries.filter((e) => typeof e.chapter !== 'number' || !e.used || !e.variant);
+  return bad.length ? `条目不完整：${bad.length} 条` : true;
+});
+t('errata 条数与校记表一致', () => {
+  const md = read('校记.md');
+  const rows = md.split('\n').filter((l) => l.startsWith('|') && !l.includes('---'));
+  const start = rows.findIndex((l) => l.replace(/\s/g, '').startsWith('|章|本站用字|'));
+  if (start < 0) return '校记 异文表表头不见了';
+  const rowsOnly = rows.slice(start + 1).filter((l) => l.split('|').length >= 4);
+  const doc = JSON.parse(read('data/errata.json'));
+  return doc.entries.length === rowsOnly.length
+    ? true
+    : `校记 ${rowsOnly.length} 行，JSON ${doc.entries.length} 条，需重跑 python tools/errata.py`;
+});
+t('errata 明确声明为转录而非校本', () => {
+  const doc = JSON.parse(read('data/errata.json'));
+  if (!/转录/.test(doc.disclaimer || '')) return 'disclaimer 未说明转录性质';
+  if (!/清刻影印/.test(doc.disclaimer || '')) return 'disclaimer 未说明未含影印对照';
+  return true;
+});
+
 // --- 输出 ---
 const okCount = stats.total - fails.length;
 console.log(`\n结构测试：${okCount}/${stats.total} 通过`);
