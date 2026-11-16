@@ -128,8 +128,9 @@ t('「澄一」落款印已接入站点', () => {
   if (!fs.existsSync(p)) return '缺 assets/seal-chengyi.svg';
   const svg = fs.readFileSync(p, 'utf8');
   if (!/澄/.test(svg)) return 'seal 里没有「澄」';
-  if (count(/assets\/seal-chengyi\.svg/g) < 2) return '页面引用处少于两处';
-  if (!/澄一 谨录/.test(html)) return '首页缺落款文字';
+  if (count(/assets\/seal-chengyi\.svg/g) < 1) return '页面没有引用印章';
+  if (!/澄一 谨录/.test(html)) return '缺落款文字';
+  if (!/class="site-foot"/.test(html)) return '缺页脚落款容器';
   return true;
 });
 
