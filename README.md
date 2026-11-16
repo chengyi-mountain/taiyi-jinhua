@@ -60,6 +60,19 @@ node tests/check.mjs        # 结构测试，全绿才算过
 
 行为测试在浏览器里跑：直接用浏览器打开 `tests/smoke.html`，页面会逐条列出通过情况，标题栏显示 `PASS n/n`。它把 `index.html` 装进 iframe，真实点击章次、拖动垂帘滑杆、开合计时、写入统计、开关引导。用 Chrome / Edge 打开即可，无需安装任何东西。
 
+线上核验：
+
+```
+python tools/check_live.py   # 拉取 Pages 上的实际文件，与本地逐字节比对，并探一次资源是否都在
+```
+
+## 维护笔记
+
+- 本地提交与远端提交的 SHA **可以不同而内容相同**。正常 `git push` 到 github.com:443 在本机不通（连接被重置），改动改由 GitHub API 提交：以远端 head 为父提交，按本地内容建 tree 再提交。因此远端 SHA 与本地不是同一个对象。比对两边的依据不是 SHA，而是文件字节——`tools/check_live.py` 就是干这个的，一致时它报 `identical`。
+- 走 API 的推送脚本是 `tools/push_via_api.py`（`GITHUB_TOKEN=... python tools/push_via_api.py`）。**它必须带 `core.quotepath=false` 读 `git ls-tree`**：否则 git 会把 `校记.md` 这类非 ASCII 路径输出成 `"\346\240\241\350\256\226.md"` 八进制串，这个串会被当成真文件名写到远端，中文文件名就永远 404。脚本里已加反斜杠断言，遇到这种路径直接报错停下。
+- Pages 构建约 30–45 秒。提交后拉 `GET /repos/{owner}/{repo}/pages/builds/latest`，看到 `status: built` 再核内容，否则可能读到上一版。
+- 改 `校记.md` 的异文表后必须重跑 `python tools/errata.py`，不要手改 `data/errata.json`；结构测试会拿校记表行数与 JSON 条数比对。
+
 ## 新手引导
 
 首次打开自动弹出一次，三步各带一个直达按钮；关闭后写入 `tyjh.onboard.v1`，之后不再自动出现。想再看，点首页 hero 下方的「新手引导」。它与页面同源、无弹窗库、无数据上传。
