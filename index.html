@@ -257,6 +257,15 @@ p{margin:0 0 1em}
 .lid-state span{color:var(--cin)}
 .lid-quote{font-size:14px;color:var(--ink-3);line-height:1.85;margin:0}
 #yiSvg{width:100%;height:auto;display:block;max-width:400px}
+.yi-figure{position:relative;margin:0;max-width:368px;overflow:hidden;background:#F2EEE2}
+.yi-figure img{display:block;width:100%;height:auto}
+.yi-figure #yiSvg{position:absolute;inset:0;max-width:none}
+.yi-legend{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:7px;font-size:11.5px;line-height:1.7;color:var(--ink-3)}
+.yi-legend li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:7px;align-items:start}
+.yi-legend b{color:var(--ink-2);font-weight:600}
+.yi-legend i{display:block;width:9px;height:9px;margin-top:.32em;justify-self:center;border-radius:50%}
+.yi-legend .lg-ring{border:1.5px solid var(--ink-3)}
+.yi-legend .lg-box{border:1.5px dashed var(--cin);border-radius:1px}
 .demo-panel[hidden]{display:none}
 .demo-tabs{display:flex;gap:8px;margin-top:clamp(16px,2.4vw,22px);padding-top:14px;border-top:1px solid var(--rule)}
 .demo-tab{font:inherit;font-size:13px;letter-spacing:.06em;padding:7px 15px;border:1px solid var(--rule);background:none;color:var(--ink-3);cursor:pointer}
@@ -729,65 +738,70 @@ p{margin:0 0 1em}
     <div class="demo-panel" id="panelYi" role="tabpanel" aria-label="系心缘中演示" hidden>
       <div class="lid-grid">
         <div>
-          <svg id="yiSvg" viewBox="0 0 300 320" role="img" aria-label="系心缘中正视示意图：脸、颈、胸同在一条中轴上，标出眉心、天心（方寸之域）、中宫三处">
-<!-- 脸、颈、胸：三处同在一条中轴 -->
-            <path d="M150 24 C104 24 72 56 72 100 C72 136 84 164 106 182 C120 194 134 200 150 200 C166 200 180 194 194 182 C216 164 228 136 228 100 C228 56 196 24 150 24 Z"
-                  fill="#1B1C16" fill-opacity=".045"/>
-            <path d="M139 200 L131 228 L169 228 L161 200 Z" fill="#1B1C16" fill-opacity=".04"/>
-            <path d="M104 244 C120 232 134 228 150 228 C166 228 180 232 196 244" fill="none" stroke="#1B1C16" stroke-width="1.1" opacity=".24"/>
-            <path d="M104 244 L101 300 M196 244 L199 300" fill="none" stroke="#1B1C16" stroke-width="1.1" opacity=".24"/>
+          <figure class="yi-figure">
+            <img src="assets/yuanzhong-3d.jpg" width="1000" height="1333"
+                 alt="正视三维塑像，用来标出眉心、天心（山根）与中宫在身上的实际位置">
+            <svg id="yiSvg" viewBox="0 0 1000 1333" role="img"
+                 aria-label="三维塑像标注：面中轴、与眼珠齐平的横线、眉心、天心（方寸之域）、中宫">
+              <!-- 面中轴（衬白，压在任何肤色上都看得见） -->
+              <line x1="505" y1="356" x2="505" y2="1205" stroke="#F7F3E6" stroke-width="5" opacity=".4"/>
+              <line x1="505" y1="356" x2="505" y2="1205" stroke="#403C30" stroke-width="2.6"
+                    stroke-dasharray="9 10" opacity=".8"/>
+              <!-- 与眼珠齐平 -->
+              <line x1="196" y1="450" x2="764" y2="450" stroke="#F7F3E6" stroke-width="5" opacity=".4"/>
+              <line x1="196" y1="450" x2="764" y2="450" stroke="#403C30" stroke-width="2.6"
+                    stroke-dasharray="9 10" opacity=".8"/>
 
-            <!-- 眉 -->
-            <path d="M106 100 C118 93 132 92 140 96" fill="none" stroke="#1B1C16" stroke-width="1.1" opacity=".28"/>
-            <path d="M194 100 C182 93 168 92 160 96" fill="none" stroke="#1B1C16" stroke-width="1.1" opacity=".28"/>
+              <!-- 标注牌：天心·山根 -->
+              <rect x="386" y="246" width="240" height="100" fill="#F5F1E4" fill-opacity=".94"
+                    stroke="#B4AD97" stroke-width="1.2"/>
+              <text x="506" y="286" text-anchor="middle" font-size="29" fill="#332F24" font-family="serif">天心 · 山根</text>
+              <text x="506" y="322" text-anchor="middle" font-size="18" fill="#5C5849" font-family="serif">就是「与眼珠齐平」那一处</text>
 
-            <!-- 两目（垂帘之后只剩睑缝） -->
-            <path d="M102 124 Q118 116 134 124 Q118 132 102 124 Z" fill="#FBF8EE" stroke="#1B1C16" stroke-width="1.2" opacity=".9"/>
-            <path d="M166 124 Q182 116 198 124 Q182 132 166 124 Z" fill="#FBF8EE" stroke="#1B1C16" stroke-width="1.2" opacity=".9"/>
-            <path d="M102 124 Q118 118 134 124" fill="none" stroke="#1B1C16" stroke-width="1.8" opacity=".5"/>
-            <path d="M166 124 Q182 118 198 124" fill="none" stroke="#1B1C16" stroke-width="1.8" opacity=".5"/>
+              <!-- 标注牌：与眼珠齐平 -->
+              <rect x="84" y="430" width="158" height="40" fill="#F5F1E4" fill-opacity=".94"
+                    stroke="#B4AD97" stroke-width="1.2"/>
+              <text x="163" y="458" text-anchor="middle" font-size="24" fill="#332F24" font-family="serif">与眼珠齐平</text>
 
-            <!-- 鼻梁（山根起头）、鼻头、口 -->
-            <path d="M150 127 L150 166" stroke="#1B1C16" stroke-width="1" opacity=".2"/>
-            <path d="M150 166 C150 172 145 177 139 174" fill="none" stroke="#1B1C16" stroke-width="1" opacity=".2"/>
-            <path d="M150 166 C150 172 155 177 161 174" fill="none" stroke="#1B1C16" stroke-width="1" opacity=".2"/>
-            <path d="M139 174 C145 178 155 178 161 174" fill="none" stroke="#1B1C16" stroke-width="1" opacity=".2"/>
-            <path d="M136 192 C144 198 156 198 164 192" fill="none" stroke="#1B1C16" stroke-width="1" opacity=".22"/>
+              <!-- 眉心：两眉中间，原书否掉的「头中」 -->
+              <line x1="196" y1="380" x2="486" y2="396" stroke="#403C30" stroke-width="1.6" opacity=".55"/>
+              <rect x="84" y="360" width="108" height="38" fill="#F5F1E4" fill-opacity=".94"
+                    stroke="#B4AD97" stroke-width="1.2"/>
+              <text x="138" y="387" text-anchor="middle" font-size="24" fill="#332F24" font-family="serif">眉心</text>
+              <circle cx="505" cy="396" r="14" fill="none" stroke="#F7F3E6" stroke-width="5" opacity=".9"/>
+              <circle id="yiBrow" cx="505" cy="396" r="9" fill="none" stroke="#2E2B20" stroke-width="2.8"/>
 
-            <!-- 一条中轴，三个位置都在它上面 -->
-            <line x1="150" y1="92" x2="150" y2="288" stroke="#7C7B6C" stroke-width=".7" stroke-dasharray="2 5" opacity=".3"/>
-            <text x="150" y="18" text-anchor="middle" font-size="8.5" fill="#7C7B6C" font-family="serif" opacity=".7">两目之间 · 同一条中轴</text>
+              <!-- 天心：方寸之域 -->
+              <rect id="yiDomain" x="467" y="412" width="76" height="76" rx="1" fill="#A33A2B" fill-opacity=".09"
+                    stroke="#A33A2B" stroke-width="3" stroke-dasharray="8 5" stroke-opacity=".85"/>
 
-            <!-- 齐平线：与眼珠齐平 -->
-            <line x1="80" y1="124" x2="220" y2="124" stroke="#7C7B6C" stroke-width=".9" stroke-dasharray="4 4" opacity=".5"/>
+              <!-- 中宫：胸中，心后关前 -->
+              <circle cx="505" cy="1173" r="15" fill="none" stroke="#F7F3E6" stroke-width="5" opacity=".9"/>
+              <circle id="yiGong" cx="505" cy="1173" r="10" fill="none" stroke="#2E2B20" stroke-width="2.8" stroke-opacity=".85"/>
+              <rect x="392" y="1200" width="228" height="44" fill="#F5F1E4" fill-opacity=".94"
+                    stroke="#B4AD97" stroke-width="1.2"/>
+              <text x="506" y="1230" text-anchor="middle" font-size="26" fill="#332F24" font-family="serif">中宫 · 黄庭</text>
 
-            <!-- 眉心：两眉之间，在额上 -->
-            <circle cx="150" cy="100" r="2.2" fill="none" stroke="#7C7B6C" stroke-width="1" opacity=".45"/>
-            <text x="68" y="104" text-anchor="end" font-size="9" fill="#7C7B6C" font-family="serif">眉心</text>
-            <text x="68" y="115" text-anchor="end" font-size="8" fill="#7C7B6C" font-family="serif" opacity=".7">两眉中间</text>
-
-            <!-- 天心：方寸之域，系念处 -->
-            <rect id="yiDomain" x="135" y="109" width="30" height="30" rx="1" fill="#A33A2B" fill-opacity=".05"
-                  stroke="#A33A2B" stroke-width="1" stroke-dasharray="3 3" stroke-opacity=".45"/>
-            <text x="232" y="120" font-size="9" fill="#7C7B6C" font-family="serif">天心</text>
-            <text x="232" y="132" font-size="8" fill="#7C7B6C" font-family="serif" opacity=".7">方寸之域</text>
-            <text x="68" y="128" text-anchor="end" font-size="9" fill="#7C7B6C" font-family="serif">与眼珠齐平</text>
-
-            <!-- 中宫：黄庭，心后关前，在躯干里 -->
-            <circle id="yiGong" cx="150" cy="270" r="2.6" fill="none" stroke="#7C7B6C" stroke-width="1" stroke-opacity=".4"/>
-            <text x="150" y="287" text-anchor="middle" font-size="9" fill="#7C7B6C" font-family="serif" opacity=".75">中宫 · 黄庭（心后关前）</text>
-
-            <!-- 系念处：朱砂点，在方寸之内游走 -->
-            <circle id="yiGlow" cx="150" cy="124" r="20" fill="none" stroke="#A33A2B" stroke-width="1" opacity="0"/>
-            <circle id="yiRing" cx="150" cy="124" r="9" fill="none" stroke="#A33A2B" stroke-width="1" stroke-dasharray="3 3" opacity=".7"/><circle id="yiDot" cx="150" cy="124" r="4.6" fill="#A33A2B" opacity=".85"/>
-          </svg>
-          <p class="lid-note">示意图：脸、颈、胸画在同一条中轴上；方寸之域只示意大小，不作穴位与解剖比例。</p>
+              <!-- 系念处：朱砂点，沿中轴在方寸之内游走 -->
+              <circle id="yiGlow" cx="505" cy="450" r="46" fill="none" stroke="#A33A2B" stroke-width="2" opacity="0"/>
+              <circle id="yiSpark" cx="505" cy="450" r="17" fill="#F7F3E6" opacity=".92"/>
+              <circle id="yiRing" cx="505" cy="450" r="24" fill="none" stroke="#A33A2B" stroke-width="2.2"
+                      stroke-dasharray="6 6" opacity=".85"/>
+              <circle id="yiDot" cx="505" cy="450" r="11" fill="#A33A2B"/>
+            </svg>
+          </figure>
+          <p class="lid-note">三维塑像为示意；图中标注位置按这张塑像的实际五官量得，方框只表示「方寸」的大小，不作穴位与解剖比例。</p>
         </div>
         <div class="lid-ctrl">
           <div class="lid-badges"><i id="bHigh">太高</i><i id="bMid">恰好</i><i id="bLow">太低</i></div>
           <input id="yiRange" type="range" min="0" max="100" value="50" step="1" aria-label="系念位置的高低">
           <p class="lid-state" id="yiState">恰好：<span>天心，两目中间与眼珠齐平</span></p>
           <p class="lid-quote" id="yiQuote">“天心居日月中……面上寸田，非天心而何？”</p>
+<ul class="yi-legend">
+            <li><i class="lg-ring"></i><span><b>眉心</b>：两眉中间。往这里守，原书已经算「头中」，是它否掉的。</span></li>
+            <li><i class="lg-box"></i><span><b>天心 · 山根</b>：不是另找一处——它就是「与眼珠齐平」那一处，两目之间、鼻梁上端。朱砂方框是「方寸之域」，点落在框里都算恰好。</span></li>
+            <li><i class="lg-ring"></i><span><b>中宫 · 黄庭</b>：胸中、心后关前。眼在鼻、心跑来这里，原书说两头都错。</span></li>
+          </ul>
           <p class="lid-note">往上拖是“守眉心”，往下拖是“心跑中宫”——两头都是原书否掉的；落在方寸之内才算恰好。</p>
         </div>
       </div>
@@ -1023,11 +1037,16 @@ p{margin:0 0 1em}
 <section class="view" id="v-faq">
   <div class="page-head">
     <p class="eyebrow">疑难</p>
-    <h1>十二条最常被问错的</h1>
+    <h1>十三条最常被问错的</h1>
     <p class="lead" style="margin-top:16px">这些问题，原书其实都答过，只是散在十三章里。答不上来的部分，我直说不确定，不替古人补话。</p>
   </div>
 
   <div style="margin-top:clamp(20px,3vw,30px)">
+    <details class="faq-item" open>
+      <summary>修炼时，注意力到底放“天心”，还是放“与眼珠齐平”？</summary>
+      <div class="ans">一处，两种说法，不是二选一。<b>天心</b>是这一处的名字——第一章：“注想天心，<b>天心居日月中</b>……<b>面上寸田，非天心而何</b>？”日月即两目，天心就是两目之间那方寸之地（方寸之域）。<b>与眼珠齐平</b>是它的高度——第三章：“系心于缘中（道言中黄，佛言缘中，其实一也），<b>不必言头中，但于两目中间齐平处系念便了</b>。”两目中间定左右，与眼珠齐平定高低，两线交会那一小块就是它，也就是山根（鼻梁上端）。接着还有一句分寸：“<b>缘</b>者，缘此为端倪，<b>非有定着也</b>”——它是入口，不是要钉住的点；系上就够，光自会透入。所以不必往头上另找一个“天心”，也不要把它做成一枚钉子。<span class="chap-ref">第一章、第三章</span></div>
+    </details>
+
     <details class="faq-item" open>
       <summary>回光是不是就是冥想、正念？</summary>
       <div class="ans">有交集，不等同。现代正念多半只讲“不评判地觉察”，不设身体位置，也不讲方向；回光有两个明确的硬设定：一是下手处在两眼（“机在目”），二是它是一套逆法——不是让念头自然流过，而是把向外走的神识掉头收回来。判准也不同：正念看注意力是否在场，回光看止与观有没有同时成立。<span class="chap-ref">第三章、第十一章</span></div>
@@ -1606,11 +1625,11 @@ function initDemoTabs(){
 function initYi(){
   var range=$('#yiRange');
   if(!range)return;
-  var dot=$('#yiDot'),ring=$('#yiRing'),glow=$('#yiGlow'),dom=$('#yiDomain'),gong=$('#yiGong');
+  var dot=$('#yiDot'),ring=$('#yiRing'),glow=$('#yiGlow'),dom=$('#yiDomain'),gong=$('#yiGong'),spark=$('#yiSpark');
   var stateEl=$('#yiState'),quoteEl=$('#yiQuote');
   var bHigh=$('#bHigh'),bMid=$('#bMid'),bLow=$('#bLow');
-  // 正视几何：眉心 100、与眼珠齐平 124、中宫 300（胸中）；方寸之域 109–139
-  var Y_HI=100,Y_MID=124,Y_LO=270,Y_TOP=109,Y_BOT=139;
+  // 标注几何：从三维塑像（1000×1333）实测——面中轴 505，两瞳孔连线 450，眉心 396，中宫 1173，方寸之域 412–488
+  var Y_TOP=364,Y_MID=450,Y_LO=1173,BOX_TOP=412,BOX_BOT=488;
   var quotes={
     high:'“不必言头中，但于两目中间齐平处系念便了。”',
     mid:'“天心居日月中……面上寸田，非天心而何？”（第一章）所以“系念两目中间，光自然透入，不必着意于中宫也……缘者缘此为端倪，非有定着也。”',
@@ -1618,26 +1637,27 @@ function initYi(){
   };
   function upd(){
     var v=parseInt(range.value,10),y;
-    if(v<=50){y=Y_HI+(Y_MID-Y_HI)*(v/50);}
+    if(v<=50){y=Y_TOP+(Y_MID-Y_TOP)*(v/50);}
     else{y=Y_MID+(Y_LO-Y_MID)*((v-50)/50);}
-    // 落在方寸之内才算恰好：书中是“寸田”“方寸”，不是一点
-    var fit=y>=Y_TOP&&y<=Y_BOT;
+    // 书中是“寸田”“方寸”，落点是一块域而非一点：落在框内都算恰好
+    var fit=y>=BOX_TOP&&y<=BOX_BOT;
     dot.setAttribute('cy',y.toFixed(1));
     ring.setAttribute('cy',y.toFixed(1));
-    ring.setAttribute('r',fit?'9':'6.5');
-    ring.setAttribute('opacity',fit?'0.7':'0.35');
+    if(spark){spark.setAttribute('cy',y.toFixed(1));}
+    ring.setAttribute('r',fit?'24':'18');
+    ring.setAttribute('opacity',fit?'0.75':'0.4');
     glow.setAttribute('cy',y.toFixed(1));
-    glow.setAttribute('r',fit?'20':'10');
-    glow.setAttribute('opacity',fit?'0.18':'0');
-    if(dom){dom.setAttribute('stroke-opacity',fit?'0.85':'0.38');}
-    if(gong){gong.setAttribute('stroke-opacity',y>Y_BOT?'0.85':'0.4');}
-    bHigh.classList.toggle('on',y<Y_TOP);
+    glow.setAttribute('r',fit?'50':'30');
+    glow.setAttribute('opacity',fit?'0.14':'0');
+    if(dom){dom.setAttribute('stroke-opacity',fit?'0.85':'0.4');}
+    if(gong){gong.setAttribute('stroke-opacity',y>BOX_BOT?'0.85':'0.4');}
+    bHigh.classList.toggle('on',y<BOX_TOP);
     bMid.classList.toggle('on',fit);
-    bLow.classList.toggle('on',y>Y_BOT);
-    if(y<Y_TOP){
+    bLow.classList.toggle('on',y>BOX_BOT);
+    if(y<BOX_TOP){
       stateEl.innerHTML='太高：<span>眉心（两眉中间），已算头中</span>';
       quoteEl.textContent=quotes.high;
-    }else if(y>Y_BOT){
+    }else if(y>BOX_BOT){
       stateEl.innerHTML='太低：<span>中宫（黄庭），眼在鼻、心在中黄</span>';
       quoteEl.textContent=quotes.low;
     }else{
