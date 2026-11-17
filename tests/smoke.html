@@ -14,7 +14,7 @@ pre{margin:0;white-space:pre-wrap}
 <body>
 <h1 id="sum">运行中…</h1>
 <pre id="out"></pre>
-<iframe id="f" src="../index.html#/home"></iframe>
+<iframe id="f"></iframe>
 <script>
 var R=[];
 function ok(n){R.push(['PASS',n,'']);}
@@ -22,6 +22,10 @@ function bad(n,d){R.push(['FAIL',n,d||'']);}
 function t(n,fn){try{var r=fn();if(r===true||r===undefined){ok(n);}else{bad(n,String(r));}}catch(e){bad(n,e.message);}}
 function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
 var f=document.getElementById('f');
+// 先清掉本机可能存在的引导记录，让「首访默认展开」在任何浏览器里都成立；结论记录下来，跑完还原
+var _obPrev=null,_obDirty=false;
+try{_obPrev=localStorage.getItem('tyjh.onboard.v1');localStorage.removeItem('tyjh.onboard.v1');_obDirty=true;}catch(e){}
+f.src='../index.html#/home';
 function render(){
   var pass=R.filter(function(x){return x[0]==='PASS';}).length;
   var all=R.length===pass;
@@ -167,6 +171,8 @@ async function run(){
   t('首页可重新打开',function(){return $('#onboard').hidden===false;});
   $$('.obgo')[2].click();await sleep(120);
   t('点「今日一坐」直达日课',function(){var on=$('.view.on');return on&&on.id==='v-daily'&&$('#onboard').hidden===true;});
+  // 还原跑测试前本机的引导记录，别把访客自己的状态改掉
+  try{ if(_obDirty){ if(_obPrev===null){w.localStorage.removeItem('tyjh.onboard.v1');} else {w.localStorage.setItem('tyjh.onboard.v1',_obPrev);} } }catch(e){}
 
   // ===== 结构完整性 =====
   t('渲染后没有重复 id',function(){
