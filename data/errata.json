@@ -1,12 +1,12 @@
 {
   "work": "吕祖太乙金华宗旨",
-  "scope": "network-transcription",
-  "disclaimer": "本站原文为转录，非校本；本表只记网络通行系统内所见异文，未含清刻影印对照。",
+  "scope": "network-transcription + qing-print-collation",
+  "disclaimer": "本站原文为转录，非校本；本表记网络通行系统内异文，并已据清刻影印（二十五页）逐字对校，多数条目附影印页码。",
   "source_file": "校记.md",
   "version": 1,
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "license": "原文属公有领域；本表整理以 CC BY-SA 4.0 提供，与站内讲解文字同许可。",
-  "count": 14,
+  "count": 25,
   "entries": [
     {
       "chapter": 1,
@@ -19,105 +19,193 @@
     {
       "chapter": 1,
       "chapter_label": "一",
-      "used": "头上天心何尝微微些动也 / 方寸中之真意，如何能动",
-      "variant": "两问相连，断句各家不同",
-      "note": "断句问题，存疑",
+      "used": "古来仙真，口口相传",
+      "variant": "影印无「古来」二字（p2）",
+      "note": "底本脱此二字，站本存之，不改",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 1,
+      "chapter_label": "一",
+      "used": "头上天心何尝微微些动也／方寸中之真意，如何能动",
+      "variant": "影印「些动也」下接「问天心不能动乎」（p4）",
+      "note": "断句与分段不同，存疑",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 2,
+      "chapter_label": "二",
+      "used": "头上天心",
+      "variant": "影印同作「头上天心」（p4）",
+      "note": "150dpi 下曾误读为「头上先天心」，420dpi 裁片已排除；非异文",
       "affects_meaning": false
     },
     {
       "chapter": 3,
       "chapter_label": "三",
       "used": "谛观息静",
-      "variant": "诵观息静",
-      "note": "形近致歧",
+      "variant": "一本作「诵观息静」",
+      "note": "形近致歧；影印作「谛观」（p6），站本是",
       "affects_meaning": false
     },
     {
       "chapter": 3,
       "chapter_label": "三",
       "used": "反求个天地未生之体",
-      "variant": "反求十天地未生之体",
-      "note": "「个」「十」形近",
+      "variant": "一本作「反求十天地未生之体」",
+      "note": "影印作「个」（p7），站本是",
       "affects_meaning": false
     },
     {
       "chapter": 4,
       "chapter_label": "四",
       "used": "如木槁灰",
-      "variant": "如木稿灰",
-      "note": "通行作「槁」",
+      "variant": "一本作「如木稿灰」",
+      "note": "影印作「槁」（p8），站本是",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 5,
+      "chapter_label": "五",
+      "used": "予作方便（已改作预作方便）",
+      "variant": "影印作「预作方便」（p11）",
+      "note": "形近致误，据影印改",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 5,
+      "chapter_label": "五",
+      "used": "无事中里（已改作无事甲里）",
+      "variant": "影印作「无事甲里」（p11）",
+      "note": "「甲里」为禅家成语，「中里」不成词；据影印改",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 6,
+      "chapter_label": "六",
+      "used": "清而无暇（已改作清而无瑕）",
+      "variant": "影印作「清而无瑕」（p12）",
+      "note": "据影印改",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 6,
+      "chapter_label": "六",
+      "used": "有蓬台（已改作有莲台）",
+      "variant": "影印作「有莲台」（p13）",
+      "note": "莲台为佛家定名；据影印改",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 6,
+      "chapter_label": "六",
+      "used": "《观无量寿经》云",
+      "variant": "影印作「观经云」（p12）",
+      "note": "站本注出全名，非异文",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 8,
+      "chapter_label": "八",
+      "used": "朱子云阳，讳元育，北宗派",
+      "variant": "影印作「朱子云阳师，讳元育，北宗法派」（p18）",
+      "note": "脱「师」「法」二字，义同，不改",
       "affects_meaning": false
     },
     {
       "chapter": 9,
       "chapter_label": "九",
-      "used": "引《心印经》「百日功灵」",
-      "variant": "通行作「百日通灵」",
-      "note": "引文版本差",
+      "used": "百日功灵",
+      "variant": "一本作「百日通灵」",
+      "note": "影印作「功灵」（p19），站本是",
       "affects_meaning": false
     },
     {
       "chapter": 12,
       "chapter_label": "十二",
-      "used": "斗枢终古不移",
-      "variant": "斗柄终古不动",
-      "note": "义近，字异",
+      "used": "斗枢终古不移／心即斗枢",
+      "variant": "影印作「斗柄终古不动／心即斗柄」（p22）",
+      "note": "义近字异，存异不改",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 12,
+      "chapter_label": "十二",
+      "used": "吾昔受火龙真人口诀",
+      "variant": "影印作「昔吾受」（p22）",
+      "note": "词序异，义同，不改",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 12,
+      "chapter_label": "十二",
+      "used": "故金丹火候，全要行归自然",
+      "variant": "影印作「金丹火候要归自然」（p22 末至 p23 首）",
+      "note": "站本增「故」「全要行」三字，义同，不改",
       "affects_meaning": false
     },
     {
       "chapter": 13,
       "chapter_label": "十三",
       "used": "丹衷热",
-      "variant": "丹中热",
-      "note": "",
+      "variant": "一本作「丹中热」",
+      "note": "影印作「丹衷」（p23），站本是",
       "affects_meaning": false
     },
     {
       "chapter": 13,
       "chapter_label": "十三",
       "used": "药产川源",
-      "variant": "川原",
-      "note": "",
+      "variant": "影印作「药产川原」（p23）",
+      "note": "存异不改",
       "affects_meaning": false
     },
     {
       "chapter": 13,
       "chapter_label": "十三",
       "used": "玉清降下九龙册",
-      "variant": "玉京",
-      "note": "",
-      "affects_meaning": false
-    },
-    {
-      "chapter": 13,
-      "chapter_label": "十三",
-      "used": "天若符兮",
-      "variant": "天若符合",
-      "note": "",
-      "affects_meaning": false
-    },
-    {
-      "chapter": 13,
-      "chapter_label": "十三",
-      "used": "气静心空为丹成",
-      "variant": "气息心空",
-      "note": "",
+      "variant": "影印作「玉京降下九龙册」（p24）",
+      "note": "存异不改；卷一亦作「玉京丹阙」（p2），可知底本一贯用「玉京」",
       "affects_meaning": false
     },
     {
       "chapter": 13,
       "chapter_label": "十三",
       "used": "步霄汉兮登天阙",
-      "variant": "步云汉今登天关",
-      "note": "形近多处",
+      "variant": "影印作「步云汉兮登天关」（p24）",
+      "note": "存异不改",
       "affects_meaning": false
     },
     {
       "chapter": 13,
       "chapter_label": "十三",
-      "used": "直透玉清大路",
-      "variant": "玉京大路",
-      "note": "**此条牵动义解**：若作「玉京」，则「夹脊」是通向玉京的路，不是背上一条气脉",
+      "used": "掌风霆兮驱霹雳",
+      "variant": "影印作「掌雷霆兮驱霹雳」（p24）",
+      "note": "存异不改",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "天若符兮",
+      "variant": "一本作「天若符合」",
+      "note": "影印作「天若符兮」（p23），站本是",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "气静心空为丹成",
+      "variant": "一本作「气息心空」",
+      "note": "影印作「炁息心空为丹成」（p24），站本「气息」与之相符，一本「气静」误",
+      "affects_meaning": false
+    },
+    {
+      "chapter": 13,
+      "chapter_label": "十三",
+      "used": "直透玉京大路",
+      "variant": "影印同作「玉京」（p24），另本作「玉清」",
+      "note": "站本与影印同，非异文；**此条牵动义解**：「玉京」是通向玉京的路，不是背上一条气脉",
       "affects_meaning": true
     }
   ]

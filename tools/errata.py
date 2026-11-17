@@ -56,11 +56,11 @@ def main():
 
     doc = {
         "work": "吕祖太乙金华宗旨",
-        "scope": "network-transcription",
-        "disclaimer": "本站原文为转录，非校本；本表只记网络通行系统内所见异文，未含清刻影印对照。",
+        "scope": "network-transcription + qing-print-collation",
+        "disclaimer": "本站原文为转录，非校本；本表记网络通行系统内异文，并已据清刻影印（二十五页）逐字对校，多数条目附影印页码。",
         "source_file": "校记.md",
         "version": 1,
-        "updated": "2026-11-16",
+        "updated": "2026-11-17",
         "license": "原文属公有领域；本表整理以 CC BY-SA 4.0 提供，与站内讲解文字同许可。",
         "count": len(entries),
         "entries": entries,
