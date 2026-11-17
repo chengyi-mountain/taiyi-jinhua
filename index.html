@@ -256,6 +256,11 @@ p{margin:0 0 1em}
 .lid-state{font-size:18px;font-weight:600}
 .lid-state span{color:var(--cin)}
 .lid-quote{font-size:14px;color:var(--ink-3);line-height:1.85;margin:0}
+#yiSvg{width:100%;height:auto;display:block;max-width:400px}
+.demo-panel[hidden]{display:none}
+.demo-tabs{display:flex;gap:8px;margin-top:clamp(16px,2.4vw,22px);padding-top:14px;border-top:1px solid var(--rule)}
+.demo-tab{font:inherit;font-size:13px;letter-spacing:.06em;padding:7px 15px;border:1px solid var(--rule);background:none;color:var(--ink-3);cursor:pointer}
+.demo-tab.on{background:var(--cin);border-color:var(--cin);color:#F2EBDC}
 .lid-note{font-size:11px;color:var(--ink-3);letter-spacing:.02em;margin:8px 0 0;opacity:.75}
 /* 段码、检索、提示 */
 .seg{position:relative}
@@ -477,7 +482,7 @@ p{margin:0 0 1em}
 /* 打印：只印当前视图，去掉顶栏、引导与操作件；页脚印章保留作落款 */
 @media print{
   @page{size:A4;margin:18mm 16mm}
-  .topbar,.onboard,.text-tools,.chap-nav,.chap-foot,.lid-ctrl,.chips,.btn,.timer-grid{display:none!important}
+  .topbar,.onboard,.text-tools,.chap-nav,.chap-foot,.lid-ctrl,.demo-tabs,.chips,.btn,.timer-grid{display:none!important}
   html,body{background:#fff!important}
   body{color:#000}
   .wrap{padding:0!important}
@@ -670,9 +675,10 @@ p{margin:0 0 1em}
     <p class="lead" style="margin-top:16px">第三章把整套功夫归纳成六个字，其余十一章都在解释这六个字。下面四阶是从这六个字里拆出来的动作：先定一个尺度，再落一个位置，再收一条呼吸，最后处理念头。</p>
   </div>
 
-  <!-- 垂帘演示 -->
+  <!-- 两步演示：垂帘定准 / 系心缘中 -->
   <div class="lid-demo">
-    <p class="eyebrow" style="margin:0 0 8px">第三章 · 垂帘得中</p>
+    <p class="eyebrow" style="margin:0 0 8px">第三章 · 定尺度，落位置</p>
+    <div class="demo-panel" id="panelLid" role="tabpanel" aria-label="垂帘定准演示">
     <div class="lid-grid">
       <div>
         <svg id="lidSvg" viewBox="110 42 195 190" role="img" aria-label="垂帘侧视剖面：上睑下垂的程度与视线落点">
@@ -718,6 +724,68 @@ p{margin:0 0 1em}
         <p class="lid-quote" id="lidQuote">“惟垂帘得中，恰好望见鼻端，故取以为准。只是垂帘恰好，任彼光自然透入，不劳你注射与不注射。”</p>
       </div>
     </div>
+    </div>
+
+    <div class="demo-panel" id="panelYi" role="tabpanel" aria-label="系心缘中演示" hidden>
+      <div class="lid-grid">
+        <div>
+          <svg id="yiSvg" viewBox="0 0 260 300" role="img" aria-label="系心缘中正视示意图：两目中间、与眼珠齐平处的落点">
+            <!-- 头与肩 -->
+            <path d="M130 22 C84 22 54 55 54 98 C54 133 66 160 87 178 C101 191 116 197 130 197 C144 197 159 191 173 178 C194 160 206 133 206 98 C206 55 176 22 130 22 Z"
+                  fill="#1B1C16" fill-opacity=".045"/>
+            <path d="M118 197 L112 224 L148 224 L142 197 Z" fill="#1B1C16" fill-opacity=".04"/>
+            <path d="M72 250 C94 228 112 222 130 222 C148 222 166 228 188 250" fill="none" stroke="#1B1C16" stroke-width="1.1" opacity=".26"/>
+
+            <!-- 眉 -->
+            <path d="M84 100 C94 93 106 92 114 96" fill="none" stroke="#1B1C16" stroke-width="1.1" opacity=".28"/>
+            <path d="M176 100 C166 93 154 92 146 96" fill="none" stroke="#1B1C16" stroke-width="1.1" opacity=".28"/>
+
+            <!-- 两目（垂帘之后只剩睑缝） -->
+            <path d="M86 118 Q100 111 114 118 Q100 125 86 118 Z" fill="#FBF8EE" stroke="#1B1C16" stroke-width="1.2" opacity=".9"/>
+            <path d="M146 118 Q160 111 174 118 Q160 125 146 118 Z" fill="#FBF8EE" stroke="#1B1C16" stroke-width="1.2" opacity=".9"/>
+            <path d="M86 118 Q100 112.5 114 118" fill="none" stroke="#1B1C16" stroke-width="1.8" opacity=".5"/>
+            <path d="M146 118 Q160 112.5 174 118" fill="none" stroke="#1B1C16" stroke-width="1.8" opacity=".5"/>
+
+            <!-- 鼻、口 -->
+            <path d="M130 126 L130 152" stroke="#1B1C16" stroke-width="1" opacity=".22"/>
+            <path d="M120 157 C126 161 134 161 140 157" fill="none" stroke="#1B1C16" stroke-width="1" opacity=".22"/>
+            <path d="M116 176 C124 182 136 182 144 176" fill="none" stroke="#1B1C16" stroke-width="1" opacity=".22"/>
+
+            <!-- 上下的轴：眉心—齐平—中宫 -->
+            <line x1="130" y1="88" x2="130" y2="266" stroke="#7C7B6C" stroke-width=".7" stroke-dasharray="2 5" opacity=".32"/>
+
+            <!-- 齐平线：与眼珠齐平 -->
+            <line x1="78" y1="118" x2="204" y2="118" stroke="#7C7B6C" stroke-width=".9" stroke-dasharray="4 4" opacity=".5"/>
+            <text x="52" y="121" text-anchor="end" font-size="9" fill="#7C7B6C" font-family="serif">与眼珠齐平</text>
+
+            <!-- 两头的位置：眉心、中宫 -->
+            <circle cx="130" cy="86" r="2.4" fill="none" stroke="#7C7B6C" stroke-width="1" opacity=".45"/>
+            <text x="130" y="80" text-anchor="middle" font-size="9" fill="#7C7B6C" font-family="serif">眉心</text>
+            <circle cx="130" cy="268" r="2.4" fill="none" stroke="#7C7B6C" stroke-width="1" opacity=".45"/>
+            <text x="130" y="283" text-anchor="middle" font-size="9" fill="#7C7B6C" font-family="serif">中宫</text>
+
+            <!-- 系念处：点 + 若有若无的一圈 -->
+            <circle id="yiGlow" cx="130" cy="118" r="18" fill="none" stroke="#A33A2B" stroke-width="1" opacity="0"/>
+            <circle id="yiRing" cx="130" cy="118" r="12" fill="none" stroke="#A33A2B" stroke-width="1" stroke-dasharray="3 3" opacity=".4"/>
+            <circle id="yiDot" cx="130" cy="118" r="5.2" fill="#A33A2B" opacity=".85"/>
+            <text id="yiLabel" x="212" y="122" font-size="9" fill="#7C7B6C" font-family="serif">系念处</text>
+          </svg>
+          <p class="lid-note">示意图：只画位置的高低与“齐平”这一条线，不画穴位、不作解剖比例。</p>
+        </div>
+        <div class="lid-ctrl">
+          <div class="lid-badges"><i id="bHigh">太高</i><i id="bMid">恰好</i><i id="bLow">太低</i></div>
+          <input id="yiRange" type="range" min="0" max="100" value="50" step="1" aria-label="系念位置的高低">
+          <p class="lid-state" id="yiState">恰好：<span>两目中间、与眼珠齐平</span></p>
+          <p class="lid-quote" id="yiQuote">“不必言头中，但于两目中间齐平处系念便了……系念两目中间，光自然透入，不必着意于中宫也。”</p>
+          <p class="lid-note">往上拖一点就成了“守眉心”，往下拖就成了“心跑中宫”——两头都是原书明确否掉的。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-tabs" role="tablist" aria-label="演示切换">
+      <button type="button" class="demo-tab on" id="tabLid" role="tab" aria-selected="true" aria-controls="panelLid">垂帘定准</button>
+      <button type="button" class="demo-tab" id="tabYi" role="tab" aria-selected="false" aria-controls="panelYi">系心缘中</button>
+    </div>
   </div>
 
   <!-- 四阶 -->
@@ -744,7 +812,7 @@ p{margin:0 0 1em}
           <div><b>做对的样子</b><p>若有若无地“缘”着它，像借一根藤条进门，进门之后藤条就不必攥紧。</p></div>
           <div class="bad"><b>做错的样</b><p>把眉心当成一颗钉子死守；或眼睛看鼻端、心又跑去看中黄，一上一下来回折腾。原书斥为“认指为月”。</p></div>
         </div>
-        <p class="src">出处：第三章“系心于缘中”“缘者缘此为端倪，非有定着也”。</p>
+        <p class="src">出处：第三章“系心于缘中”“缘者缘此为端倪，非有定着也”。上面的演示可切到“系心缘中”，拖动看位置偏高、偏低的样子。</p>
       </div>
     </div>
 
@@ -1509,6 +1577,65 @@ function initLid(){
   upd();
 }
 
+/* ===== 系心缘中演示 + 两个演示的切换 ===== */
+function initDemoTabs(){
+  var tl=$('#tabLid'),ty=$('#tabYi'),pl=$('#panelLid'),py=$('#panelYi');
+  if(!tl||!ty||!pl||!py)return;
+  function sel(lid){
+    pl.hidden=!lid;py.hidden=lid;
+    tl.classList.toggle('on',lid);ty.classList.toggle('on',!lid);
+    tl.setAttribute('aria-selected',lid?'true':'false');
+    ty.setAttribute('aria-selected',lid?'false':'true');
+  }
+  tl.addEventListener('click',function(){sel(true);});
+  ty.addEventListener('click',function(){sel(false);});
+}
+
+function initYi(){
+  var range=$('#yiRange');
+  if(!range)return;
+  var dot=$('#yiDot'),ring=$('#yiRing'),glow=$('#yiGlow'),lbl=$('#yiLabel');
+  var stateEl=$('#yiState'),quoteEl=$('#yiQuote');
+  var bHigh=$('#bHigh'),bMid=$('#bMid'),bLow=$('#bLow');
+  // 正视几何：眉心 86、齐平 118、中宫 268；滑块 0–50 走上一段，50–100 走下一段
+  var Y_HI=86,Y_MID=118,Y_LO=268,HI=34,LO=66;
+  var quotes={
+    high:'“不必言头中，但于两目中间齐平处系念便了。”',
+    mid:'“系念两目中间，光自然透入，不必着意于中宫也……缘者缘此为端倪，非有定着也。”',
+    low:'“亦非谓眼观鼻端，念又注中黄也。眼之所至，心亦至焉，何能一上而一下也。”'
+  };
+  function upd(){
+    var v=parseInt(range.value,10),y;
+    if(v<=50){y=Y_HI+(Y_MID-Y_HI)*(v/50);}
+    else{y=Y_MID+(Y_LO-Y_MID)*((v-50)/50);}
+    var fit=v>=HI&&v<=LO;
+    dot.setAttribute('cy',y.toFixed(1));
+    ring.setAttribute('cy',y.toFixed(1));
+    ring.setAttribute('r',fit?'15':'11');
+    ring.setAttribute('opacity',fit?'0.75':'0.35');
+    glow.setAttribute('cy',y.toFixed(1));
+    glow.setAttribute('r',fit?'30':'16');
+    glow.setAttribute('opacity',fit?'0.2':'0');
+    lbl.setAttribute('y',(y+3).toFixed(1));
+    lbl.setAttribute('opacity',fit?'0.85':'0.4');
+    bHigh.classList.toggle('on',v<HI);
+    bMid.classList.toggle('on',fit);
+    bLow.classList.toggle('on',v>LO);
+    if(v<HI){
+      stateEl.innerHTML='太高：<span>意念钉在眉心或头中</span>';
+      quoteEl.textContent=quotes.high;
+    }else if(v>LO){
+      stateEl.innerHTML='太低：<span>眼在中、心跑到中宫</span>';
+      quoteEl.textContent=quotes.low;
+    }else{
+      stateEl.innerHTML='恰好：<span>两目中间、与眼珠齐平</span>';
+      quoteEl.textContent=quotes.mid;
+    }
+  }
+  range.addEventListener('input',upd);
+  upd();
+}
+
 /* ===== 日课 · 计时 ===== */
 var LS_KEY='tyjh.log.v1';
 var PHASES=[
@@ -1767,6 +1894,8 @@ initMode();
 initSearch();
 go();
 initLid();
+initDemoTabs();
+initYi();
 initDaily();
 initOnboard();
 window.addEventListener('hashchange',go);

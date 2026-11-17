@@ -113,6 +113,16 @@ async function run(){
   range.value='60';range.dispatchEvent(new w.Event('input'));
   t('中间判为「恰好」',function(){return $('#lidState').textContent.indexOf('恰好')>-1;});
   t('睑缝随滑块收窄',function(){return !!dOpen&&dOpen!==fill.getAttribute('d');});
+  t('可切到系心缘中演示',function(){$('#tabYi').click();return !$('#panelYi').hidden&&$('#panelLid').hidden&&$('#tabYi').classList.contains('on')&&!$('#tabLid').classList.contains('on');});
+  var yiRange=$('#yiRange');
+  t('缘中滑块与落点都在',function(){return !!yiRange&&!!$('#yiDot');});
+  yiRange.value='50';yiRange.dispatchEvent(new w.Event('input'));
+  t('居中判为「恰好」并落在齐平线',function(){return $('#yiState').textContent.indexOf('恰好')>-1&&/^118/.test($('#yiDot').getAttribute('cy'));});
+  yiRange.value='0';yiRange.dispatchEvent(new w.Event('input'));
+  t('往上拖判为「太高」',function(){return $('#yiState').textContent.indexOf('太高')>-1&&parseFloat($('#yiDot').getAttribute('cy'))<118;});
+  yiRange.value='100';yiRange.dispatchEvent(new w.Event('input'));
+  t('往下拖判为「太低」',function(){return $('#yiState').textContent.indexOf('太低')>-1&&parseFloat($('#yiDot').getAttribute('cy'))>118;});
+  t('可切回垂帘演示',function(){$('#tabLid').click();return !$('#panelLid').hidden&&$('#panelYi').hidden&&$('#tabLid').classList.contains('on');});
   t('四阶齐全',function(){return $$('.rung').length===4;});
   t('四阶序号为 01–04',function(){return $$('.rung-n b').map(function(x){return x.textContent;}).join('')==='01020304';});
 
